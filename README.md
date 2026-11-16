@@ -29,7 +29,7 @@ src/
   styles/        tokens and base styles
 ```
 
-Rules are described in issue #46.
+Module rules, design rules and git rules are in [AGENTS.md](AGENTS.md) (written for AI agents, useful for people too). Design is described in `DESIGN.md`.
 
 ## Commits
 

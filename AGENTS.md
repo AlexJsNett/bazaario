@@ -1,0 +1,57 @@
+# AGENTS.md
+
+Bazaario: Amazon-like marketplace, frontend only, no backend. Two developers. Full rules: issue #46. Design: `DESIGN.md`. Human docs: `README.md`.
+
+## Stack and commands
+
+TypeScript, Vite (vanilla, no framework), Vitest, SCSS (`sass-embedded`), ESLint, Prettier, Husky.
+
+- `npm run dev` | `npm run build` (tsc + vite build)
+- `npm test` (Vitest, once) | `npm run test:watch`
+- `npm run lint` | `npm run format`
+- Before finishing a task run: `npm run lint && npm test && npm run build`
+
+## Structure
+
+```
+src/
+  main.ts       entry, hash router lives here
+  data/         products (constant data)
+  logic/        pure functions + *.test.ts next to the file
+  store/        state, localStorage, subscribe
+  components/   UI kit, one folder per component (name.ts + name.scss)
+  pages/        one folder per page, exports render(container)
+  styles/       tokens.scss (CSS variables), main.scss (reset, base)
+public/         favicon, logos
+```
+
+## Rules
+
+1. `logic/` is pure: no DOM, no imports from `components/`, `pages/`, `store/`.
+2. `components/` take data via arguments and report events via callbacks. They never read the store.
+3. `pages/` connect components, store and logic. A page exports `render(container)`.
+4. Only `store/` touches localStorage.
+5. One folder per page and per component. Do not edit files owned by another task.
+6. Every logic function has tests in the same PR. Cover normal case, edge case, and that input is not mutated.
+
+## Design
+
+- `DESIGN.md` is the source of truth. Use only CSS variables from `src/styles/tokens.scss`. No hex colors, no new sizes in components.
+- Need a new color, size or component? Change `DESIGN.md` first, then tokens, then code.
+- Token names: `--color-*`, `--space-*`, `--radius-*`, `--font-family`, `--text-<style>-size|weight|line`.
+- Orange (`--color-primary`) is the main action. Red only for sale and errors. Text on orange is dark.
+- New component: add a block to the showcase page `src/pages/ui-kit/` in the same PR.
+
+## Git
+
+- Conventional Commits: `type(scope): description`. Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert. Scopes: cart, catalog, favorites, home, about, ui, app, ci. Husky and commitlint check it.
+- Branches: `feat/cart-logic`, `fix/price-filter`, `docs/readme`.
+- One issue, one PR. PR title follows Conventional Commits. Put `Closes #N` in the body. Squash merge.
+- Reviewer clicks Approve, author clicks Merge. Never push to `main`.
+- No Co-Authored-By or "Generated with" lines in commits or PRs.
+
+## Task flow
+
+- Tasks are issues on the board: https://github.com/users/AlexJsNett/projects/3 . Check blockers before starting.
+- Statuses: Todo, In Progress, In Review, Done. Move the card when the PR is opened.
+- Code and comments in English. Keep functions small and typed. No `any`.
