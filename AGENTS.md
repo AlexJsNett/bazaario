@@ -16,13 +16,17 @@ TypeScript, Vite (vanilla, no framework), Vitest, SCSS (`sass-embedded`), ESLint
 ```
 src/
   main.ts       entry, hash router lives here
-  data/         products (constant data)
+  data/         loaders for mock API data (fetch from public/api)
   logic/        pure functions + *.test.ts next to the file
   store/        state, localStorage, subscribe
+  assets/       fonts, icons, images imported from code (hashed by Vite)
   components/   UI kit, one folder per component (name.ts + name.scss)
   pages/        one folder per page, exports render(container)
   styles/       tokens.scss (CSS variables), main.scss (reset, base)
-public/         favicon, logos
+public/
+  api/          mock API: JSON files (products.json), fetched at runtime
+  images/       product images referenced from the JSON files
+  favicon.svg, logo-*.svg
 ```
 
 ## Rules
@@ -32,7 +36,8 @@ public/         favicon, logos
 3. `pages/` connect components, store and logic. A page exports `render(container)`.
 4. Only `store/` touches localStorage.
 5. One folder per page and per component. Do not edit files owned by another task.
-6. Every logic function has tests in the same PR. Cover normal case, edge case, and that input is not mutated.
+6. Mock API: data lives in `public/api/*.json`. Fetch with `import.meta.env.BASE_URL + 'api/products.json'` (the site is served under `/bazaario/` on GitHub Pages), never with a hard-coded `/api/...`.
+7. Every logic function has tests in the same PR. Cover normal case, edge case, and that input is not mutated.
 
 ## Design
 

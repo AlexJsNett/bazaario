@@ -21,12 +21,16 @@ TypeScript, Vite (vanilla-ts), Vitest, SCSS.
 ```
 src/
   main.ts        entry point
-  data/          products
+  data/          loaders for mock API data
   logic/         pure functions + tests next to the file
   store/         state and localStorage
+  assets/        fonts, icons, images used in code
   components/    UI kit
   pages/         one folder per page
   styles/        tokens and base styles
+public/
+  api/           mock API, JSON files
+  images/        product images used by the JSON
 ```
 
 Module rules, design rules and git rules are in [AGENTS.md](AGENTS.md) (written for AI agents, useful for people too). Design is described in `DESIGN.md`.
