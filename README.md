@@ -13,6 +13,8 @@ TypeScript, Vite (vanilla-ts), Vitest, SCSS.
 - `npm run build` type check and build
 - `npm test` run tests once
 - `npm run test:watch` run tests in watch mode
+- `npm run lint` check code with ESLint (`lint:fix` fixes it)
+- `npm run format` format with Prettier (`format:check` only checks)
 
 ## Structure
 
@@ -28,3 +30,8 @@ src/
 ```
 
 Rules are described in issue #46.
+
+## Commits
+
+Conventional Commits: `type(scope): description`, for example `feat(cart): add calculateTotal`.
+Husky runs two hooks: before a commit ESLint and Prettier check the staged files, and commitlint checks the commit message.
