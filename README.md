@@ -35,6 +35,30 @@ public/
 
 Module rules, design rules and git rules are in [AGENTS.md](AGENTS.md) (written for AI agents, useful for people too). Design is described in `DESIGN.md`.
 
+## UI components
+
+Styles use only CSS variables from `src/styles/tokens.scss` (see `DESIGN.md`).
+
+```ts
+import { createButton } from './components/button/button';
+import { createInput } from './components/input/input';
+
+const add = createButton({ label: 'Add to cart', variant: 'primary', onClick: () => {} });
+const more = createButton({ label: 'Details', variant: 'outline' });
+const off = createButton({ label: 'Sold out', disabled: true });
+
+const search = createInput({
+  id: 'q',
+  label: 'Search',
+  placeholder: 'Find a product',
+  onInput: (value) => {},
+});
+const email = createInput({ id: 'email', type: 'email', error: 'Enter a valid email' });
+```
+
+- `createButton` returns a `<button>`. Options: `label`, `variant` (`primary` or `outline`), `type`, `disabled`, `onClick`.
+- `createInput` returns a `<div>` with label, `<input>` and an error message. Options: `id`, `label`, `type`, `value`, `placeholder`, `error`, `disabled`, `onInput`.
+
 ## Commits
 
 Conventional Commits: `type(scope): description`, for example `feat(cart): add calculateTotal`.
