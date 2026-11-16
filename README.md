@@ -31,8 +31,6 @@ src/
 
 Rules are described in issue #46.
 
-<<<<<<< HEAD
-
 ## UI components
 
 Styles use only CSS variables from `src/styles/tokens.scss` (see `DESIGN.md`).
@@ -56,11 +54,8 @@ const email = createInput({ id: 'email', type: 'email', error: 'Enter a valid em
 
 - `createButton` returns a `<button>`. Options: `label`, `variant` (`primary` or `outline`), `type`, `disabled`, `onClick`.
 - `createInput` returns a `<div>` with label, `<input>` and an error message. Options: `id`, `label`, `type`, `value`, `placeholder`, `error`, `disabled`, `onInput`.
-  \=======
 
 ## Commits
 
 Conventional Commits: `type(scope): description`, for example `feat(cart): add calculateTotal`.
 Husky runs two hooks: before a commit ESLint and Prettier check the staged files, and commitlint checks the commit message.
-
-> > > > > > > feat/setup
