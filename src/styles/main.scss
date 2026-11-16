@@ -1,0 +1,11 @@
+// Global styles. Design tokens (CSS variables) come from DESIGN.md in issue #25.
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
