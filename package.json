@@ -24,7 +24,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^17.6.1",
     "prettier": "^3.10.1",
-    "sass": "^1.108.2",
+    "sass-embedded": "^1.108.2",
     "typescript": "~6.0",
     "typescript-eslint": "^8.72.2",
     "vite": "^8.3.8",
