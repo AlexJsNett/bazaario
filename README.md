@@ -63,3 +63,9 @@ const email = createInput({ id: 'email', type: 'email', error: 'Enter a valid em
 
 Conventional Commits: `type(scope): description`, for example `feat(cart): add calculateTotal`.
 Husky runs two hooks: before a commit ESLint and Prettier check the staged files, and commitlint checks the commit message.
+
+## Design system showcase and deploy
+
+- The showcase page (`src/pages/ui-kit/`) shows colors, typography, spacing, radius and the components with all their states. Add a block for every new component in the same PR.
+- The site is published to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`: https://alexjsnett.github.io/bazaario/
+- The site is served under `/bazaario/`. `vite.config.ts` sets `base` for the build, so use `import.meta.env.BASE_URL` for paths to files in `public/`.
