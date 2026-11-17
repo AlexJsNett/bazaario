@@ -1,17 +1,25 @@
 .rating {
   display: inline-flex;
   align-items: center;
-  align-content: flex-end;
   gap: var(--space-sm);
+  font-family: var(--font-family);
 
   &__score {
-    font-size: 16px;
+    color: var(--color-body);
+    font-size: var(--text-caption-size);
     font-weight: var(--text-caption-weight);
+    line-height: var(--text-caption-line);
   }
 
   &__stars {
     display: flex;
     align-items: center;
     gap: var(--space-xxs);
+  }
+
+  &__star {
+    display: block;
+    width: var(--space-lg);
+    height: var(--space-lg);
   }
 }
