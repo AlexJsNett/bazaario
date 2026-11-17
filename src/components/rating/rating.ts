@@ -30,28 +30,26 @@ export const createRating = (options: RatingOptions) => {
   const preparedScore = prepareScore(score);
   const icons = getStars(preparedScore).map((st) => {
     const star = document.createElement('img');
+    star.classList.add('rating__star');
+    star.alt = '';
     switch (st) {
       case 'empty':
         star.src = starEmptyIcon;
-        star.alt = 'star empty';
         break;
       case 'half':
         star.src = starHalfIcon;
-        star.alt = 'star half';
         break;
       case 'full':
         star.src = starIcon;
-        star.alt = 'star full';
         break;
     }
-
-    star.width = 18;
-    star.height = 18;
     return star;
   });
 
   const container = document.createElement('div');
   container.classList.add('rating');
+  container.setAttribute('role', 'img');
+  container.setAttribute('aria-label', `Rating ${preparedScore} out of 5`);
   const scoreEl = document.createElement('span');
   scoreEl.textContent = String(preparedScore);
   scoreEl.classList.add('rating__score');

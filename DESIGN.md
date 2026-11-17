@@ -149,6 +149,29 @@ components:
     typography: '{typography.ui}'
     rounded: '{rounded.sm}'
     padding: '4px 8px'
+  badge-highlight:
+    backgroundColor: '{colors.header}'
+    textColor: '{colors.on-header}'
+    typography: '{typography.ui}'
+    rounded: '{rounded.sm}'
+    padding: '4px 8px'
+  badge-deal:
+    backgroundColor: '{colors.sale}'
+    textColor: '{colors.on-header}'
+    typography: '{typography.ui}'
+    rounded: '{rounded.sm}'
+    padding: '4px 8px'
+  badge-save:
+    backgroundColor: '{colors.success-surface}'
+    textColor: '{colors.success}'
+    typography: '{typography.ui}'
+    rounded: '{rounded.sm}'
+    borderColor: '{colors.success}'
+    padding: '4px 8px'
+  badge-plain:
+    textColor: '{colors.ink}'
+    typography: '{typography.body}'
+    padding: '4px 8px'
   rating:
     textColor: '{colors.star}'
     typography: '{typography.caption}'
@@ -209,7 +232,7 @@ Names match the components in `src/components/`.
 - **ProductCard**: white card, 8px radius, 1px hairline, 16px padding. Image on top, title (2 lines max), Rating, Price, "Add to cart" button, favorite heart in the corner.
 - **Price**: current price in `heading-lg` `ink`. Old price in `muted`, struck through. Discount badge next to them if there is an old price.
 - **Rating**: 5 stars, filled stars in `star`, empty in `hairline`, number and count in `caption` `body`.
-- **Badge**: discount (red), success (green), neutral (gray).
+- **Badge**: discount (light red), success (green), neutral (gray), highlight (dark, e.g. "Bazaario's Choice"), deal (solid red, e.g. "Early Black Friday Deal"), save (green with 1px outline, e.g. "Save 5%"), plain (text only, e.g. "5K+ bought in past month").
 
 ## Do and Don't
 

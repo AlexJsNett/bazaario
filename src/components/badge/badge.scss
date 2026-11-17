@@ -8,19 +8,18 @@
   font-weight: var(--text-ui-weight);
   line-height: var(--text-ui-line);
 
-  // New: dark label, e.g. "Bazaario's Choice"
+  // Dark label, e.g. "Bazaario's Choice"
   &--highlight {
     background-color: var(--color-header);
     color: var(--color-on-header);
   }
 
-  // New: solid red deal label, e.g. "Early Black Friday Deal"
+  // Solid red deal label, e.g. "Early Black Friday Deal"
   &--deal {
     background-color: var(--color-sale);
     color: var(--color-on-header);
   }
 
-  // Already in DESIGN.md
   &--discount {
     background-color: var(--color-sale-surface);
     color: var(--color-sale);
@@ -46,7 +45,8 @@
   // "5K+ bought in past month" line
   &--plain {
     color: var(--color-ink);
-    font-size: var(--text-ui-size);
+    font-size: var(--text-body-size);
     font-weight: var(--text-body-weight);
+    line-height: var(--text-body-line);
   }
 }
