@@ -9,13 +9,6 @@
     gap: var(--space-sm);
   }
 
-  &__discount {
-    font-size: var(--text-heading-lg-size);
-    font-weight: var(--text-heading-lg-weight);
-    line-height: var(--text-heading-lg-line);
-    color: var(--color-sale);
-  }
-
   &__amount {
     display: inline-flex;
     align-items: flex-start;
@@ -44,9 +37,9 @@
   }
 
   &__old {
-    font-size: var(--text-caption-size);
-    font-weight: var(--text-caption-weight);
-    line-height: var(--text-caption-line);
+    font-size: var(--text-body-size);
+    font-weight: var(--text-body-weight);
+    line-height: var(--text-body-line);
     color: var(--color-muted);
   }
 

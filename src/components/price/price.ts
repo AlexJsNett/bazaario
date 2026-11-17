@@ -1,4 +1,5 @@
 import './price.scss';
+import { createBadge } from '../badge/badge';
 
 export type PriceParts = {
   currency: string;
@@ -52,7 +53,7 @@ export const createPrice = (options: PriceOptions): HTMLDivElement => {
   current.className = 'price__current';
 
   if (typeof discount === 'number') {
-    current.append(createSpan('price__discount', `-${discount}%`));
+    current.append(createBadge({ variant: 'discount', label: `-${discount}%` }));
   }
   current.append(createAmount(price));
 
