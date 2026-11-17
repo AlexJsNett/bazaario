@@ -1,6 +1,7 @@
 import './ui-kit.scss';
 import { createButton } from '../../components/button/button';
 import { createInput } from '../../components/input/input';
+import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts';
 
 const COLORS = [
   'header',
@@ -127,6 +128,21 @@ function inputsBlock(): HTMLElement {
   return row;
 }
 
+function badgeBlock(): HTMLElement {
+  const demos = [
+    'highlight',
+    'deal',
+    'discount',
+    'success',
+    'neutral',
+    'save',
+    'plain',
+  ] satisfies BadgeOptions['variant'][];
+  const row = el('div', 'ui-kit__inline');
+  row.append(...demos.map((variant) => createBadge({ variant, label: String(variant) })));
+  return row;
+}
+
 export function render(container: HTMLElement): void {
   container.replaceChildren();
 
@@ -147,6 +163,7 @@ export function render(container: HTMLElement): void {
     section('Radius', radiusBlock()),
     section('Button', buttonsBlock()),
     section('Input', inputsBlock()),
+    section('Badge', badgeBlock()),
   );
 
   page.append(header, content);
