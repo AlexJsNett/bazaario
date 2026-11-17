@@ -1,0 +1,17 @@
+.rating {
+  display: inline-flex;
+  align-items: center;
+  align-content: flex-end;
+  gap: var(--space-sm);
+
+  &__score {
+    font-size: 16px;
+    font-weight: var(--text-caption-weight);
+  }
+
+  &__stars {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xxs);
+  }
+}
