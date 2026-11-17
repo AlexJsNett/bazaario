@@ -1,6 +1,7 @@
 import './ui-kit.scss';
 import { createButton } from '../../components/button/button';
 import { createInput } from '../../components/input/input';
+import { createPrice } from '../../components/price/price';
 import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts';
 
 const COLORS = [
@@ -143,6 +144,24 @@ function badgeBlock(): HTMLElement {
   return row;
 }
 
+function priceBlock(): HTMLElement {
+  const row = el('div', 'ui-kit__list');
+  row.append(
+    createPrice({ price: { currency: 'EUR', main: 25, sub: 84 } }),
+    createPrice({
+      price: { currency: 'EUR', main: 25, sub: 84 },
+      oldPrice: { currency: 'EUR', main: 30, sub: 48 },
+      discount: 15,
+      pricePerUnit: {
+        price: { currency: 'EUR', main: 0, sub: 86 },
+        units: 100,
+        unitLabel: 'Sheets',
+      },
+    }),
+  );
+  return row;
+}
+
 export function render(container: HTMLElement): void {
   container.replaceChildren();
 
@@ -164,6 +183,7 @@ export function render(container: HTMLElement): void {
     section('Button', buttonsBlock()),
     section('Input', inputsBlock()),
     section('Badge', badgeBlock()),
+    section('Price', priceBlock()),
   );
 
   page.append(header, content);
