@@ -23,7 +23,7 @@ src/
   main.ts        entry point
   data/          loaders for mock API data
   logic/         pure functions + tests next to the file
-  store/         state and localStorage
+  store/         user.ts: all user data in one localStorage key `user`
   assets/        fonts, icons, images used in code
   components/    UI kit
   pages/         one folder per page
