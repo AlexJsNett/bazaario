@@ -18,7 +18,7 @@ src/
   main.ts       entry, hash router lives here
   data/         loaders for mock API data (fetch from public/api)
   logic/        pure functions + *.test.ts next to the file
-  store/        state, localStorage, subscribe
+  store/        user.ts: the only place that touches localStorage
   assets/       fonts, icons, images imported from code (hashed by Vite)
   components/   UI kit, one folder per component (name.ts + name.scss)
   pages/        one folder per page, exports render(container)
@@ -38,6 +38,17 @@ public/
 5. One folder per page and per component. Do not edit files owned by another task.
 6. Mock API: data lives in `public/api/*.json`. Fetch with `import.meta.env.BASE_URL + 'api/products.json'` (the site is served under `/bazaario/` on GitHub Pages), never with a hard-coded `/api/...`.
 7. Every logic function has tests in the same PR. Cover normal case, edge case, and that input is not mutated.
+
+## User data (localStorage)
+
+All user data lives in ONE localStorage key `user`: a JSON object of type `User`, for example `{ favorites: [...], cart: [...] }`. Favorites, cart and any future data (orders) are fields of this object.
+
+- Only `src/store/user.ts` reads or writes it: `getUser(): User` and `updateUser(update: (user: User) => User): void`.
+- Never keep a copy of `User` in a variable. Read fresh with `getUser()`, or change with `updateUser(fn)` (it reads fresh, applies `fn`, saves). Favorites and cart are written from different places, a stale copy would overwrite the other part.
+- `logic/` stays pure: functions take one field (`user.cart`) and return a new value. The page connects them: `updateUser((user) => ({ ...user, favorites: toggleFavorite(user.favorites, id) }))`.
+- New data: add a field to `User` and to `DEFAULT_USER`. `getUser()` fills missing fields, so old saved data does not break.
+- Broken JSON or no localStorage: return defaults, never crash.
+- Do not call `localStorage` anywhere else, do not create other keys.
 
 ## Design
 
