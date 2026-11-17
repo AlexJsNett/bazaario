@@ -3,6 +3,7 @@ import { createButton } from '../../components/button/button';
 import { createInput } from '../../components/input/input';
 import { createPrice } from '../../components/price/price';
 import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts';
+import { createRating } from '../../components/rating/rating.ts';
 
 const COLORS = [
   'header',
@@ -47,6 +48,21 @@ function section(title: string, ...children: HTMLElement[]): HTMLElement {
   const wrapper = el('section', 'ui-kit__section');
   wrapper.append(el('h2', 'ui-kit__title', title), ...children);
   return wrapper;
+}
+
+function demoWithDescription(demoEl: HTMLElement, title: string, note?: string) {
+  const containerEl = el('div', 'ui-kit__demo');
+  containerEl.appendChild(el('div', 'ui-kit__demo-title', title));
+
+  if (note) {
+    containerEl.appendChild(el('code', 'ui-kit__demo-note', note));
+  }
+
+  const stageEl = el('div', 'ui-kit__demo-stage');
+  stageEl.appendChild(demoEl);
+  containerEl.appendChild(stageEl);
+
+  return containerEl;
 }
 
 function colorsBlock(): HTMLElement {
@@ -146,18 +162,36 @@ function badgeBlock(): HTMLElement {
 
 function priceBlock(): HTMLElement {
   const row = el('div', 'ui-kit__list');
+
   row.append(
-    createPrice({ price: { currency: 'EUR', main: 25, sub: 84 } }),
-    createPrice({
-      price: { currency: 'EUR', main: 25, sub: 84 },
-      oldPrice: { currency: 'EUR', main: 30, sub: 48 },
-      discount: 15,
-      pricePerUnit: {
-        price: { currency: 'EUR', main: 0, sub: 86 },
-        units: 100,
-        unitLabel: 'Sheets',
-      },
-    }),
+    demoWithDescription(
+      createPrice({ price: { currency: 'EUR', main: 25, sub: 84 } }),
+      'Minimal view',
+    ),
+    demoWithDescription(
+      createPrice({
+        price: { currency: 'EUR', main: 25, sub: 84 },
+        oldPrice: { currency: 'EUR', main: 30, sub: 48 },
+        discount: 15,
+        pricePerUnit: {
+          price: { currency: 'EUR', main: 0, sub: 86 },
+          units: 100,
+          unitLabel: 'Sheets',
+        },
+      }),
+      'All options filled view',
+    ),
+  );
+  return row;
+}
+
+function ratingBlock(): HTMLElement {
+  const row = el('div', 'ui-kit__row');
+  row.append(
+    demoWithDescription(createRating({ score: 0 }), 'Min score', 'score 0'),
+    demoWithDescription(createRating({ score: 3.1 }), 'Score lower', 'score 3.1'),
+    demoWithDescription(createRating({ score: 3.6 }), 'score upper', 'score 3.6'),
+    demoWithDescription(createRating({ score: 5 }), 'Max score', 'score 5'),
   );
   return row;
 }
@@ -184,6 +218,7 @@ export function render(container: HTMLElement): void {
     section('Input', inputsBlock()),
     section('Badge', badgeBlock()),
     section('Price', priceBlock()),
+    section('Rating', ratingBlock()),
   );
 
   page.append(header, content);
