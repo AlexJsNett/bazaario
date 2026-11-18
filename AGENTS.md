@@ -16,6 +16,7 @@ TypeScript, Vite (vanilla, no framework), Vitest, SCSS (`sass-embedded`), ESLint
 ```
 src/
   main.ts       entry, hash router lives here
+  types/        shared types only (Product, CartItem), no logic
   data/         loaders for mock API data (fetch from public/api)
   logic/        pure functions + *.test.ts next to the file
   store/        user.ts: the only place that touches localStorage
@@ -38,6 +39,7 @@ public/
 5. One folder per page and per component. Do not edit files owned by another task.
 6. Mock API: data lives in `public/api/*.json`. Fetch with `import.meta.env.BASE_URL + 'api/products.json'` (the site is served under `/bazaario/` on GitHub Pages), never with a hard-coded `/api/...`.
 7. Every logic function has tests in the same PR. Cover normal case, edge case, and that input is not mutated.
+8. Shared types live in `src/types/` (one file per topic). No logic and no imports from other layers there. Import them with `import type`. Do not declare `Product` or `CartItem` again in another file.
 
 ## User data (localStorage)
 
