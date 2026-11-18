@@ -3,6 +3,10 @@
 
 import type { Product } from '../types/product';
 
+export type SortMode = 'default' | 'price-asc' | 'price-desc' | 'rating-desc';
+
+const SORT_MODES: SortMode[] = ['default', 'price-asc', 'price-desc', 'rating-desc'];
+
 export type Filters = {
   query?: string;
   /** 'all' or missing means every category */
@@ -10,6 +14,8 @@ export type Filters = {
   min?: number;
   max?: number;
   minRating?: number;
+  /** not a filter, but part of the catalog state in the URL. filterProducts ignores it */
+  sort?: SortMode;
 };
 
 export const ALL_CATEGORIES = 'all';
@@ -49,6 +55,21 @@ export function filterProducts(products: Product[], filters: Filters = {}): Prod
   return filterByRating(inPrice, minRating);
 }
 
+// Returns a new array. Array.sort is stable, so equal values keep the original order.
+export function sortProducts(products: Product[], mode: SortMode): Product[] {
+  const sorted = [...products];
+  switch (mode) {
+    case 'price-asc':
+      return sorted.sort((a, b) => a.price - b.price);
+    case 'price-desc':
+      return sorted.sort((a, b) => b.price - a.price);
+    case 'rating-desc':
+      return sorted.sort((a, b) => b.rating - a.rating);
+    default:
+      return sorted;
+  }
+}
+
 // A number from the URL: empty, text and negative values are ignored.
 function readNumber(params: URLSearchParams, name: string): number | undefined {
   const raw = params.get(name);
@@ -81,6 +102,10 @@ export function parseFilters(params: URLSearchParams): Filters {
   if (minRating !== undefined) {
     filters.minRating = minRating;
   }
+  const sort = params.get('sort');
+  if (sort && sort !== 'default' && SORT_MODES.includes(sort as SortMode)) {
+    filters.sort = sort as SortMode;
+  }
   return filters;
 }
 
@@ -99,6 +124,9 @@ export function filtersToParams(filters: Filters): URLSearchParams {
     if (value !== undefined && Number.isFinite(value)) {
       params.set(name, String(value));
     }
+  }
+  if (filters.sort && filters.sort !== 'default') {
+    params.set('sort', filters.sort);
   }
   return params;
 }
