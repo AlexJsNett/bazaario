@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import type { Product } from '../types/product';
 import {
-  type Product,
   filterByCategory,
   filterByPrice,
   filterByRating,
@@ -10,11 +10,27 @@ import {
   searchProducts,
 } from './catalog';
 
+const make = (
+  id: number,
+  title: string,
+  category: string,
+  price: number,
+  rating: number,
+): Product => ({
+  id,
+  title,
+  category,
+  price,
+  rating,
+  image: `images/${id}.jpg`,
+  description: `${title} description`,
+});
+
 const products: Product[] = [
-  { id: 1, title: 'Phone Case', category: 'electronics', price: 10, rating: 4.5 },
-  { id: 2, title: 'Smart Phone', category: 'electronics', price: 500, rating: 4.8 },
-  { id: 3, title: 'Cooking Book', category: 'books', price: 25, rating: 3.9 },
-  { id: 4, title: 'Toy Car', category: 'toys', price: 15, rating: 4.1 },
+  make(1, 'Phone Case', 'electronics', 10, 4.5),
+  make(2, 'Smart Phone', 'electronics', 500, 4.8),
+  make(3, 'Cooking Book', 'books', 25, 3.9),
+  make(4, 'Toy Car', 'toys', 15, 4.1),
 ];
 
 const ids = (list: Product[]) => list.map((product) => product.id);

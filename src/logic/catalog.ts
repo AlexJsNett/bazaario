@@ -1,14 +1,7 @@
 // Pure functions for the catalog: search and filters. They return new arrays and never
 // mutate the input. Filters live in the URL query, see parseFilters and filtersToParams.
 
-// TODO(#30): replace this local type with Product from src/data/ when #30 is merged.
-export type Product = {
-  id: number;
-  title: string;
-  category: string;
-  price: number;
-  rating: number;
-};
+import type { Product } from '../types/product';
 
 export type Filters = {
   query?: string;
