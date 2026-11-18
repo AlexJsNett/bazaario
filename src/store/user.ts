@@ -1,11 +1,8 @@
 // All user data lives in ONE localStorage key. See AGENTS.md, section "User data".
 // Only this file touches localStorage.
 
-// TODO(#30): replace ProductId with Product['id'] when the Product type exists.
-export type ProductId = number;
-
-// TODO(#31): CartItem moves to logic/cart when the cart logic lands.
-export type CartItem = { productId: ProductId; quantity: number };
+import type { CartItem } from '../types/cart';
+import type { ProductId } from '../types/product';
 
 export type User = {
   favorites: ProductId[];
