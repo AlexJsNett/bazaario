@@ -6,6 +6,7 @@ import starEmptyIcon from '../../assets/stars/star-empty.svg';
 export type RatingOptions = {
   /* float number 0 - 5 */
   score: number;
+  reviewsCount: number;
 };
 
 type StarType = 'empty' | 'half' | 'full';
@@ -26,7 +27,7 @@ const prepareScore = (score: number) => {
 };
 
 export const createRating = (options: RatingOptions) => {
-  const { score } = options;
+  const { score, reviewsCount } = options;
   const preparedScore = prepareScore(score);
   const icons = getStars(preparedScore).map((st) => {
     const star = document.createElement('img');
@@ -53,9 +54,13 @@ export const createRating = (options: RatingOptions) => {
   const scoreEl = document.createElement('span');
   scoreEl.textContent = String(preparedScore);
   scoreEl.classList.add('rating__score');
+  const reviewsEl = document.createElement('span');
+  const formattedCount = reviewsCount.toLocaleString('ru-RU');
+  reviewsEl.textContent = `(${formattedCount})`;
+  reviewsEl.classList.add('rating__reviews-count');
   const starsContainer = document.createElement('div');
   starsContainer.classList.add('rating__stars');
   starsContainer.append(...icons);
-  container.append(scoreEl, starsContainer);
+  container.append(scoreEl, starsContainer, reviewsEl);
   return container;
 };

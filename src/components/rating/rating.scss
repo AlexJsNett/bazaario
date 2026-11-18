@@ -11,6 +11,13 @@
     line-height: var(--text-caption-line);
   }
 
+  &__reviews-count {
+    color: var(--color-body);
+    font-size: var(--text-caption-size);
+    font-weight: var(--text-caption-weight);
+    line-height: var(--text-caption-line);
+  }
+
   &__stars {
     display: flex;
     align-items: center;

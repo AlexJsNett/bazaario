@@ -188,10 +188,14 @@ function priceBlock(): HTMLElement {
 function ratingBlock(): HTMLElement {
   const row = el('div', 'ui-kit__row');
   row.append(
-    demoWithDescription(createRating({ score: 0 }), 'Min score', 'score 0'),
-    demoWithDescription(createRating({ score: 3.1 }), 'Score lower', 'score 3.1'),
-    demoWithDescription(createRating({ score: 3.6 }), 'score upper', 'score 3.6'),
-    demoWithDescription(createRating({ score: 5 }), 'Max score', 'score 5'),
+    demoWithDescription(createRating({ score: 0, reviewsCount: 10 }), 'Min score', 'score 0'),
+    demoWithDescription(
+      createRating({ score: 3.1, reviewsCount: 1000 }),
+      'Score lower',
+      'score 3.1',
+    ),
+    demoWithDescription(createRating({ score: 3.6, reviewsCount: 10 }), 'score upper', 'score 3.6'),
+    demoWithDescription(createRating({ score: 5, reviewsCount: 10 }), 'Max score', 'score 5'),
   );
   return row;
 }
