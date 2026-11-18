@@ -59,6 +59,14 @@ const email = createInput({ id: 'email', type: 'email', error: 'Enter a valid em
 
 - `createButton` returns a `<button>`. Options: `label`, `variant` (`primary` or `outline`), `type`, `disabled`, `onClick`.
 - `createInput` returns a `<div>` with label, `<input>` and an error message. Options: `id`, `label`, `type`, `value`, `placeholder`, `error`, `disabled`, `onInput`.
+- `createBadge` returns `<span>` with inner text from `label` option, has several `variant` options (all match real Amazon website use cases):
+  - `highlight` (default): dark background, white text. For labels like "Bazaario's Choice".
+  - `deal`: solid red background, white text. For labels like "Early Black Friday Deal".
+  - `discount`: light red background, red text. For discounts like "-15%".
+  - `success`: light green background, green text.
+  - `neutral`: light gray background, gray text.
+  - `save`: light green background, green text and green border. For offers like "Save 5%".
+  - `plain`: no background, dark body-size text. For lines like "5K+ bought in past month".
 
 ## Commits
 
