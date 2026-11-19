@@ -22,7 +22,7 @@ src/
   store/        user.ts: the only place that touches localStorage
   assets/       fonts, icons, images imported from code (hashed by Vite)
   components/   UI kit, one folder per component (name.ts + name.scss)
-  pages/        one folder per page, exports render(uriParams (optional))
+  pages/        one folder per page, exports render(query: URLSearchParams): HTMLElement
   styles/       tokens.scss (CSS variables), main.scss (reset, base)
 public/
   api/          mock API: JSON files (products.json), fetched at runtime
@@ -34,7 +34,7 @@ public/
 
 1. `logic/` is pure: no DOM, no imports from `components/`, `pages/`, `store/`.
 2. `components/` take data via arguments and report events via callbacks. They never read the store.
-3. `pages/` connect components, store and logic. A page exports `render(container)`.
+3. `pages/` connect components, store and logic. A page exports `render(query: URLSearchParams): HTMLElement`: it receives the parsed hash query and returns the page element, and the router mounts it.
 4. Only `store/` touches localStorage.
 5. One folder per page and per component. Do not edit files owned by another task.
 6. Mock API: data lives in `public/api/*.json`. Fetch with `import.meta.env.BASE_URL + 'api/products.json'` (the site is served under `/bazaario/` on GitHub Pages), never with a hard-coded `/api/...`.
