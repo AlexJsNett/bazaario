@@ -17,8 +17,7 @@ export type PricePerUnit = {
 export type PriceOptions = {
   price: number;
   oldPrice?: number;
-  /** Discount in percent, e.g. 15 renders "-15%" */
-  discount?: number;
+  hideOldPrice?: boolean;
   currency?: string;
   pricePerUnit?: PricePerUnit;
 };
@@ -51,8 +50,11 @@ const createAmount = (parts: PriceParts): HTMLSpanElement => {
   return amount;
 };
 
+export const getDiscount = (currentPrice: number, oldPrice: number) =>
+  Math.round(Math.abs((currentPrice / oldPrice) * 100 - 100));
+
 export const createPrice = (options: PriceOptions): HTMLDivElement => {
-  const { price, oldPrice, discount, pricePerUnit, currency = 'EUR' } = options;
+  const { price, oldPrice, pricePerUnit, currency = 'EUR', hideOldPrice = false } = options;
 
   const priceEl = document.createElement('div');
   priceEl.className = 'price';
@@ -60,7 +62,8 @@ export const createPrice = (options: PriceOptions): HTMLDivElement => {
   const current = document.createElement('div');
   current.className = 'price__current';
 
-  if (typeof discount === 'number') {
+  if (oldPrice) {
+    const discount = getDiscount(price, oldPrice);
     current.append(createBadge({ variant: 'discount', label: `-${discount}%` }));
   }
   const priceParts: PriceParts = getPriceParts(currency, price);
@@ -75,7 +78,7 @@ export const createPrice = (options: PriceOptions): HTMLDivElement => {
   }
   priceEl.append(current);
 
-  if (oldPrice) {
+  if (oldPrice && !hideOldPrice) {
     const old = document.createElement('div');
     old.className = 'price__old';
     const oldPriceParts: PriceParts = getPriceParts(currency, oldPrice);

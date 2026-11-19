@@ -169,7 +169,6 @@ function priceBlock(): HTMLElement {
       createPrice({
         price: 25.84,
         oldPrice: 30.48,
-        discount: 15,
         pricePerUnit: {
           price: 0.86,
           units: 100,
@@ -177,6 +176,19 @@ function priceBlock(): HTMLElement {
         },
       }),
       'All options filled view',
+    ),
+    demoWithDescription(
+      createPrice({
+        price: 25.84,
+        oldPrice: 30.48,
+        pricePerUnit: {
+          price: 0.86,
+          units: 100,
+          unitLabel: 'Sheets',
+        },
+        hideOldPrice: true,
+      }),
+      'Old price hidden',
     ),
   );
   return row;
