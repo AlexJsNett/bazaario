@@ -1,5 +1,5 @@
 import { type RouteName } from '../../router.ts';
-import { goTo } from '../../logic/route.ts';
+import { goTo } from '../../goTo.ts';
 
 export const render = () => {
   const rootEl = document.createElement('div');

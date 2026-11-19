@@ -1,5 +1,3 @@
-import type { RouteName } from '../router.ts';
-
 export type ParsedHash = {
   path: string;
   query: URLSearchParams;
@@ -20,8 +18,4 @@ export const parseHash = (hash: string): ParsedHash => {
 export const buildHash = (path: string, query?: Record<string, string>): string => {
   const search = query ? new URLSearchParams(query).toString() : '';
   return `#/${path}${search ? `?${search}` : ''}`;
-};
-
-export const goTo = (name: RouteName, query?: Record<string, string>): void => {
-  window.location.hash = buildHash(name, query);
 };
