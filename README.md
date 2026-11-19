@@ -67,6 +67,13 @@ const email = createInput({ id: 'email', type: 'email', error: 'Enter a valid em
   - `neutral`: light gray background, gray text.
   - `save`: light green background, green text and green border. For offers like "Save 5%".
   - `plain`: no background, dark body-size text. For lines like "5K+ bought in past month".
+- `createPrice` returns a `<div>` with the current price. Options:
+  - `price`: current price as a number, e.g. `19.99`.
+  - `oldPrice` (optional): old price as a number, shown as "List Price: ...". The discount badge ("-15%") is calculated from `price` and `oldPrice`.
+  - `hideOldPrice` (optional): if `true`, the "List Price" line is hidden, the discount badge stays.
+  - `currency` (optional): currency text, default `EUR`.
+  - `pricePerUnit` (optional): `{ price, units, unitLabel }`, `price` is a number, shown as "(EUR 1.99 /10 count)".
+- `createRating` returns a `<div>` with the score number, five stars (full, half or empty) and the reviews count. Options: `score` (number from 0 to 5, cut to two decimals), `reviewsCount` (number, shown in brackets).
 
 ## Commits
 
