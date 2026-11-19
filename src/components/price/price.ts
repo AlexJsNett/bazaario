@@ -1,23 +1,25 @@
 import './price.scss';
 import { createBadge } from '../badge/badge';
+import { formatNumber } from '../../logic/utils/formatNumber.ts';
 
 export type PriceParts = {
   currency: string;
-  main: number;
-  sub: number;
+  main: string;
+  sub: string;
 };
 
 export type PricePerUnit = {
-  price: PriceParts;
+  price: number;
   units: number;
   unitLabel: string;
 };
 
 export type PriceOptions = {
-  price: PriceParts;
-  oldPrice?: PriceParts;
+  price: number;
+  oldPrice?: number;
   /** Discount in percent, e.g. 15 renders "-15%" */
   discount?: number;
+  currency?: string;
   pricePerUnit?: PricePerUnit;
 };
 
@@ -28,23 +30,29 @@ const createSpan = (className: string, text: string): HTMLSpanElement => {
   return span;
 };
 
-const formatSub = (sub: number): string => String(sub).padStart(2, '0');
+const getPriceParts = (currency: string, price: number): PriceParts => {
+  const main = price.toFixed(0);
+  const sub = Math.floor((price % 1) * 100).toString(10);
+  return { currency, main, sub };
+};
+
+const formatSub = (sub: string): string => sub.padStart(2, '0');
 
 const formatFlat = ({ currency, main, sub }: PriceParts): string =>
-  `${currency} ${main}.${formatSub(sub)}`;
+  `${currency} ${formatNumber(main)}.${formatSub(sub)}`;
 
 const createAmount = (parts: PriceParts): HTMLSpanElement => {
   const amount = createSpan('price__amount', '');
   amount.append(
     createSpan('price__currency', parts.currency),
-    createSpan('price__main', String(parts.main)),
+    createSpan('price__main', formatNumber(parts.main)),
     createSpan('price__sub', formatSub(parts.sub)),
   );
   return amount;
 };
 
 export const createPrice = (options: PriceOptions): HTMLDivElement => {
-  const { price, oldPrice, discount, pricePerUnit } = options;
+  const { price, oldPrice, discount, pricePerUnit, currency = 'EUR' } = options;
 
   const priceEl = document.createElement('div');
   priceEl.className = 'price';
@@ -55,18 +63,23 @@ export const createPrice = (options: PriceOptions): HTMLDivElement => {
   if (typeof discount === 'number') {
     current.append(createBadge({ variant: 'discount', label: `-${discount}%` }));
   }
-  current.append(createAmount(price));
+  const priceParts: PriceParts = getPriceParts(currency, price);
+  current.append(createAmount(priceParts));
 
   if (pricePerUnit) {
     const { price: unitPrice, units, unitLabel } = pricePerUnit;
-    current.append(createSpan('price__unit', `(${formatFlat(unitPrice)} /${units} ${unitLabel})`));
+    const perUnitPriceParts: PriceParts = getPriceParts(currency, unitPrice);
+    current.append(
+      createSpan('price__unit', `(${formatFlat(perUnitPriceParts)} /${units} ${unitLabel})`),
+    );
   }
   priceEl.append(current);
 
   if (oldPrice) {
     const old = document.createElement('div');
     old.className = 'price__old';
-    old.append('List Price: ', createSpan('price__old-value', formatFlat(oldPrice)));
+    const oldPriceParts: PriceParts = getPriceParts(currency, oldPrice);
+    old.append('List Price: ', createSpan('price__old-value', formatFlat(oldPriceParts)));
     priceEl.append(old);
   }
 

@@ -164,17 +164,14 @@ function priceBlock(): HTMLElement {
   const row = el('div', 'ui-kit__list');
 
   row.append(
-    demoWithDescription(
-      createPrice({ price: { currency: 'EUR', main: 25, sub: 84 } }),
-      'Minimal view',
-    ),
+    demoWithDescription(createPrice({ price: 2555.84 }), 'Minimal view'),
     demoWithDescription(
       createPrice({
-        price: { currency: 'EUR', main: 25, sub: 84 },
-        oldPrice: { currency: 'EUR', main: 30, sub: 48 },
+        price: 25.84,
+        oldPrice: 30.48,
         discount: 15,
         pricePerUnit: {
-          price: { currency: 'EUR', main: 0, sub: 86 },
+          price: 0.86,
           units: 100,
           unitLabel: 'Sheets',
         },
