@@ -1,0 +1,292 @@
+[
+  {
+    "id": 1,
+    "title": "Aurelia ANC Wireless Headphones",
+    "category": "Headphones",
+    "price": 129.99,
+    "oldPrice": 169.99,
+    "rating": 4.6,
+    "image": "images/01.png",
+    "description": "Hybrid active noise cancelling and 40 mm dynamic drivers deliver deep, balanced sound, while Bluetooth 5.3 multipoint lets you switch between laptop and phone instantly. Up to 45 hours of battery life, 10-minute fast charge for 5 hours of playback, memory-foam ear cups and a foldable design. Silence the world and hear every detail."
+  },
+  {
+    "id": 2,
+    "title": "Pulse Buds Pro True Wireless Earbuds",
+    "category": "Headphones",
+    "price": 79.9,
+    "oldPrice": 99.9,
+    "rating": 4.3,
+    "image": "images/02.png",
+    "description": "Compact in-ear earbuds with 11 mm drivers, adaptive noise cancelling and IPX5 sweat resistance. Bluetooth 5.3, 8 hours of playback plus 24 hours from the charging case, wireless charging and a low-latency gaming mode. Six ear tip sizes ensure a secure fit for workouts and commutes."
+  },
+  {
+    "id": 3,
+    "title": "Nimbus Kids Safe-Sound Headphones",
+    "category": "Headphones",
+    "price": 24.5,
+    "rating": 3.6,
+    "image": "images/03.png",
+    "description": "Lightweight on-ear headphones with a built-in 85 dB volume limiter to protect young ears. Padded adjustable headband, tangle-free 1.2 m cable with a shared audio port so friends can listen together, and durable flexible plastic that survives backpacks. Perfect for school, tablets and travel."
+  },
+  {
+    "id": 4,
+    "title": "Vortex Pro Gaming Headset",
+    "category": "Headphones",
+    "price": 89,
+    "oldPrice": 119,
+    "rating": 4.4,
+    "image": "images/04.png",
+    "description": "Immersive 7.1 virtual surround sound with 50 mm neodymium drivers and a detachable noise-cancelling boom microphone. Breathable memory-foam ear cups, aluminium frame, customisable RGB lighting and USB-C plus 3.5 mm connectivity for PC, console and mobile. Hear footsteps before your rivals do."
+  },
+  {
+    "id": 5,
+    "title": "Sonata Studio Reference Headphones",
+    "category": "Headphones",
+    "price": 199,
+    "rating": 4.9,
+    "image": "images/05.png",
+    "description": "Open-back reference headphones with 45 mm drivers and a frequency response of 10 Hz to 40 kHz for transparent mixing and critical listening. Velour pads, detachable OFC cable, 3.5 mm and 6.35 mm adapters, and handcrafted walnut cups. Built for producers who trust their ears."
+  },
+  {
+    "id": 6,
+    "title": "Echo USB Condenser Microphone",
+    "category": "Microphones",
+    "price": 69.9,
+    "oldPrice": 89.9,
+    "rating": 4.5,
+    "image": "images/06.png",
+    "description": "Plug-and-play USB-C condenser microphone with a 16 mm capsule, cardioid pattern and 24-bit / 96 kHz recording. Includes tabletop stand, shock mount and pop filter, zero-latency headphone monitoring and a tap-to-mute button. Crisp, broadcast-quality voice for streaming, podcasts and calls."
+  },
+  {
+    "id": 7,
+    "title": "Ribbon Pro XLR Dynamic Microphone",
+    "category": "Microphones",
+    "price": 149,
+    "oldPrice": 179,
+    "rating": 4.8,
+    "image": "images/07.png",
+    "description": "Broadcast-grade dynamic microphone with a supercardioid pattern that rejects room noise and keyboard clatter. Internal pop filter, steel mesh grille, 50 Hz to 16 kHz frequency response and a rugged all-metal body. Warm, radio-ready vocals with any XLR interface."
+  },
+  {
+    "id": 8,
+    "title": "Clip-On Lavalier Wireless Mic Kit",
+    "category": "Microphones",
+    "price": 54,
+    "rating": 3.4,
+    "image": "images/08.png",
+    "description": "Dual-channel 2.4 GHz wireless lavalier system with 100 m range, 6 hours of battery life and a charging case for 18 extra hours. Plug-and-play receivers for USB-C, Lightning and 3.5 mm, with one-touch noise reduction. Ideal for interviews, vlogs and videos."
+  },
+  {
+    "id": 9,
+    "title": "Karaoke Star Handheld Microphone",
+    "category": "Microphones",
+    "price": 19.9,
+    "oldPrice": 29.9,
+    "rating": 2.8,
+    "image": "images/09.png",
+    "description": "Wireless handheld karaoke microphone with built-in speaker, Bluetooth 5.0 and colourful LED effects. Four voice-changer modes, microSD slot and 4 hours of play per charge. A fun gift for kids and party nights; not intended for professional recording."
+  },
+  {
+    "id": 10,
+    "title": "Zenith Tab 11 Tablet",
+    "category": "Tablets",
+    "price": 279,
+    "oldPrice": 329,
+    "rating": 4.5,
+    "image": "images/10.png",
+    "description": "11-inch 2K IPS display with 120 Hz refresh rate, octa-core processor, 8 GB RAM and 128 GB storage expandable by microSD. Quad stereo speakers, 8,000 mAh battery for up to 14 hours of video and a slim aluminium body weighing only 480 g. Entertainment and productivity in one tablet."
+  },
+  {
+    "id": 11,
+    "title": "Lumo Kids Tab 8 with Shock-Proof Case",
+    "category": "Tablets",
+    "price": 99,
+    "rating": 3.9,
+    "image": "images/11.png",
+    "description": "8-inch HD display, quad-core processor, 3 GB RAM and 32 GB storage with a parental control suite and curated learning apps. Drop-proof silicone case with stand, eye-care blue-light filter and 10 hours of battery life. Safe fun and learning for ages 4+."
+  },
+  {
+    "id": 12,
+    "title": "Artisan Pad Pro 12.9 Drawing Tablet",
+    "category": "Tablets",
+    "price": 549,
+    "oldPrice": 629,
+    "rating": 4.8,
+    "image": "images/12.png",
+    "description": "12.9-inch OLED display with 2.8K resolution, 120 Hz refresh and 4,096 pressure levels with the included low-latency stylus. 12 GB RAM, 256 GB storage, Wi-Fi 6E and a 10,200 mAh battery with 45 W fast charging. A pro canvas for artists, designers and note-takers."
+  },
+  {
+    "id": 13,
+    "title": "Basic Tab 10 Wi-Fi Tablet",
+    "category": "Tablets",
+    "price": 139,
+    "oldPrice": 159,
+    "rating": 3.2,
+    "image": "images/13.png",
+    "description": "10.1-inch Full HD display, quad-core processor, 4 GB RAM and 64 GB storage with microSD support. Dual cameras for video calls, Wi-Fi 5 and a 6,000 mAh battery for 9 hours of use. An affordable everyday tablet for reading, browsing and streaming."
+  },
+  {
+    "id": 14,
+    "title": "Boomer Mini Bluetooth Speaker",
+    "category": "Speakers",
+    "price": 29.9,
+    "oldPrice": 39.9,
+    "rating": 4.2,
+    "image": "images/14.png",
+    "description": "Pocket-sized 10 W speaker with surprisingly full sound, Bluetooth 5.3, IPX7 waterproofing and 12 hours of playtime. Includes a carabiner strap and a built-in microphone for calls. Take your music to the beach, the trail or the shower."
+  },
+  {
+    "id": 15,
+    "title": "Titan Party Speaker 120W",
+    "category": "Speakers",
+    "price": 219,
+    "rating": 4.6,
+    "image": "images/15.png",
+    "description": "Powerful 120 W party speaker with dual 6.5-inch woofers, tweeters and pulsing RGB light show. Up to 18 hours of battery, Bluetooth 5.3, TWS pairing, USB and microphone and guitar inputs. Wheels and a telescopic handle make it easy to bring the party anywhere."
+  },
+  {
+    "id": 16,
+    "title": "Halo Smart Speaker with Voice Assistant",
+    "category": "Speakers",
+    "price": 89,
+    "oldPrice": 109,
+    "rating": 3.7,
+    "image": "images/16.png",
+    "description": "Smart speaker with far-field voice control, 360-degree sound and a Wi-Fi plus Bluetooth connection. Multi-room audio, smart-home hub for lights and thermostats, and a physical mic-off switch for privacy. Hands-free music, timers and answers in a compact design."
+  },
+  {
+    "id": 17,
+    "title": "Resonance 2.1 Desktop Speaker System",
+    "category": "Speakers",
+    "price": 74,
+    "oldPrice": 89,
+    "rating": 4.1,
+    "image": "images/17.png",
+    "description": "2.1 multimedia speaker set with 40 W RMS output, a wooden 5-inch subwoofer and two satellite speakers with 3-inch drivers. Inputs: 3.5 mm, RCA and Bluetooth 5.0, with front-panel bass and treble knobs. Rich, room-filling sound for your desk and movies."
+  },
+  {
+    "id": 18,
+    "title": "Feather Wand Interactive Cat Toy",
+    "category": "Cat toys",
+    "price": 7.9,
+    "rating": 4.4,
+    "image": "images/18.png",
+    "description": "Telescopic wand with natural feathers, a jingle bell and a flexible 90 cm cord that mimics bird flight and ignites your cat hunting instinct. Includes 5 replaceable attachments and a comfortable non-slip handle. Great for daily play and bonding."
+  },
+  {
+    "id": 19,
+    "title": "Whirlwind Ball Tracks Cat Toy",
+    "category": "Cat toys",
+    "price": 14.9,
+    "oldPrice": 19.9,
+    "rating": 4,
+    "image": "images/19.png",
+    "description": "Three-level spinning ball track with 3 glowing balls that keeps curious cats entertained for hours. Non-slip base, quiet motion and a removable top for easy cleaning. Supports natural paw reflexes and prevents boredom for indoor cats."
+  },
+  {
+    "id": 20,
+    "title": "Auto Laser Pointer Cat Toy",
+    "category": "Cat toys",
+    "price": 22.5,
+    "rating": 2.5,
+    "image": "images/20.png",
+    "description": "Automatic laser toy with random movement patterns, three speed modes and a USB-C rechargeable battery. Adjustable timer and a safe low-power laser. Note: always supervise play and end the session with a physical treat toy."
+  },
+  {
+    "id": 21,
+    "title": "Catnip Crinkle Mice Set of 12",
+    "category": "Cat toys",
+    "price": 9.5,
+    "oldPrice": 12.9,
+    "rating": 4.7,
+    "image": "images/21.png",
+    "description": "Set of 12 soft felt mice filled with organic catnip, with crinkle sound for extra appeal. Lightweight, easy to carry and safe for kittens and adult cats. Washable, durable stitching and an assortment of colours for endless chasing."
+  },
+  {
+    "id": 22,
+    "title": "Iron Core Adjustable Dumbbell Set 20 kg",
+    "category": "Sport equipment",
+    "price": 89,
+    "oldPrice": 119,
+    "rating": 4.5,
+    "image": "images/22.png",
+    "description": "Adjustable dumbbell set with 2 handles, 8 plates and secure spin-lock collars, from 2.5 to 10 kg per dumbbell. Ergonomic knurled chrome handles and a rubberised coating protect the floor. Train your whole body at home with a single compact set."
+  },
+  {
+    "id": 23,
+    "title": "FlexMat Pro Yoga Mat 6 mm",
+    "category": "Sport equipment",
+    "price": 29.9,
+    "oldPrice": 39.9,
+    "rating": 4.6,
+    "image": "images/23.png",
+    "description": "Eco-friendly TPE yoga mat, 183 x 61 cm and 6 mm thick, with a non-slip texture on both sides and excellent joint cushioning. Latex-free, odour-resistant, comes with a carry strap. A perfect companion for yoga, pilates and stretching."
+  },
+  {
+    "id": 24,
+    "title": "Sprint Speed Jump Rope",
+    "category": "Sport equipment",
+    "price": 12.9,
+    "rating": 3.9,
+    "image": "images/24.png",
+    "description": "Adjustable steel-cable speed rope with ball-bearing handles for smooth 360-degree rotation. Non-slip foam grips, length up to 3 m and a carry bag. Boost your cardio, coordination and endurance in minutes a day."
+  },
+  {
+    "id": 25,
+    "title": "Peak Resistance Bands Set of 5",
+    "category": "Sport equipment",
+    "price": 17.5,
+    "rating": 4.2,
+    "image": "images/25.png",
+    "description": "Five latex resistance bands from 5 to 40 kg, with door anchor, ankle straps, handles and a carry bag. Natural latex with a reinforced stitch for durability. Ideal for strength training, physiotherapy and travel workouts."
+  },
+  {
+    "id": 26,
+    "title": "Apex Match Football Size 5",
+    "category": "Sport equipment",
+    "price": 24.9,
+    "oldPrice": 29.9,
+    "rating": 3.1,
+    "image": "images/26.png",
+    "description": "Size 5 training football with a durable TPU cover, machine-stitched panels and a butyl bladder for good air retention. Suitable for grass and artificial turf, 410 to 450 g. A reliable ball for clubs, school and weekend games."
+  },
+  {
+    "id": 27,
+    "title": "StrideAir Runner Sneakers",
+    "category": "Sneakers",
+    "price": 99,
+    "oldPrice": 129,
+    "rating": 4.7,
+    "image": "images/27.png",
+    "description": "Lightweight running sneakers with a breathable engineered-mesh upper, responsive foam midsole and 8 mm heel drop. Rubber outsole with multi-surface grip, reflective details for night runs and a padded collar. Weighs 260 g (size 42) for fast, comfortable miles."
+  },
+  {
+    "id": 28,
+    "title": "Urban Classic Leather Sneakers",
+    "category": "Sneakers",
+    "price": 84.9,
+    "oldPrice": 109.9,
+    "rating": 4.4,
+    "image": "images/28.png",
+    "description": "Timeless low-top sneakers crafted from full-grain leather with a cushioned insole and vulcanised rubber sole. Waxed cotton laces, perforated toe box for breathability and a minimalist look that works with jeans or chinos. Easy to wipe clean."
+  },
+  {
+    "id": 29,
+    "title": "Retro Wave Court Sneakers",
+    "category": "Sneakers",
+    "price": 74.9,
+    "rating": 4,
+    "image": "images/29.png",
+    "description": "Retro-inspired court sneakers with suede overlays, a padded tongue and a gum outsole. Cupsole construction for stability, soft textile lining and a vintage colourway that adds personality to any outfit. Made for all-day city walking."
+  },
+  {
+    "id": 30,
+    "title": "TrailBlazer Waterproof Hiking Sneakers",
+    "category": "Sneakers",
+    "price": 119,
+    "oldPrice": 149,
+    "rating": 4.5,
+    "image": "images/30.png",
+    "description": "Waterproof membrane, aggressive 5 mm lugged outsole and a protective toe cap make these ideal for trails and wet weather. Cushioned EVA midsole, quick-lace system and a gusseted tongue that keeps debris out. Go further in any weather."
+  }
+]
