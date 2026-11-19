@@ -8,6 +8,7 @@ import {
   filtersToParams,
   parseFilters,
   searchProducts,
+  sortProducts,
 } from './catalog';
 
 const make = (
@@ -137,6 +138,43 @@ describe('filterProducts', () => {
   });
 });
 
+describe('sortProducts', () => {
+  it('price-asc: cheapest first', () => {
+    expect(ids(sortProducts(products, 'price-asc'))).toEqual([1, 4, 3, 2]);
+  });
+
+  it('price-desc: most expensive first', () => {
+    expect(ids(sortProducts(products, 'price-desc'))).toEqual([2, 3, 4, 1]);
+  });
+
+  it('rating-desc: best rating first', () => {
+    expect(ids(sortProducts(products, 'rating-desc'))).toEqual([2, 1, 4, 3]);
+  });
+
+  it('default keeps the original order and returns a new array', () => {
+    const result = sortProducts(products, 'default');
+    expect(ids(result)).toEqual([1, 2, 3, 4]);
+    expect(result).not.toBe(products);
+  });
+
+  it('keeps the original order for equal prices (stable)', () => {
+    const same = [make(1, 'A', 'x', 10, 1), make(2, 'B', 'x', 10, 2), make(3, 'C', 'x', 5, 3)];
+    expect(ids(sortProducts(same, 'price-asc'))).toEqual([3, 1, 2]);
+    expect(ids(sortProducts(same, 'price-desc'))).toEqual([1, 2, 3]);
+  });
+
+  it('returns an empty array for an empty input', () => {
+    expect(sortProducts([], 'price-asc')).toEqual([]);
+  });
+
+  it('does not mutate the input', () => {
+    const copy = structuredClone(products);
+    sortProducts(products, 'price-desc');
+    sortProducts(products, 'rating-desc');
+    expect(products).toEqual(copy);
+  });
+});
+
 describe('parseFilters', () => {
   it('reads all filters from the query', () => {
     const params = new URLSearchParams('query=phone&category=books&min=10&max=50&minRating=4');
@@ -158,6 +196,15 @@ describe('parseFilters', () => {
     expect(parseFilters(params)).toEqual({});
   });
 
+  it('reads a known sort mode', () => {
+    expect(parseFilters(new URLSearchParams('sort=price-asc'))).toEqual({ sort: 'price-asc' });
+  });
+
+  it('ignores an unknown sort mode and the default one', () => {
+    expect(parseFilters(new URLSearchParams('sort=abc'))).toEqual({});
+    expect(parseFilters(new URLSearchParams('sort=default'))).toEqual({});
+  });
+
   it('keeps a valid zero', () => {
     expect(parseFilters(new URLSearchParams('min=0'))).toEqual({ min: 0 });
   });
@@ -174,6 +221,11 @@ describe('filtersToParams', () => {
     expect(params.toString()).toBe('');
   });
 
+  it('writes the sort mode, but not the default one', () => {
+    expect(filtersToParams({ sort: 'rating-desc' }).toString()).toBe('sort=rating-desc');
+    expect(filtersToParams({ sort: 'default' }).toString()).toBe('');
+  });
+
   it('round trip: filters to params and back', () => {
     const filters = {
       query: 'smart phone',
@@ -181,6 +233,7 @@ describe('filtersToParams', () => {
       min: 5,
       max: 600,
       minRating: 4.5,
+      sort: 'price-desc' as const,
     };
     expect(parseFilters(filtersToParams(filters))).toEqual(filters);
   });
