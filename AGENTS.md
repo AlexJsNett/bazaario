@@ -22,7 +22,7 @@ src/
   store/        user.ts: the only place that touches localStorage
   assets/       fonts, icons, images imported from code (hashed by Vite)
   components/   UI kit, one folder per component (name.ts + name.scss)
-  pages/        one folder per page, exports render(container)
+  pages/        one folder per page, exports render(uriParams (optional))
   styles/       tokens.scss (CSS variables), main.scss (reset, base)
 public/
   api/          mock API: JSON files (products.json), fetched at runtime

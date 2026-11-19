@@ -1,8 +1,13 @@
 import './styles/main.scss';
-import { render as renderUiKit } from './pages/ui-kit/ui-kit';
+import { createRouter } from './router.ts';
 
-const app = document.querySelector<HTMLDivElement>('#app');
+const app = document.querySelector<HTMLDivElement>('#app')!;
 
-if (app) {
-  renderUiKit(app);
-}
+const routerEl = document.createElement('div');
+routerEl.id = 'router';
+app.append(routerEl);
+
+const destroyRouter = createRouter(routerEl);
+
+// prevent events duplication on dev server
+import.meta.hot?.dispose(destroyRouter);
