@@ -10,7 +10,7 @@ export type Route = {
   render: (query: URLSearchParams) => HTMLElement;
 };
 
-export type RouteName = 'ui-kit' | 'main' | 'about' | 'cart' | 'catalog' | 'favorites';
+export type RouteName = 'ui-kit' | 'home' | 'about' | 'cart' | 'catalog' | 'favorites';
 
 const DEFAULT_ROUTE: RouteName = 'about';
 
@@ -20,7 +20,7 @@ export const routes = new Map<RouteName, Route>([
   ['catalog', { render: catalogPageRender }],
   ['favorites', { render: favoritesPageRender }],
   ['ui-kit', { render: uiKitPageRender }],
-  ['main', { render: homePageRender }],
+  ['home', { render: homePageRender }],
 ]);
 
 const isRouteName = (name: string): name is RouteName => routes.has(name as RouteName);
