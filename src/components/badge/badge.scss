@@ -1,0 +1,52 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--text-ui-size);
+  font-weight: var(--text-ui-weight);
+  line-height: var(--text-ui-line);
+
+  // Dark label, e.g. "Bazaario's Choice"
+  &--highlight {
+    background-color: var(--color-header);
+    color: var(--color-on-header);
+  }
+
+  // Solid red deal label, e.g. "Early Black Friday Deal"
+  &--deal {
+    background-color: var(--color-sale);
+    color: var(--color-on-header);
+  }
+
+  &--discount {
+    background-color: var(--color-sale-surface);
+    color: var(--color-sale);
+  }
+
+  &--success {
+    background-color: var(--color-success-surface);
+    color: var(--color-success);
+  }
+
+  &--neutral {
+    background-color: var(--color-canvas);
+    color: var(--color-body);
+  }
+
+  // Savings offer, e.g. "Save 5%"
+  &--save {
+    background-color: var(--color-success-surface);
+    color: var(--color-success);
+    box-shadow: inset 0 0 0 1px var(--color-success);
+  }
+
+  // "5K+ bought in past month" line
+  &--plain {
+    color: var(--color-ink);
+    font-size: var(--text-body-size);
+    font-weight: var(--text-body-weight);
+    line-height: var(--text-body-line);
+  }
+}

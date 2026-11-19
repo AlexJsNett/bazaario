@@ -1,0 +1,49 @@
+.price {
+  font-family: var(--font-family);
+  color: var(--color-ink);
+
+  &__current {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  &__amount {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--space-xxs);
+  }
+
+  &__currency,
+  &__sub {
+    font-size: var(--text-caption-size);
+    font-weight: var(--text-ui-weight);
+    line-height: var(--text-caption-line);
+  }
+
+  &__main {
+    font-size: var(--text-heading-lg-size);
+    font-weight: var(--text-heading-lg-weight);
+    line-height: var(--text-heading-lg-line);
+  }
+
+  &__unit {
+    align-self: center;
+    font-size: var(--text-caption-size);
+    font-weight: var(--text-caption-weight);
+    line-height: var(--text-caption-line);
+    color: var(--color-body);
+  }
+
+  &__old {
+    font-size: var(--text-body-size);
+    font-weight: var(--text-body-weight);
+    line-height: var(--text-body-line);
+    color: var(--color-muted);
+  }
+
+  &__old-value {
+    text-decoration: line-through;
+  }
+}

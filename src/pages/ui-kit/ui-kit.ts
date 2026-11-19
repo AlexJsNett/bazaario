@@ -1,6 +1,9 @@
 import './ui-kit.scss';
 import { createButton } from '../../components/button/button';
 import { createInput } from '../../components/input/input';
+import { createPrice } from '../../components/price/price';
+import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts';
+import { createRating } from '../../components/rating/rating.ts';
 
 const COLORS = [
   'header',
@@ -45,6 +48,21 @@ function section(title: string, ...children: HTMLElement[]): HTMLElement {
   const wrapper = el('section', 'ui-kit__section');
   wrapper.append(el('h2', 'ui-kit__title', title), ...children);
   return wrapper;
+}
+
+function demoWithDescription(demoEl: HTMLElement, title: string, note?: string) {
+  const containerEl = el('div', 'ui-kit__demo');
+  containerEl.appendChild(el('div', 'ui-kit__demo-title', title));
+
+  if (note) {
+    containerEl.appendChild(el('code', 'ui-kit__demo-note', note));
+  }
+
+  const stageEl = el('div', 'ui-kit__demo-stage');
+  stageEl.appendChild(demoEl);
+  containerEl.appendChild(stageEl);
+
+  return containerEl;
 }
 
 function colorsBlock(): HTMLElement {
@@ -127,6 +145,70 @@ function inputsBlock(): HTMLElement {
   return row;
 }
 
+function badgeBlock(): HTMLElement {
+  const demos = [
+    'highlight',
+    'deal',
+    'discount',
+    'success',
+    'neutral',
+    'save',
+    'plain',
+  ] satisfies BadgeOptions['variant'][];
+  const row = el('div', 'ui-kit__inline');
+  row.append(...demos.map((variant) => createBadge({ variant, label: String(variant) })));
+  return row;
+}
+
+function priceBlock(): HTMLElement {
+  const row = el('div', 'ui-kit__list');
+
+  row.append(
+    demoWithDescription(createPrice({ price: 2555.84 }), 'Minimal view'),
+    demoWithDescription(
+      createPrice({
+        price: 25.84,
+        oldPrice: 30.48,
+        pricePerUnit: {
+          price: 0.86,
+          units: 100,
+          unitLabel: 'Sheets',
+        },
+      }),
+      'All options filled view',
+    ),
+    demoWithDescription(
+      createPrice({
+        price: 25.84,
+        oldPrice: 30.48,
+        pricePerUnit: {
+          price: 0.86,
+          units: 100,
+          unitLabel: 'Sheets',
+        },
+        hideOldPrice: true,
+      }),
+      'Old price hidden',
+    ),
+  );
+  return row;
+}
+
+function ratingBlock(): HTMLElement {
+  const row = el('div', 'ui-kit__row');
+  row.append(
+    demoWithDescription(createRating({ score: 0, reviewsCount: 10 }), 'Min score', 'score 0'),
+    demoWithDescription(
+      createRating({ score: 3.1, reviewsCount: 1000 }),
+      'Score lower',
+      'score 3.1',
+    ),
+    demoWithDescription(createRating({ score: 3.6, reviewsCount: 10 }), 'score upper', 'score 3.6'),
+    demoWithDescription(createRating({ score: 5, reviewsCount: 10 }), 'Max score', 'score 5'),
+  );
+  return row;
+}
+
 export function render(container: HTMLElement): void {
   container.replaceChildren();
 
@@ -147,6 +229,9 @@ export function render(container: HTMLElement): void {
     section('Radius', radiusBlock()),
     section('Button', buttonsBlock()),
     section('Input', inputsBlock()),
+    section('Badge', badgeBlock()),
+    section('Price', priceBlock()),
+    section('Rating', ratingBlock()),
   );
 
   page.append(header, content);

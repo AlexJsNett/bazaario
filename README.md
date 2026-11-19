@@ -59,6 +59,21 @@ const email = createInput({ id: 'email', type: 'email', error: 'Enter a valid em
 
 - `createButton` returns a `<button>`. Options: `label`, `variant` (`primary` or `outline`), `type`, `disabled`, `onClick`.
 - `createInput` returns a `<div>` with label, `<input>` and an error message. Options: `id`, `label`, `type`, `value`, `placeholder`, `error`, `disabled`, `onInput`.
+- `createBadge` returns `<span>` with inner text from `label` option, has several `variant` options (all match real Amazon website use cases):
+  - `highlight` (default): dark background, white text. For labels like "Bazaario's Choice".
+  - `deal`: solid red background, white text. For labels like "Early Black Friday Deal".
+  - `discount`: light red background, red text. For discounts like "-15%".
+  - `success`: light green background, green text.
+  - `neutral`: light gray background, gray text.
+  - `save`: light green background, green text and green border. For offers like "Save 5%".
+  - `plain`: no background, dark body-size text. For lines like "5K+ bought in past month".
+- `createPrice` returns a `<div>` with the current price. Options:
+  - `price`: current price as a number, e.g. `19.99`.
+  - `oldPrice` (optional): old price as a number, shown as "List Price: ...". The discount badge ("-15%") is calculated from `price` and `oldPrice`.
+  - `hideOldPrice` (optional): if `true`, the "List Price" line is hidden, the discount badge stays.
+  - `currency` (optional): currency text, default `EUR`.
+  - `pricePerUnit` (optional): `{ price, units, unitLabel }`, `price` is a number, shown as "(EUR 1.99 /10 count)".
+- `createRating` returns a `<div>` with the score number, five stars (full, half or empty) and the reviews count. Options: `score` (number from 0 to 5, cut to two decimals), `reviewsCount` (number, shown in brackets).
 
 ## Commits
 
