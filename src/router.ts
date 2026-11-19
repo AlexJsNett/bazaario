@@ -26,7 +26,9 @@ export const routes = new Map<RouteName, Route>([
 const isRouteName = (name: string): name is RouteName => routes.has(name as RouteName);
 
 const refresh = (root: HTMLElement): void => {
-  const { path, query } = parseHash(window.location.hash);
+  const pathQuery = parseHash(window.location.hash);
+  const { path } = pathQuery;
+  let { query } = pathQuery;
   let name: RouteName;
 
   if (isRouteName(path)) {
@@ -37,7 +39,7 @@ const refresh = (root: HTMLElement): void => {
     // replaceState fires no hashchange and adds no history entry,
     // so Back does not bounce off the fallback.
     window.history.replaceState(null, '', buildHash(name));
-    query.forEach((_, key) => query.delete(key));
+    query = new URLSearchParams();
   }
 
   root.replaceChildren(routes.get(name)!.render(query));
