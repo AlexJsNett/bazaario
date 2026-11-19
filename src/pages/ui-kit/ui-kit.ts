@@ -209,9 +209,7 @@ function ratingBlock(): HTMLElement {
   return row;
 }
 
-export function render(container: HTMLElement): void {
-  container.replaceChildren();
-
+export function render(): HTMLElement {
   const page = el('main', 'ui-kit');
 
   const header = el('header', 'ui-kit__header');
@@ -235,5 +233,5 @@ export function render(container: HTMLElement): void {
   );
 
   page.append(header, content);
-  container.append(page);
+  return page;
 }
