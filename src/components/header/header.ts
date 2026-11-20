@@ -31,6 +31,23 @@ const createLink = (className: string, href: string, text: string): HTMLAnchorEl
   return link;
 };
 
+const MENU_ITEMS: [string, string][] = [
+  ['home', 'Home'],
+  ['catalog', 'Catalog'],
+  ['favorites', 'Favorites'],
+  ['cart', 'Cart'],
+  ['about', 'About us'],
+];
+
+const markActive = (link: HTMLAnchorElement, active: boolean, className: string): void => {
+  link.classList.toggle(className, active);
+  if (active) {
+    link.setAttribute('aria-current', 'page');
+  } else {
+    link.removeAttribute('aria-current');
+  }
+};
+
 export const createHeader = (options: HeaderOptions): Header => {
   const { categories, onSearch, ...initialState } = options;
   const state: HeaderState = { ...initialState };
@@ -40,6 +57,18 @@ export const createHeader = (options: HeaderOptions): Header => {
 
   const top = document.createElement('div');
   top.className = 'header__top';
+
+  const burger = document.createElement('button');
+  burger.className = 'header__burger';
+  burger.type = 'button';
+  burger.setAttribute('aria-label', 'Menu');
+  burger.setAttribute('aria-expanded', 'false');
+  burger.setAttribute('aria-controls', 'header-menu');
+  for (let i = 0; i < 3; i += 1) {
+    const line = document.createElement('span');
+    line.className = 'header__burger-line';
+    burger.append(line);
+  }
 
   const logo = document.createElement('a');
   logo.className = 'header__logo';
@@ -70,7 +99,12 @@ export const createHeader = (options: HeaderOptions): Header => {
   const nav = document.createElement('nav');
   nav.className = 'header__nav';
   nav.setAttribute('aria-label', 'Main');
-  const catalogLink = createLink('header__link', buildHash('catalog'), 'Catalog');
+  // on a phone the Catalog link lives in the burger menu
+  const catalogLink = createLink(
+    'header__link header__link--wide',
+    buildHash('catalog'),
+    'Catalog',
+  );
   const favoritesLink = createLink('header__link', buildHash('favorites'), 'Favorites');
   const cartLink = createLink('header__link', buildHash('cart'), 'Cart');
   const favoritesCount = document.createElement('span');
@@ -81,7 +115,37 @@ export const createHeader = (options: HeaderOptions): Header => {
   cartLink.append(cartCount);
   nav.append(catalogLink, favoritesLink, cartLink);
 
-  top.append(logo, search, nav);
+  top.append(burger, logo, search, nav);
+
+  // The burger menu has all pages. It is shown only on a phone.
+  const menu = document.createElement('nav');
+  menu.className = 'header__menu';
+  menu.id = 'header-menu';
+  menu.setAttribute('aria-label', 'Pages');
+  const menuLinks: [HTMLAnchorElement, string][] = MENU_ITEMS.map(([path, label]) => [
+    createLink('header__menu-link', buildHash(path), label),
+    path,
+  ]);
+  menu.append(...menuLinks.map(([link]) => link));
+
+  const setMenuOpen = (open: boolean): void => {
+    menu.classList.toggle('header__menu--open', open);
+    burger.setAttribute('aria-expanded', String(open));
+  };
+  burger.addEventListener('click', () => {
+    setMenuOpen(burger.getAttribute('aria-expanded') !== 'true');
+  });
+  menu.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('a')) {
+      setMenuOpen(false);
+    }
+  });
+  header.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setMenuOpen(false);
+      burger.focus();
+    }
+  });
 
   const categoryNav = document.createElement('nav');
   categoryNav.className = 'header__categories';
@@ -96,7 +160,7 @@ export const createHeader = (options: HeaderOptions): Header => {
   };
   renderCategories(categories);
 
-  header.append(top, categoryNav);
+  header.append(top, menu, categoryNav);
 
   const links: [HTMLAnchorElement, string][] = [
     [catalogLink, 'catalog'],
@@ -110,12 +174,10 @@ export const createHeader = (options: HeaderOptions): Header => {
     cartCount.textContent = String(state.cartCount);
     cartLink.setAttribute('aria-label', `Cart, ${state.cartCount} items`);
     for (const [link, path] of links) {
-      link.classList.toggle('header__link--active', state.activePath === path);
-      if (state.activePath === path) {
-        link.setAttribute('aria-current', 'page');
-      } else {
-        link.removeAttribute('aria-current');
-      }
+      markActive(link, state.activePath === path, 'header__link--active');
+    }
+    for (const [link, path] of menuLinks) {
+      markActive(link, state.activePath === path, 'header__menu-link--active');
     }
     // do not overwrite the text while the user is typing
     if (document.activeElement !== searchInput) {
@@ -128,6 +190,9 @@ export const createHeader = (options: HeaderOptions): Header => {
   return {
     element: header,
     update: (next) => {
+      if (next.activePath !== undefined && next.activePath !== state.activePath) {
+        setMenuOpen(false);
+      }
       Object.assign(state, next);
       render();
     },

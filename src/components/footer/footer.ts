@@ -1,14 +1,6 @@
 import './footer.scss';
 import { buildHash } from '../../logic/route';
 
-const LINKS: [string, string][] = [
-  ['home', 'Home'],
-  ['catalog', 'Catalog'],
-  ['favorites', 'Favorites'],
-  ['cart', 'Cart'],
-  ['about', 'About us'],
-];
-
 export const createFooter = (): HTMLElement => {
   const footer = document.createElement('footer');
   footer.className = 'footer';
@@ -19,13 +11,11 @@ export const createFooter = (): HTMLElement => {
   const nav = document.createElement('nav');
   nav.className = 'footer__nav';
   nav.setAttribute('aria-label', 'Footer');
-  for (const [path, label] of LINKS) {
-    const link = document.createElement('a');
-    link.className = 'footer__link';
-    link.href = buildHash(path);
-    link.textContent = label;
-    nav.append(link);
-  }
+  const about = document.createElement('a');
+  about.className = 'footer__link';
+  about.href = buildHash('about');
+  about.textContent = 'About us';
+  nav.append(about);
 
   const note = document.createElement('p');
   note.className = 'footer__note';
