@@ -17,6 +17,7 @@ TypeScript, Vite (vanilla, no framework), Vitest, SCSS (`sass-embedded`), ESLint
 src/
   main.ts       entry, hash router lives here
   types/        shared types only (Product, CartItem), no logic
+  utils/        small DOM helpers shared by pages and components (el), no app logic
   data/         loaders for mock API data (fetch from public/api)
   logic/        pure functions + *.test.ts next to the file
   store/        user.ts: the only place that touches localStorage
