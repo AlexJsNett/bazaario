@@ -99,12 +99,13 @@ export const createHeader = (options: HeaderOptions): Header => {
   const nav = document.createElement('nav');
   nav.className = 'header__nav';
   nav.setAttribute('aria-label', 'Main');
-  // on a phone the Catalog link lives in the burger menu
+  // on a phone the Catalog and About us links live in the burger menu
   const catalogLink = createLink(
     'header__link header__link--wide',
     buildHash('catalog'),
     'Catalog',
   );
+  const aboutLink = createLink('header__link header__link--wide', buildHash('about'), 'About us');
   const favoritesLink = createLink('header__link', buildHash('favorites'), 'Favorites');
   const cartLink = createLink('header__link', buildHash('cart'), 'Cart');
   const favoritesCount = document.createElement('span');
@@ -113,7 +114,7 @@ export const createHeader = (options: HeaderOptions): Header => {
   cartCount.className = 'header__count';
   favoritesLink.append(favoritesCount);
   cartLink.append(cartCount);
-  nav.append(catalogLink, favoritesLink, cartLink);
+  nav.append(catalogLink, aboutLink, favoritesLink, cartLink);
 
   top.append(burger, logo, search, nav);
 
@@ -164,6 +165,7 @@ export const createHeader = (options: HeaderOptions): Header => {
 
   const links: [HTMLAnchorElement, string][] = [
     [catalogLink, 'catalog'],
+    [aboutLink, 'about'],
     [favoritesLink, 'favorites'],
     [cartLink, 'cart'],
   ];
