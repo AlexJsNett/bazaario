@@ -1,5 +1,6 @@
 import './ui-kit.scss';
 import { createButton } from '../../components/button/button';
+import { el } from '../../utils/dom';
 import { createInput } from '../../components/input/input';
 import { createPrice } from '../../components/price/price';
 import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts';
@@ -28,21 +29,6 @@ const COLORS = [
 const TEXT_STYLES = ['display', 'heading-lg', 'heading', 'lead', 'body', 'ui', 'caption'];
 const SPACES = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 const RADII = ['sm', 'md', 'full', 'circle'];
-
-function el<K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  className?: string,
-  text?: string,
-): HTMLElementTagNameMap[K] {
-  const node = document.createElement(tag);
-  if (className) {
-    node.className = className;
-  }
-  if (text) {
-    node.textContent = text;
-  }
-  return node;
-}
 
 function section(title: string, ...children: HTMLElement[]): HTMLElement {
   const wrapper = el('section', 'ui-kit__section');

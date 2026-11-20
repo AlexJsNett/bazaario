@@ -22,6 +22,7 @@ TypeScript, Vite (vanilla-ts), Vitest, SCSS.
 src/
   main.ts        entry point
   types/         shared types (Product, CartItem)
+  utils/         small DOM helpers (el)
   data/          loaders for mock API data
   logic/         pure functions + tests next to the file
   store/         user.ts: all user data in one localStorage key `user`

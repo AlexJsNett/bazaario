@@ -1,6 +1,7 @@
 import './about.scss';
 import { createButton } from '../../components/button/button.ts';
 import { goTo } from '../../goTo.ts';
+import { el } from '../../utils/dom.ts';
 
 type Feature = { title: string; text: string };
 type Developer = { login: string; role: string };
@@ -34,19 +35,6 @@ const DEVELOPERS: Developer[] = [
     role: 'router, product data, Badge, Rating, Price and ProductCard, cart logic, Home, Cart and Favorites pages',
   },
 ];
-
-const el = <K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  className: string,
-  text?: string,
-): HTMLElementTagNameMap[K] => {
-  const element = document.createElement(tag);
-  element.className = className;
-  if (text !== undefined) {
-    element.textContent = text;
-  }
-  return element;
-};
 
 const createHero = (): HTMLElement => {
   const hero = el('section', 'about__hero');
