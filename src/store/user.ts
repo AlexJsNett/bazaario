@@ -11,6 +11,9 @@ export type User = {
 
 export const USER_KEY = 'user';
 
+// Sent on window after every updateUser, so the UI (header counters) can refresh.
+export const USER_CHANGE_EVENT = 'user:change';
+
 export const DEFAULT_USER: User = {
   favorites: [],
   cart: [],
@@ -53,4 +56,7 @@ function saveUser(user: User): void {
 // Reads the freshest data, applies `update`, saves. Never keep a copy of User yourself.
 export function updateUser(update: (user: User) => User): void {
   saveUser(update(getUser()));
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent(USER_CHANGE_EVENT));
+  }
 }

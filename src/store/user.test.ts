@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { DEFAULT_USER, USER_KEY, getUser, updateUser } from './user';
+import { DEFAULT_USER, USER_CHANGE_EVENT, USER_KEY, getUser, updateUser } from './user';
 
 function createFakeStorage(initial: Record<string, string> = {}) {
   const data = new Map(Object.entries(initial));
@@ -70,6 +70,15 @@ describe('updateUser', () => {
       favorites: [3],
       cart: [{ productId: 1, quantity: 2 }],
     });
+  });
+
+  it('sends the user:change event on window', () => {
+    const fakeWindow = new EventTarget();
+    vi.stubGlobal('window', fakeWindow);
+    const listener = vi.fn();
+    fakeWindow.addEventListener(USER_CHANGE_EVENT, listener);
+    updateUser((user) => user);
+    expect(listener).toHaveBeenCalledTimes(1);
   });
 
   it('does not crash when saving fails', () => {

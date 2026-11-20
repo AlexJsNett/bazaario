@@ -74,6 +74,8 @@ const email = createInput({ id: 'email', type: 'email', error: 'Enter a valid em
   - `currency` (optional): currency text, default `EUR`.
   - `pricePerUnit` (optional): `{ price, units, unitLabel }`, `price` is a number, shown as "(EUR 1.99 /10 count)".
 - `createRating` returns a `<div>` with the score number, five stars (full, half or empty) and the reviews count. Options: `score` (number from 0 to 5, cut to two decimals), `reviewsCount` (number, shown in brackets).
+- `createHeader` returns `{ element, update, setCategories }`. The header has the logo, a search field, links to Catalog, Favorites and Cart with counters, and a menu of categories (links to `#/catalog?category=...`). Options: `categories`, `favoritesCount`, `cartCount`, `activePath` (the matching link is highlighted), `query` (text of the search field), `onSearch(query)`. The header never reads the store: `main.ts` passes the counters and calls `update` on `hashchange` and on the `user:change` event.
+- `createFooter` returns a `<footer>` with links to the pages and a short note.
 
 ## Commits
 
