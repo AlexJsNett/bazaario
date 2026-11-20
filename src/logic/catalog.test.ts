@@ -6,6 +6,7 @@ import {
   filterByRating,
   filterProducts,
   filtersToParams,
+  getCategories,
   parseFilters,
   searchProducts,
   sortProducts,
@@ -35,6 +36,22 @@ const products: Product[] = [
 ];
 
 const ids = (list: Product[]) => list.map((product) => product.id);
+
+describe('getCategories', () => {
+  it('returns unique categories sorted by name', () => {
+    expect(getCategories(products)).toEqual(['books', 'electronics', 'toys']);
+  });
+
+  it('returns an empty array for an empty input', () => {
+    expect(getCategories([])).toEqual([]);
+  });
+
+  it('does not mutate the input', () => {
+    const copy = structuredClone(products);
+    getCategories(products);
+    expect(products).toEqual(copy);
+  });
+});
 
 describe('searchProducts', () => {
   it('finds a part of the title', () => {

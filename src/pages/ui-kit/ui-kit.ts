@@ -5,6 +5,8 @@ import { createInput } from '../../components/input/input';
 import { createPrice } from '../../components/price/price';
 import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts';
 import { createRating } from '../../components/rating/rating.ts';
+import { createHeader } from '../../components/header/header.ts';
+import { createFooter } from '../../components/footer/footer.ts';
 
 const COLORS = [
   'header',
@@ -195,6 +197,21 @@ function ratingBlock(): HTMLElement {
   return row;
 }
 
+function headerBlock(): HTMLElement {
+  const header = createHeader({
+    categories: ['Headphones', 'Microphones', 'Sneakers', 'Tablets'],
+    favoritesCount: 3,
+    cartCount: 2,
+    activePath: 'catalog',
+    onSearch: () => {},
+  });
+  return demoWithDescription(header.element, 'Header', 'mock data, resize the window');
+}
+
+function footerBlock(): HTMLElement {
+  return demoWithDescription(createFooter(), 'Footer');
+}
+
 export function render(): HTMLElement {
   const page = el('main', 'ui-kit');
 
@@ -216,6 +233,8 @@ export function render(): HTMLElement {
     section('Badge', badgeBlock()),
     section('Price', priceBlock()),
     section('Rating', ratingBlock()),
+    section('Header', headerBlock()),
+    section('Footer', footerBlock()),
   );
 
   page.append(header, content);

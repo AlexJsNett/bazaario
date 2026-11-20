@@ -20,6 +20,13 @@ export type Filters = {
 
 export const ALL_CATEGORIES = 'all';
 
+// Unique category names, sorted by name. Used for the category menu.
+export function getCategories(products: Product[]): string[] {
+  return [...new Set(products.map((product) => product.category))].sort((a, b) =>
+    a.localeCompare(b),
+  );
+}
+
 export function searchProducts(products: Product[], query: string): Product[] {
   const text = query.trim().toLowerCase();
   if (text === '') {
