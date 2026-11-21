@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { DEFAULT_USER, USER_CHANGE_EVENT, USER_KEY, getUser, updateUser } from './user';
+import { DEFAULT_USER, USER_CHANGE_EVENT, USER_KEY, getUser, updateUser, type User } from './user';
 
 function createFakeStorage(initial: Record<string, string> = {}) {
   const data = new Map(Object.entries(initial));
@@ -34,7 +34,8 @@ describe('getUser', () => {
 
   it('fills a missing field in old saved data', () => {
     vi.stubGlobal('localStorage', createFakeStorage({ [USER_KEY]: '{"favorites":[1,2]}' }));
-    expect(getUser()).toEqual({ favorites: [1, 2], cart: [] });
+    const expected: User = { favorites: [1, 2], cart: { products: [] } };
+    expect(getUser()).toEqual(expected);
   });
 
   it('uses the default when a saved array field has a wrong type', () => {
@@ -64,12 +65,15 @@ describe('updateUser', () => {
   });
 
   it('keeps the other fields when one field changes', () => {
-    updateUser((user) => ({ ...user, cart: [{ productId: 1, quantity: 2 }] }));
+    updateUser((user) => ({ ...user, cart: { products: [{ productId: 1, quantity: 2 }] } }));
     updateUser((user) => ({ ...user, favorites: [3] }));
-    expect(getUser()).toEqual({
+
+    const expected: User = {
       favorites: [3],
-      cart: [{ productId: 1, quantity: 2 }],
-    });
+      cart: { products: [{ productId: 1, quantity: 2 }] },
+    };
+
+    expect(getUser()).toEqual(expected);
   });
 
   it('sends the user:change event on window', () => {

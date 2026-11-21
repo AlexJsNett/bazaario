@@ -1,12 +1,12 @@
 // All user data lives in ONE localStorage key. See AGENTS.md, section "User data".
 // Only this file touches localStorage.
 
-import type { CartItem } from '../types/cart';
+import type { Cart } from '../types/cart';
 import type { ProductId } from '../types/product';
 
 export type User = {
   favorites: ProductId[];
-  cart: CartItem[];
+  cart: Cart;
 };
 
 export const USER_KEY = 'user';
@@ -16,7 +16,7 @@ export const USER_CHANGE_EVENT = 'user:change';
 
 export const DEFAULT_USER: User = {
   favorites: [],
-  cart: [],
+  cart: { products: [] },
 };
 
 export function getUser(): User {
