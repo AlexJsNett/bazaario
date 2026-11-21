@@ -1,5 +1,5 @@
 import './cart.scss';
-import type { Cart, PromoCode } from '../../types/cart';
+import type { Cart } from '../../types/cart';
 import type { Product } from '../../types/product';
 import { el } from '../../utils/dom';
 import { createButton } from '../../components/button/button';
@@ -13,7 +13,7 @@ import {
   removeFromCart,
 } from '../../logic/cart';
 import { goTo } from '../../goTo';
-import { getPromo } from '../../data/promo.ts';
+import { getPromos } from '../../data/promo.ts';
 import { loadProducts } from '../../data/products.ts';
 import { loadReviews } from '../../data/reviews.ts';
 import { getReviews } from '../../logic/reviews.ts';
@@ -55,8 +55,7 @@ export const render = (): HTMLElement => {
       return;
     }
 
-    const promos = [getPromo(state.promoInput)].filter(Boolean) as PromoCode[];
-    const price = calculateTotal(products, promos, cart, appliedCode);
+    const price = calculateTotal(products, getPromos(), cart, appliedCode);
     const layout = el('div', 'cart-page__layout');
     const summary = createCartSummary({
       itemsCount: getCartCount(cart),
@@ -105,8 +104,7 @@ export const render = (): HTMLElement => {
   };
 
   const applyPromo = (): void => {
-    const promos = [getPromo(state.promoInput)].filter(Boolean) as PromoCode[];
-    const found = findPromoCode(promos, state.promoInput);
+    const found = findPromoCode(getPromos(), state.promoInput);
     if (found) {
       update({ appliedCode: found.code, promoError: undefined });
     } else {

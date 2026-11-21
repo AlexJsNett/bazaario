@@ -5,6 +5,4 @@ const MOCK_PROMOS: PromoCode[] = [
   { code: 'HALF', discount: 50 },
 ];
 
-export const getPromo = (code: string): PromoCode | undefined => {
-  return MOCK_PROMOS.find((c) => c.code === code);
-};
+export const getPromos = (): PromoCode[] => [...MOCK_PROMOS];
