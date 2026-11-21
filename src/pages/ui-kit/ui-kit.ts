@@ -9,6 +9,7 @@ import { createHeader } from '../../components/header/header.ts';
 import { createFooter } from '../../components/footer/footer.ts';
 import { createProductCard } from '../../components/product-card/product-card.ts';
 import type { Product } from '../../types/product.ts';
+import { createQuantityStepper } from '../../components/quantity-stepper/quantity-stepper.ts';
 
 const COLORS = [
   'header',
@@ -248,6 +249,29 @@ function productCardBlock(): HTMLElement {
   return row;
 }
 
+function interactiveStepper(initial: number): HTMLElement {
+  const host = el('div');
+  const draw = (quantity: number): void => {
+    host.replaceChildren(
+      createQuantityStepper({
+        quantity,
+        onIncrease: () => draw(quantity + 1),
+        onDecrease: () => draw(quantity - 1),
+      }),
+    );
+  };
+  draw(initial);
+  return host;
+}
+
+function quantityStepperBlock(): HTMLElement {
+  const row = el('div', 'ui-kit__row');
+  row.append(
+    demoWithDescription(interactiveStepper(1), 'Demo', 'On minimum (1 item) minus disabled'),
+  );
+  return row;
+}
+
 function headerBlock(): HTMLElement {
   const header = createHeader({
     categories: ['Headphones', 'Microphones', 'Sneakers', 'Tablets'],
@@ -284,6 +308,7 @@ export function render(): HTMLElement {
     section('Badge', badgeBlock()),
     section('Price', priceBlock()),
     section('Rating', ratingBlock()),
+    section('Quantity stepper', quantityStepperBlock()),
     section('Product card', productCardBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),
