@@ -7,7 +7,6 @@ import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts'
 import { createRating } from '../../components/rating/rating.ts';
 import { createHeader } from '../../components/header/header.ts';
 import { createFooter } from '../../components/footer/footer.ts';
-import { createFavoriteButton } from '../../components/favorite-button/favorite-button.ts';
 import { createCart } from '../../components/cart/cart.ts';
 import { createCartSummary } from '../../components/cart-summary/cart-summary.ts';
 import type { Cart } from '../../types/cart.ts';
@@ -336,21 +335,6 @@ function cartBlock(): HTMLElement {
     demoWithDescription(interactiveCart({ products: [] }), 'Empty'),
   );
   return list;
-}
-
-function interactiveFavorite(initial: boolean): HTMLElement {
-  const host = el('div');
-  const draw = (active: boolean): void => {
-    host.replaceChildren(createFavoriteButton({ active, onToggle: () => draw(!active) }));
-  };
-  draw(initial);
-  return host;
-}
-
-function favoriteButtonBlock(): HTMLElement {
-  const row = el('div', 'ui-kit__row');
-  row.append(demoWithDescription(interactiveFavorite(false), 'Demo', 'click to toggle'));
-  return row;
 }
 
 function cartSummaryBlock(): HTMLElement {
