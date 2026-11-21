@@ -9,6 +9,7 @@ import { createHeader } from '../../components/header/header.ts';
 import { createFooter } from '../../components/footer/footer.ts';
 import { createFavoriteButton } from '../../components/favorite-button/favorite-button.ts';
 import { createCart } from '../../components/cart/cart.ts';
+import { createCartSummary } from '../../components/cart-summary/cart-summary.ts';
 import type { Cart } from '../../types/cart.ts';
 import { changeQuantity, removeFromCart } from '../../logic/cart.ts';
 import type { Product } from '../../types/product.ts';
@@ -352,6 +353,48 @@ function favoriteButtonBlock(): HTMLElement {
   return row;
 }
 
+function cartSummaryBlock(): HTMLElement {
+  const noop = (): void => {};
+  const row = el('div', 'ui-kit__row');
+  row.append(
+    demoWithDescription(
+      createCartSummary({
+        itemsCount: 4,
+        subtotal: 349.2,
+        discount: 0,
+        total: 349.2,
+        onApplyPromo: noop,
+      }),
+      'No promo code',
+    ),
+    demoWithDescription(
+      createCartSummary({
+        itemsCount: 4,
+        subtotal: 349.2,
+        discount: 34.92,
+        total: 314.28,
+        appliedCode: 'SALE10',
+        promoValue: 'SALE10',
+        onApplyPromo: noop,
+      }),
+      'Promo applied',
+    ),
+    demoWithDescription(
+      createCartSummary({
+        itemsCount: 4,
+        subtotal: 349.2,
+        discount: 0,
+        total: 349.2,
+        promoValue: 'WRONG',
+        promoError: 'Promo code not found',
+        onApplyPromo: noop,
+      }),
+      'Invalid code',
+    ),
+  );
+  return row;
+}
+
 function headerBlock(): HTMLElement {
   const header = createHeader({
     categories: ['Headphones', 'Microphones', 'Sneakers', 'Tablets'],
@@ -392,6 +435,7 @@ export function render(): HTMLElement {
     section('Product card', productCardBlock()),
     section('Favorite button', favoriteButtonBlock()),
     section('Cart', cartBlock()),
+    section('Cart summary', cartSummaryBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),
   );

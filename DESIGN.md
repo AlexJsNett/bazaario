@@ -201,6 +201,12 @@ components:
     textColor: '{colors.ink}'
     borderColor: '{colors.hairline}'
     padding: '16px 0px'
+  cart-summary:
+    backgroundColor: '{colors.surface}'
+    textColor: '{colors.ink}'
+    borderColor: '{colors.hairline}'
+    rounded: '{rounded.md}'
+    padding: '24px'
   cart:
     backgroundColor: '{colors.surface}'
     borderColor: '{colors.hairline}'
@@ -265,9 +271,11 @@ Names match the components in `src/components/`.
 - **Rating**: 5 stars, filled stars in `star`, empty in `hairline`, number and count in `caption` `body`.
 - **FavoriteButton**: 32px round icon button with a heart. Outline heart in `body` when not a favorite, filled heart in `primary` when it is. Controlled: it shows the `active` state it is given and only reports clicks. Not red, red is only for sale and errors.
 - **QuantityStepper**: pill with hairline border, minus, count, plus, 32px high. Controlled: it shows the quantity it is given and only reports clicks. Minus is disabled at the minimum.
-- **CartItem**: row with the product image, title, category, Rating, QuantityStepper, "Remove" text button, and Price (with old price) on the right. Items are separated by a hairline.
+- **CartItem**: row with the product image, title, category, Rating and a "Remove" text button, then unit Price (with old price), QuantityStepper and row total. On desktop all in one line, on phone the numbers go to a second line.
 - **CartList**: vertical list of CartItem.
 - **Cart**: white card, 8px radius, 1px hairline, 24px padding. Title "Shopping cart", CartList, subtotal row. Empty state: "Your cart is empty".
+- **Cart**: white card, 8px radius, 1px hairline, 24px padding. Title "Shopping cart", CartList. Empty state: "Your cart is empty".
+- **CartSummary**: white card like Cart. Subtotal, promo code field with an "Apply" button, discount (green, with the code), total in `Price`. Invalid code shows the input error "Promo code not found", an applied code shows a success message.
 - **Badge**: discount (light red), success (green), neutral (gray), highlight (dark, e.g. "Bazaario's Choice"), deal (solid red, e.g. "Early Black Friday Deal"), save (green with 1px outline, e.g. "Save 5%"), plain (text only, e.g. "5K+ bought in past month").
 
 ## Do and Don't
