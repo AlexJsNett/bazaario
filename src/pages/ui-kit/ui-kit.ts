@@ -7,6 +7,7 @@ import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts'
 import { createRating } from '../../components/rating/rating.ts';
 import { createHeader } from '../../components/header/header.ts';
 import { createFooter } from '../../components/footer/footer.ts';
+import { createFavoriteButton } from '../../components/favorite-button/favorite-button.ts';
 import { createCart } from '../../components/cart/cart.ts';
 import type { Cart } from '../../types/cart.ts';
 import { changeQuantity, removeFromCart } from '../../logic/cart.ts';
@@ -336,6 +337,21 @@ function cartBlock(): HTMLElement {
   return list;
 }
 
+function interactiveFavorite(initial: boolean): HTMLElement {
+  const host = el('div');
+  const draw = (active: boolean): void => {
+    host.replaceChildren(createFavoriteButton({ active, onToggle: () => draw(!active) }));
+  };
+  draw(initial);
+  return host;
+}
+
+function favoriteButtonBlock(): HTMLElement {
+  const row = el('div', 'ui-kit__row');
+  row.append(demoWithDescription(interactiveFavorite(false), 'Demo', 'click to toggle'));
+  return row;
+}
+
 function headerBlock(): HTMLElement {
   const header = createHeader({
     categories: ['Headphones', 'Microphones', 'Sneakers', 'Tablets'],
@@ -374,6 +390,7 @@ export function render(): HTMLElement {
     section('Rating', ratingBlock()),
     section('Quantity stepper', quantityStepperBlock()),
     section('Product card', productCardBlock()),
+    section('Favorite button', favoriteButtonBlock()),
     section('Cart', cartBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),
