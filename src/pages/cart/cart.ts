@@ -15,10 +15,14 @@ import {
 import { goTo } from '../../goTo';
 import { getPromo } from '../../data/promo.ts';
 import { loadProducts } from '../../data/products.ts';
+import { loadReviews } from '../../data/reviews.ts';
+import { getReviews } from '../../logic/reviews.ts';
+import type { Review } from '../../types/reviews.ts';
 import { getUser, updateUser } from '../../store/user.ts';
 
 type PageState = {
   products: Product[];
+  reviews: Review[];
   promoInput: string;
   appliedCode?: string;
   promoError?: string;
@@ -36,10 +40,10 @@ const createEmpty = (): HTMLElement => {
 
 export const render = (): HTMLElement => {
   const page = el('main', 'cart-page');
-  let state: PageState = { products: [], promoInput: '' };
+  let state: PageState = { products: [], reviews: [], promoInput: '' };
 
   const draw = (): void => {
-    const { products, appliedCode, promoError, promoInput } = state;
+    const { products, reviews, appliedCode, promoError, promoInput } = state;
     // Read fresh on every draw, the store is the only owner of the cart.
     const { cart } = getUser();
     const content = el('div', 'cart-page__content');
@@ -77,7 +81,9 @@ export const render = (): HTMLElement => {
       createCart({
         products,
         cart,
-        // TODO: pass reviewsCount once reviews data exists (Product has no such field yet).
+        reviewsCount: Object.fromEntries(
+          cart.products.map((item) => [item.productId, getReviews(reviews, item.productId)]),
+        ),
         onIncrease: (p) => changeCart((c) => changeQuantity(c, p.id, 1)),
         onDecrease: (p) => changeCart((c) => changeQuantity(c, p.id, -1)),
         onRemove: (p) => changeCart((c) => removeFromCart(c, p.id)),
@@ -108,8 +114,14 @@ export const render = (): HTMLElement => {
     }
   };
 
-  loadProducts()
-    .then((products) => update({ products }))
+  // Reviews are optional: if they fail to load, the cart still works with 0 reviews.
+  const loadingReviews = loadReviews().catch((error): Review[] => {
+    console.error(error);
+    return [];
+  });
+
+  Promise.all([loadProducts(), loadingReviews])
+    .then(([products, reviews]) => update({ products, reviews }))
     .catch((error) => {
       console.error(error);
       page.replaceChildren(
