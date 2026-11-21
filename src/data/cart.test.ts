@@ -1,6 +1,37 @@
 import { describe, it, expect } from 'vitest';
 import type { Cart } from '../types/cart.ts';
-import { getCartCount, addToCart, removeFromCart, changeQuantity } from './cart.ts';
+import type { PromoCode } from '../types/cart.ts';
+import type { Product } from '../types/product.ts';
+import {
+  getCartCount,
+  addToCart,
+  removeFromCart,
+  changeQuantity,
+  calculateTotal,
+  findPromoCode,
+} from './cart.ts';
+
+const makeProduct = (id: number, price: number): Product => ({
+  id,
+  title: `product ${id}`,
+  category: 'test',
+  price,
+  rating: 4,
+  image: 'images/test.jpg',
+  description: 'description',
+});
+
+const makeProducts = (): Product[] => [
+  makeProduct(1, 10),
+  makeProduct(2, 25.5),
+  makeProduct(4, 100),
+];
+
+const makePromos = (): PromoCode[] => [
+  { code: 'SAVE10', discount: 10 },
+  { code: 'HALF', discount: 50 },
+  { code: 'BROKEN', discount: 150 },
+];
 
 const makeCart = (): Cart => {
   return {
@@ -104,6 +135,101 @@ describe('cart', () => {
 
       changeQuantity(cart, 1, 5);
 
+      expect(cart).toEqual(makeCart());
+    });
+  });
+
+  describe('findPromoCode', () => {
+    it('should find a code ignoring case and surrounding spaces', () => {
+      expect(findPromoCode(makePromos(), '  save10 ')?.discount).toBe(10);
+    });
+
+    it('should return undefined for an unknown code', () => {
+      expect(findPromoCode(makePromos(), 'nope')).toBeUndefined();
+    });
+  });
+
+  describe('calculateTotal', () => {
+    // makeCart: 10 x 10 + 2 x 25.5 + 4 x 100 = 551
+    const expectedTotal = 551;
+
+    it('should multiply price by quantity', () => {
+      const result = calculateTotal(makeProducts(), makePromos(), makeCart());
+
+      expect(result).toEqual({ total: expectedTotal, discount: 0, subtotal: expectedTotal });
+    });
+
+    it('should return zeros for an empty cart', () => {
+      expect(calculateTotal(makeProducts(), makePromos(), { products: [] })).toEqual({
+        total: 0,
+        discount: 0,
+        subtotal: 0,
+      });
+    });
+
+    it('should skip products missing from the catalog', () => {
+      const cart = {
+        products: [
+          { productId: 999, quantity: 3 },
+          { productId: 1, quantity: 2 },
+        ],
+      };
+
+      expect(calculateTotal(makeProducts(), makePromos(), cart).total).toBe(20);
+    });
+
+    it('should apply a percent promo code', () => {
+      const result = calculateTotal(makeProducts(), makePromos(), makeCart(), 'sale10');
+
+      expect(result.total).toBe(expectedTotal);
+      expect(result.discount).toBe(55.1);
+      expect(result.subtotal).toBe(495.9);
+    });
+
+    it('should match the promo code case-insensitively', () => {
+      const result = calculateTotal(makeProducts(), makePromos(), makeCart(), ' half ');
+
+      expect(result.discount).toBe(expectedTotal / 2);
+      expect(result.subtotal).toBe(expectedTotal / 2);
+    });
+
+    it('should ignore an unknown or empty promo code', () => {
+      const unknown = calculateTotal(makeProducts(), makePromos(), makeCart(), 'nope');
+      const empty = calculateTotal(makeProducts(), makePromos(), makeCart(), '');
+
+      expect(unknown.discount).toBe(0);
+      expect(empty.discount).toBe(0);
+      expect(unknown.subtotal).toBe(expectedTotal);
+    });
+
+    it('should clamp a discount above 100 percent so subtotal is never negative', () => {
+      const result = calculateTotal(makeProducts(), makePromos(), makeCart(), 'BROKEN');
+
+      expect(result.discount).toBe(expectedTotal);
+      expect(result.subtotal).toBe(0);
+    });
+
+    it('should round to cents', () => {
+      const products = [makeProduct(1, 0.1), makeProduct(2, 0.2)];
+      const cart = {
+        products: [
+          { productId: 1, quantity: 1 },
+          { productId: 2, quantity: 1 },
+        ],
+      };
+
+      expect(calculateTotal(products, [], cart).total).toBe(0.3);
+    });
+
+    it('should not mutate the inputs', () => {
+      const products = makeProducts();
+      const promos = makePromos();
+      const cart = makeCart();
+
+      calculateTotal(products, promos, cart, 'sale10');
+
+      expect(products).toEqual(makeProducts());
+      expect(promos).toEqual(makePromos());
       expect(cart).toEqual(makeCart());
     });
   });
