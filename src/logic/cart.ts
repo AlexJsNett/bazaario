@@ -47,7 +47,7 @@ export const calculateTotal = (
   cart: Cart,
   promoCode?: string,
 ): CartPrice => {
-  const total = roundToCents(
+  const subtotal = roundToCents(
     cart.products.reduce((acc, item) => {
       const product = getProductById(products, item.productId);
       return product ? acc + product.price * item.quantity : acc;
@@ -59,13 +59,13 @@ export const calculateTotal = (
     const activeCode = findPromoCode(promos, promoCode);
     if (activeCode) {
       const percent = Math.min(Math.max(activeCode.discount, 0), 100);
-      discount = roundToCents(total * (percent / 100));
+      discount = roundToCents(subtotal * (percent / 100));
     }
   }
 
   return {
-    total,
+    total: roundToCents(subtotal - discount),
     discount,
-    subtotal: roundToCents(total - discount),
+    subtotal,
   };
 };
