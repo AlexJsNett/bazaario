@@ -7,6 +7,10 @@ import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts'
 import { createRating } from '../../components/rating/rating.ts';
 import { createHeader } from '../../components/header/header.ts';
 import { createFooter } from '../../components/footer/footer.ts';
+import { createCart } from '../../components/cart/cart.ts';
+import type { Cart } from '../../types/cart.ts';
+import { changeQuantity, removeFromCart } from '../../logic/cart.ts';
+import type { Product } from '../../types/product.ts';
 import { createProductCard } from '../../components/product-card/product-card.ts';
 import type { Product } from '../../types/product.ts';
 import { createQuantityStepper } from '../../components/quantity-stepper/quantity-stepper.ts';
@@ -30,6 +34,37 @@ const COLORS = [
   'warning-text',
   'star',
 ];
+
+const DEMO_PRODUCTS: Product[] = [
+  {
+    id: 1,
+    title: 'Aurelia ANC Wireless Headphones',
+    category: 'Headphones',
+    price: 129.99,
+    oldPrice: 169.99,
+    rating: 4.6,
+    image: 'images/01.webp',
+    description: 'Demo product',
+  },
+  {
+    id: 2,
+    title: 'Pulse Buds Pro True Wireless Earbuds',
+    category: 'Headphones',
+    price: 59.9,
+    rating: 4.2,
+    image: 'images/02.webp',
+    description: 'Demo product',
+  },
+];
+
+const DEMO_REVIEWS: Record<number, number> = { 1: 1280, 2: 320 };
+
+const DEMO_CART: Cart = {
+  products: [
+    { productId: 1, quantity: 1 },
+    { productId: 2, quantity: 3 },
+  ],
+};
 
 const TEXT_STYLES = ['display', 'heading-lg', 'heading', 'lead', 'body', 'ui', 'caption'];
 const SPACES = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
@@ -111,10 +146,12 @@ function radiusBlock(): HTMLElement {
 function buttonsBlock(): HTMLElement {
   const row = el('div', 'ui-kit__inline');
   row.append(
-    createButton({ label: 'Add to cart', variant: 'primary' }),
-    createButton({ label: 'Details', variant: 'outline' }),
-    createButton({ label: 'Sold out', variant: 'primary', disabled: true }),
-    createButton({ label: 'Unavailable', variant: 'outline', disabled: true }),
+    createButton({ label: 'Add to cart', variant: 'cart' }),
+    createButton({ label: 'Sold out', variant: 'cart', disabled: true }),
+    createButton({ label: 'Primary', variant: 'primary' }),
+    createButton({ label: 'Primary disabled', variant: 'primary', disabled: true }),
+    createButton({ label: 'Outline', variant: 'outline' }),
+    createButton({ label: 'Outline disabled', variant: 'outline', disabled: true }),
   );
   return row;
 }
@@ -272,6 +309,33 @@ function quantityStepperBlock(): HTMLElement {
   return row;
 }
 
+function interactiveCart(initial: Cart): HTMLElement {
+  const host = el('div');
+  const draw = (cart: Cart): void => {
+    host.replaceChildren(
+      createCart({
+        products: DEMO_PRODUCTS,
+        cart,
+        reviewsCount: DEMO_REVIEWS,
+        onIncrease: (p) => draw(changeQuantity(cart, p.id, 1)),
+        onDecrease: (p) => draw(changeQuantity(cart, p.id, -1)),
+        onRemove: (p) => draw(removeFromCart(cart, p.id)),
+      }),
+    );
+  };
+  draw(initial);
+  return host;
+}
+
+function cartBlock(): HTMLElement {
+  const list = el('div', 'ui-kit__list');
+  list.append(
+    demoWithDescription(interactiveCart(DEMO_CART), 'With products'),
+    demoWithDescription(interactiveCart({ products: [] }), 'Empty'),
+  );
+  return list;
+}
+
 function headerBlock(): HTMLElement {
   const header = createHeader({
     categories: ['Headphones', 'Microphones', 'Sneakers', 'Tablets'],
@@ -310,6 +374,7 @@ export function render(): HTMLElement {
     section('Rating', ratingBlock()),
     section('Quantity stepper', quantityStepperBlock()),
     section('Product card', productCardBlock()),
+    section('Cart', cartBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),
   );

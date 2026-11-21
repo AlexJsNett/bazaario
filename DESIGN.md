@@ -188,6 +188,16 @@ components:
   rating:
     textColor: '{colors.star}'
     typography: '{typography.caption}'
+  cart-item:
+    backgroundColor: '{colors.surface}'
+    textColor: '{colors.ink}'
+    borderColor: '{colors.hairline}'
+    padding: '16px 0px'
+  cart:
+    backgroundColor: '{colors.surface}'
+    borderColor: '{colors.hairline}'
+    rounded: '{rounded.md}'
+    padding: '24px'
 ---
 
 # Bazaario design system
@@ -245,6 +255,10 @@ Names match the components in `src/components/`.
 - **ProductCard**: white card, 8px radius, 1px hairline, 16px padding. Image on top, title (2 lines max), Rating, Price (with old price), "Add to cart" button, FavoriteButton in the top right corner of the image. Takes a `Product` and reports clicks by callbacks, the favorite state comes from the page. Light shadow on hover only.
 - **Price**: current price in `heading-lg` `ink`. Old price in `muted`, struck through. Discount badge next to them if there is an old price.
 - **Rating**: 5 stars, filled stars in `star`, empty in `hairline`, number and count in `caption` `body`.
+- **QuantityStepper**: pill with hairline border, minus, count, plus, 32px high. Controlled: it shows the quantity it is given and only reports clicks. Minus is disabled at the minimum.
+- **CartItem**: row with the product image, title, category, Rating, QuantityStepper, "Remove" text button, and Price (with old price) on the right. Items are separated by a hairline.
+- **CartList**: vertical list of CartItem.
+- **Cart**: white card, 8px radius, 1px hairline, 24px padding. Title "Shopping cart", CartList, subtotal row. Empty state: "Your cart is empty".
 - **Badge**: discount (light red), success (green), neutral (gray), highlight (dark, e.g. "Bazaario's Choice"), deal (solid red, e.g. "Early Black Friday Deal"), save (green with 1px outline, e.g. "Save 5%"), plain (text only, e.g. "5K+ bought in past month").
 
 ## Do and Don't
