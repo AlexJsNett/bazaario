@@ -186,16 +186,16 @@ describe('cart', () => {
     it('should apply a percent promo code', () => {
       const result = calculateTotal(makeProducts(), makePromos(), makeCart(), 'sale10');
 
-      expect(result.total).toBe(expectedTotal);
+      expect(result.subtotal).toBe(expectedTotal);
       expect(result.discount).toBe(55.1);
-      expect(result.subtotal).toBe(495.9);
+      expect(result.total).toBe(495.9);
     });
 
     it('should match the promo code case-insensitively', () => {
       const result = calculateTotal(makeProducts(), makePromos(), makeCart(), ' half ');
 
       expect(result.discount).toBe(expectedTotal / 2);
-      expect(result.subtotal).toBe(expectedTotal / 2);
+      expect(result.total).toBe(expectedTotal / 2);
     });
 
     it('should ignore an unknown or empty promo code', () => {
@@ -204,14 +204,14 @@ describe('cart', () => {
 
       expect(unknown.discount).toBe(0);
       expect(empty.discount).toBe(0);
-      expect(unknown.subtotal).toBe(expectedTotal);
+      expect(unknown.total).toBe(expectedTotal);
     });
 
     it('should clamp a discount above 100 percent so subtotal is never negative', () => {
       const result = calculateTotal(makeProducts(), makePromos(), makeCart(), 'BROKEN');
 
       expect(result.discount).toBe(expectedTotal);
-      expect(result.subtotal).toBe(0);
+      expect(result.total).toBe(0);
     });
 
     it('should round to cents', () => {
