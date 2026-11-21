@@ -1,6 +1,6 @@
 import './button.scss';
 
-export type ButtonVariant = 'primary' | 'outline';
+export type ButtonVariant = 'primary' | 'outline' | 'cart';
 
 export interface ButtonOptions {
   label: string;

@@ -27,6 +27,17 @@
     }
   }
 
+  &--cart {
+    height: 32px;
+    background-color: var(--color-primary);
+    border-color: var(--color-primary-strong);
+    color: var(--color-on-primary);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-primary-strong);
+    }
+  }
+
   &--outline {
     background-color: var(--color-surface);
     border-color: var(--color-hairline);

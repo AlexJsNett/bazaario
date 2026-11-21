@@ -105,6 +105,14 @@ components:
     borderColor: '{colors.hairline}'
     padding: '0px 16px'
     height: 40px
+  button-cart:
+    backgroundColor: '{colors.primary}'
+    textColor: '{colors.on-primary}'
+    typography: '{typography.ui}'
+    rounded: '{rounded.full}'
+    borderColor: '{colors.primary-strong}'
+    padding: '0px 16px'
+    height: 32px
   button-disabled:
     backgroundColor: '{colors.canvas}'
     textColor: '{colors.muted}'
@@ -232,7 +240,7 @@ Names match the components in `src/components/`.
 
 - **Header**: `header` background, logo text "Bazaario" on the left, search pill in the center, links (Catalog, Favorites, Cart with count) on the right.
 - **Footer**: `header` background, small text, links to About.
-- **Button**: primary (orange), outline (white with hairline). States: hover, focus (2px outline in `primary`), disabled.
+- **Button**: primary (orange), outline (white with hairline), cart (compact 32px orange pill with a darker orange border, only for "Add to cart"). States: hover, focus (2px outline in `primary`), disabled.
 - **Input**: white, hairline border, 8px radius. Focus border is `primary`. Error border is `error` with a short message below.
 - **ProductCard**: white card, 8px radius, 1px hairline, 16px padding. Image on top, title (2 lines max), Rating, Price (with old price), "Add to cart" button, FavoriteButton in the top right corner of the image. Takes a `Product` and reports clicks by callbacks, the favorite state comes from the page. Light shadow on hover only.
 - **Price**: current price in `heading-lg` `ink`. Old price in `muted`, struck through. Discount badge next to them if there is an old price.
