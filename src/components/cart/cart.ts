@@ -2,11 +2,9 @@ import './cart.scss';
 import type { Cart } from '../../types/cart';
 import type { Product } from '../../types/product';
 import { el } from '../../utils/dom';
-import { calculateTotal, getCartCount } from '../../logic/cart';
 import { getProductById } from '../../logic/products';
 import { createCartList } from '../cart-list/cart-list';
 import type { CartItemOptions } from '../cart-item/cart-item';
-import { createPrice } from '../price/price';
 
 export type CartOptions = {
   products: Product[];
@@ -38,8 +36,6 @@ const getItems = (options: CartOptions): CartItemOptions[] => {
 };
 
 export const createCart = (options: CartOptions): HTMLElement => {
-  const { products, cart } = options;
-
   const root = el('section', 'cart');
   root.append(el('h2', 'cart__title', 'Shopping cart'));
 
@@ -49,12 +45,6 @@ export const createCart = (options: CartOptions): HTMLElement => {
     return root;
   }
 
-  const footer = el('div', 'cart__subtotal');
-  footer.append(
-    el('span', 'cart__subtotal-label', `Subtotal (${getCartCount(cart)} items):`),
-    createPrice({ price: calculateTotal(products, [], cart).total }),
-  );
-
-  root.append(createCartList({ items }), footer);
+  root.append(createCartList({ items }));
   return root;
 };

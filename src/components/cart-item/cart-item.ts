@@ -14,6 +14,14 @@ export type CartItemOptions = {
   onRemove: (product: Product) => void;
 };
 
+const roundToCents = (value: number): number => Math.round(value * 100) / 100;
+
+const createCell = (className: string, label: string, content: HTMLElement): HTMLDivElement => {
+  const cell = el('div', className);
+  cell.append(el('span', 'cart-item__label', label), content);
+  return cell;
+};
+
 export const createCartItem = (options: CartItemOptions): HTMLLIElement => {
   const { product, quantity, reviewsCount = 0, onIncrease, onDecrease, onRemove } = options;
 
@@ -28,27 +36,34 @@ export const createCartItem = (options: CartItemOptions): HTMLLIElement => {
   remove.type = 'button';
   remove.addEventListener('click', () => onRemove(product));
 
-  const actions = el('div', 'cart-item__actions');
-  actions.append(
-    createQuantityStepper({
-      quantity,
-      onIncrease: () => onIncrease(product),
-      onDecrease: () => onDecrease(product),
-    }),
-    remove,
-  );
-
   const info = el('div', 'cart-item__info');
   info.append(
     el('h3', 'cart-item__title', product.title),
     el('span', 'cart-item__category', product.category),
     createRating({ score: product.rating, reviewsCount }),
-    actions,
+    remove,
   );
 
-  const priceBox = el('div', 'cart-item__price');
-  priceBox.append(createPrice({ price: product.price, oldPrice: product.oldPrice }));
+  const stepper = createQuantityStepper({
+    quantity,
+    onIncrease: () => onIncrease(product),
+    onDecrease: () => onDecrease(product),
+  });
 
-  item.append(image, info, priceBox);
+  item.append(
+    image,
+    info,
+    createCell(
+      'cart-item__unit-price',
+      'Price',
+      createPrice({ price: product.price, oldPrice: product.oldPrice }),
+    ),
+    createCell('cart-item__quantity', 'Quantity', stepper),
+    createCell(
+      'cart-item__total',
+      'Total',
+      createPrice({ price: roundToCents(product.price * quantity) }),
+    ),
+  );
   return item;
 };

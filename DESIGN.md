@@ -273,9 +273,9 @@ Names match the components in `src/components/`.
 - **QuantityStepper**: pill with hairline border, minus, count, plus, 32px high. Controlled: it shows the quantity it is given and only reports clicks. Minus is disabled at the minimum.
 - **CartItem**: row with the product image, title, category, Rating and a "Remove" text button, then unit Price (with old price), QuantityStepper and row total. On desktop all in one line, on phone the numbers go to a second line.
 - **CartList**: vertical list of CartItem.
-- **Cart**: white card, 8px radius, 1px hairline, 24px padding. Title "Shopping cart", CartList, subtotal row. Empty state: "Your cart is empty".
 - **Cart**: white card, 8px radius, 1px hairline, 24px padding. Title "Shopping cart", CartList. Empty state: "Your cart is empty".
 - **CartSummary**: white card like Cart. Subtotal, promo code field with an "Apply" button, discount (green, with the code), total in `Price`. Invalid code shows the input error "Promo code not found", an applied code shows a success message.
+- **Cart page**: Cart on the left, CartSummary on the right (below on phone). Empty cart: only the empty message and a "Browse catalog" button, no summary.
 - **Badge**: discount (light red), success (green), neutral (gray), highlight (dark, e.g. "Bazaario's Choice"), deal (solid red, e.g. "Early Black Friday Deal"), save (green with 1px outline, e.g. "Save 5%"), plain (text only, e.g. "5K+ bought in past month").
 
 ## Do and Don't
