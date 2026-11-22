@@ -61,6 +61,9 @@ typography:
     fontWeight: 500
     lineHeight: 1.3
 
+shadow:
+  hover: 0 2px 8px rgba(17, 24, 39, 0.12)
+
 rounded:
   sm: 4px
   md: 8px
@@ -124,6 +127,8 @@ components:
     borderColor: '{colors.hairline}'
     rounded: '{rounded.md}'
     padding: '16px'
+  product-card-hover:
+    shadow: '{shadow.hover}'
   price:
     textColor: '{colors.ink}'
     typography: '{typography.heading-lg}'
@@ -219,7 +224,7 @@ Font: **Mulish** (Google Fonts), weights 500 and 700 only. Fallback: `system-ui,
 
 ## Shapes
 
-Radius tokens: sm 4px (badges), md 8px (cards, inputs), full 540px (buttons, search), circle (avatars, icon buttons). One flat style: no shadows by default. A card gets a light shadow only on hover.
+Radius tokens: sm 4px (badges), md 8px (cards, inputs), full 540px (buttons, search), circle (avatars, icon buttons). One flat style: no shadows by default. A card gets a light shadow only on hover (`--shadow-hover`).
 
 ## Components
 
@@ -229,7 +234,7 @@ Names match the components in `src/components/`.
 - **Footer**: `header` background, small text, links to About.
 - **Button**: primary (orange), outline (white with hairline). States: hover, focus (2px outline in `primary`), disabled.
 - **Input**: white, hairline border, 8px radius. Focus border is `primary`. Error border is `error` with a short message below.
-- **ProductCard**: white card, 8px radius, 1px hairline, 16px padding. Image on top, title (2 lines max), Rating, Price, "Add to cart" button, favorite heart in the corner.
+- **ProductCard**: white card, 8px radius, 1px hairline, 16px padding. Image on top, title (2 lines max), Rating, Price (with old price), "Add to cart" button, FavoriteButton in the top right corner of the image. Takes a `Product` and reports clicks by callbacks, the favorite state comes from the page. Light shadow on hover only.
 - **Price**: current price in `heading-lg` `ink`. Old price in `muted`, struck through. Discount badge next to them if there is an old price.
 - **Rating**: 5 stars, filled stars in `star`, empty in `hairline`, number and count in `caption` `body`.
 - **Badge**: discount (light red), success (green), neutral (gray), highlight (dark, e.g. "Bazaario's Choice"), deal (solid red, e.g. "Early Black Friday Deal"), save (green with 1px outline, e.g. "Save 5%"), plain (text only, e.g. "5K+ bought in past month").
