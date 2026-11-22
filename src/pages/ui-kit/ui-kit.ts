@@ -11,7 +11,6 @@ import { createCart } from '../../components/cart/cart.ts';
 import { createCartSummary } from '../../components/cart-summary/cart-summary.ts';
 import type { Cart } from '../../types/cart.ts';
 import { changeQuantity, removeFromCart } from '../../logic/cart.ts';
-import type { Product } from '../../types/product.ts';
 import { createProductCard } from '../../components/product-card/product-card.ts';
 import type { Product } from '../../types/product.ts';
 import { createQuantityStepper } from '../../components/quantity-stepper/quantity-stepper.ts';
@@ -34,28 +33,6 @@ const COLORS = [
   'warning-surface',
   'warning-text',
   'star',
-];
-
-const DEMO_PRODUCTS: Product[] = [
-  {
-    id: 1,
-    title: 'Aurelia ANC Wireless Headphones',
-    category: 'Headphones',
-    price: 129.99,
-    oldPrice: 169.99,
-    rating: 4.6,
-    image: 'images/01.webp',
-    description: 'Demo product',
-  },
-  {
-    id: 2,
-    title: 'Pulse Buds Pro True Wireless Earbuds',
-    category: 'Headphones',
-    price: 59.9,
-    rating: 4.2,
-    image: 'images/02.webp',
-    description: 'Demo product',
-  },
 ];
 
 const DEMO_REVIEWS: Record<number, number> = { 1: 1280, 2: 320 };
@@ -417,7 +394,6 @@ export function render(): HTMLElement {
     section('Rating', ratingBlock()),
     section('Quantity stepper', quantityStepperBlock()),
     section('Product card', productCardBlock()),
-    section('Favorite button', favoriteButtonBlock()),
     section('Cart', cartBlock()),
     section('Cart summary', cartSummaryBlock()),
     section('Header', headerBlock()),
