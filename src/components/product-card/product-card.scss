@@ -1,0 +1,53 @@
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  font-family: var(--font-family);
+  color: var(--color-ink);
+  transition: box-shadow 0.15s;
+
+  // No shadow at rest, only on hover (DESIGN.md)
+  &:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    background-color: var(--color-canvas);
+    object-fit: contain;
+  }
+
+  &__favorite {
+    position: absolute;
+    top: var(--space-lg);
+    right: var(--space-lg);
+  }
+
+  &__title {
+    display: -webkit-box;
+    overflow: hidden;
+    // reserve two lines so cards in a grid keep the same height
+    min-height: calc(2 * var(--text-body-size) * var(--text-body-line));
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: var(--text-body-size);
+    font-weight: var(--text-ui-weight);
+    line-height: var(--text-body-line);
+  }
+
+  .price {
+    margin-top: auto;
+  }
+
+  &__button {
+    width: 100%;
+    margin-top: var(--space-xs);
+  }
+}

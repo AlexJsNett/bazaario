@@ -7,6 +7,8 @@ import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts'
 import { createRating } from '../../components/rating/rating.ts';
 import { createHeader } from '../../components/header/header.ts';
 import { createFooter } from '../../components/footer/footer.ts';
+import { createProductCard } from '../../components/product-card/product-card.ts';
+import type { Product } from '../../types/product.ts';
 
 const COLORS = [
   'header',
@@ -197,6 +199,55 @@ function ratingBlock(): HTMLElement {
   return row;
 }
 
+const DEMO_PRODUCTS: Product[] = [
+  {
+    id: 1,
+    title: 'Aurelia ANC Wireless Headphones',
+    category: 'Headphones',
+    price: 129.99,
+    oldPrice: 169.99,
+    rating: 4.6,
+    image: 'images/01.webp',
+    description: 'Demo product',
+  },
+  {
+    id: 3,
+    title: 'Nimbus Kids Safe-Sound Headphones with a very long name that is cut after two lines',
+    category: 'Headphones',
+    price: 24.5,
+    rating: 4.1,
+    image: 'images/03.webp',
+    description: 'Demo product',
+  },
+];
+
+function interactiveCard(product: Product, initialFavorite: boolean): HTMLElement {
+  const host = el('div', 'ui-kit__card');
+  const draw = (isFavorite: boolean, added: number): void => {
+    host.replaceChildren(
+      createProductCard({
+        product,
+        isFavorite,
+        reviewsCount: 1280,
+        onToggleFavorite: () => draw(!isFavorite, added),
+        onAddToCart: () => draw(isFavorite, added + 1),
+      }),
+      el('code', 'ui-kit__demo-note', `added to cart: ${added}`),
+    );
+  };
+  draw(initialFavorite, 0);
+  return host;
+}
+
+function productCardBlock(): HTMLElement {
+  const row = el('div', 'ui-kit__cards');
+  row.append(
+    demoWithDescription(interactiveCard(DEMO_PRODUCTS[0], false), 'With old price'),
+    demoWithDescription(interactiveCard(DEMO_PRODUCTS[1], true), 'Favorite, long title'),
+  );
+  return row;
+}
+
 function headerBlock(): HTMLElement {
   const header = createHeader({
     categories: ['Headphones', 'Microphones', 'Sneakers', 'Tablets'],
@@ -233,6 +284,7 @@ export function render(): HTMLElement {
     section('Badge', badgeBlock()),
     section('Price', priceBlock()),
     section('Rating', ratingBlock()),
+    section('Product card', productCardBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),
   );
