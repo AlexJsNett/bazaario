@@ -1,0 +1,46 @@
+.quantity-stepper {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  font-family: var(--font-family);
+  color: var(--color-ink);
+
+  &__button {
+    width: 32px;
+    height: 100%;
+    border: 0;
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: var(--text-body-size);
+    font-weight: var(--text-ui-weight);
+    cursor: pointer;
+    transition: background-color 0.15s;
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-canvas);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      color: var(--color-muted);
+      cursor: not-allowed;
+    }
+  }
+
+  &__value {
+    min-width: var(--space-xl);
+    text-align: center;
+    font-size: var(--text-ui-size);
+    font-weight: var(--text-ui-weight);
+    line-height: var(--text-ui-line);
+  }
+}

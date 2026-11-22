@@ -9,6 +9,7 @@ import { getCategories } from './logic/catalog.ts';
 import { getFavoritesCount } from './logic/favorites.ts';
 import { parseHash } from './logic/route.ts';
 import { USER_CHANGE_EVENT, getUser } from './store/user.ts';
+import { getCartCount } from './logic/cart.ts';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
@@ -22,12 +23,11 @@ const loadCategories = async (): Promise<string[]> => {
   }
 };
 
-// TODO(#31): use getCartCount from logic/cart when it is merged.
 const getCounts = () => {
   const user = getUser();
   return {
     favoritesCount: getFavoritesCount(user.favorites),
-    cartCount: user.cart.reduce((sum, item) => sum + item.quantity, 0),
+    cartCount: getCartCount(user.cart),
   };
 };
 

@@ -30,7 +30,7 @@ const createSpan = (className: string, text: string): HTMLSpanElement => {
 };
 
 const getPriceParts = (currency: string, price: number): PriceParts => {
-  const main = price.toFixed(0);
+  const main = Math.floor(price).toString(10);
   const sub = Math.floor((price % 1) * 100).toString(10);
   return { currency, main, sub };
 };
