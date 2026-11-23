@@ -1,17 +1,17 @@
 import './favorites.scss';
-import { getUser, updateUser } from '../../store/user.ts';
-import { getProductById } from '../../logic/products.ts';
-import { loadProducts } from '../../data/products.ts';
-import type { Product } from '../../types/product.ts';
-import { createProductCard } from '../../components/product-card/product-card.ts';
-import { createButton } from '../../components/button/button';
-import { el } from '../../utils/dom.ts';
-import { toggleFavorite } from '../../logic/favorites.ts';
-import { goTo } from '../../goTo';
-import { addToCart } from '../../logic/cart.ts';
-import { getReviews } from '../../logic/reviews.ts';
-import { loadReviews } from '../../data/reviews.ts';
-import type { Review } from '../../types/reviews.ts';
+import { getUser, updateUser } from '@/store/user.ts';
+import { getProductById } from '@/logic/products.ts';
+import { loadProducts } from '@/data/products.ts';
+import type { Product } from '@/types/product.ts';
+import { createProductCard } from '@/components/product-card/product-card.ts';
+import { createButton } from '@/components/button/button';
+import { el } from '@/utils/dom.ts';
+import { toggleFavorite } from '@/logic/favorites.ts';
+import { goTo } from '@/goTo';
+import { addToCart } from '@/logic/cart.ts';
+import { getReviews } from '@/logic/reviews.ts';
+import { loadReviews } from '@/data/reviews.ts';
+import type { Review } from '@/types/reviews.ts';
 
 const createEmpty = (): HTMLElement => {
   const empty = el('section', 'favorites-page__empty');

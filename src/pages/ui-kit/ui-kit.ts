@@ -1,22 +1,22 @@
 import './ui-kit.scss';
-import { createButton } from '../../components/button/button';
-import { el } from '../../utils/dom';
-import { createInput } from '../../components/input/input';
-import { createPrice } from '../../components/price/price';
-import { type BadgeOptions, createBadge } from '../../components/badge/badge.ts';
-import { createRating } from '../../components/rating/rating.ts';
-import { createHeader } from '../../components/header/header.ts';
-import { createFooter } from '../../components/footer/footer.ts';
-import { createCart } from '../../components/cart/cart.ts';
-import { createCartSummary } from '../../components/cart-summary/cart-summary.ts';
-import type { Cart } from '../../types/cart.ts';
-import { changeQuantity, removeFromCart } from '../../logic/cart.ts';
-import { createProductCard } from '../../components/product-card/product-card.ts';
-import type { Product } from '../../types/product.ts';
-import { createFiltersPanel } from '../../components/filters-panel/filters-panel.ts';
-import { createPagination } from '../../components/pagination/pagination.ts';
-import { createProductGrid } from '../../components/product-grid/product-grid.ts';
-import { createQuantityStepper } from '../../components/quantity-stepper/quantity-stepper.ts';
+import { createButton } from '@/components/button/button';
+import { el } from '@/utils/dom';
+import { createInput } from '@/components/input/input';
+import { createPrice } from '@/components/price/price';
+import { type BadgeOptions, createBadge } from '@/components/badge/badge.ts';
+import { createRating } from '@/components/rating/rating.ts';
+import { createHeader } from '@/components/header/header.ts';
+import { createFooter } from '@/components/footer/footer.ts';
+import { createCart } from '@/components/cart/cart.ts';
+import { createCartSummary } from '@/components/cart-summary/cart-summary.ts';
+import type { Cart } from '@/types/cart.ts';
+import { changeQuantity, removeFromCart } from '@/logic/cart.ts';
+import { createProductCard } from '@/components/product-card/product-card.ts';
+import type { Product } from '@/types/product.ts';
+import { createFiltersPanel } from '@/components/filters-panel/filters-panel.ts';
+import { createPagination } from '@/components/pagination/pagination.ts';
+import { createProductGrid } from '@/components/product-grid/product-grid.ts';
+import { createQuantityStepper } from '@/components/quantity-stepper/quantity-stepper.ts';
 
 const COLORS = [
   'header',

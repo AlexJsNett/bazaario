@@ -1,5 +1,5 @@
 import './favorite-button.scss';
-import { el } from '../../utils/dom';
+import { el } from '@/utils/dom';
 
 export type FavoriteButtonOptions = {
   active: boolean;

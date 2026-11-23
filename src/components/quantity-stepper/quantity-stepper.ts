@@ -1,5 +1,5 @@
 import './quantity-stepper.scss';
-import { el } from '../../utils/dom';
+import { el } from '@/utils/dom';
 
 export type QuantityStepperOptions = {
   quantity: number;

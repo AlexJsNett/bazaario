@@ -1,7 +1,7 @@
 import './rating.scss';
-import starIcon from '../../assets/stars/star.svg';
-import starHalfIcon from '../../assets/stars/star-half.svg';
-import starEmptyIcon from '../../assets/stars/star-empty.svg';
+import starIcon from '@/assets/stars/star.svg';
+import starHalfIcon from '@/assets/stars/star-half.svg';
+import starEmptyIcon from '@/assets/stars/star-empty.svg';
 
 export type RatingOptions = {
   /* float number 0 - 5 */

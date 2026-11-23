@@ -1,7 +1,7 @@
 // Pure functions for the catalog: search and filters. They return new arrays and never
 // mutate the input. Filters live in the URL query, see parseFilters and filtersToParams.
 
-import type { Product } from '../types/product';
+import type { Product } from '@/types/product';
 
 export type SortMode = 'default' | 'price-asc' | 'price-desc' | 'rating-desc';
 

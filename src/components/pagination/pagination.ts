@@ -1,6 +1,6 @@
 import './pagination.scss';
-import { getPageItems } from '../../logic/catalog';
-import { el } from '../../utils/dom';
+import { getPageItems } from '@/logic/catalog';
+import { el } from '@/utils/dom';
 
 export type PaginationOptions = {
   /** current page, from 1 */

@@ -1,4 +1,4 @@
-import type { Review } from '../types/reviews.ts';
+import type { Review } from '@/types/reviews.ts';
 
 const REVIEWS_URL = 'api/reviews.json';
 

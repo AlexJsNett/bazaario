@@ -1,5 +1,5 @@
 import './footer.scss';
-import { buildHash } from '../../logic/route';
+import { buildHash } from '@/logic/route';
 
 export const createFooter = (): HTMLElement => {
   const footer = document.createElement('footer');

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { Product } from '../types/product';
+import type { Product } from '@/types/product';
 import { getProductById } from './products';
 
 const make = (id: number): Product => ({

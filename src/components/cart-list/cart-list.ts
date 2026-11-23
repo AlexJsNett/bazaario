@@ -1,6 +1,6 @@
 import './cart-list.scss';
-import { el } from '../../utils/dom';
-import { createCartItem, type CartItemOptions } from '../cart-item/cart-item';
+import { el } from '@/utils/dom';
+import { createCartItem, type CartItemOptions } from '@/components/cart-item/cart-item';
 
 export type CartListOptions = {
   items: CartItemOptions[];

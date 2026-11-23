@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { getReviews } from './reviews';
-import type { Review } from '../types/reviews.ts';
+import type { Review } from '@/types/reviews.ts';
 
 const makeReviews = (): Review[] => [
   { productId: 1, count: 52 },

@@ -1,9 +1,9 @@
 import './cart-item.scss';
-import type { Product } from '../../types/product';
-import { el } from '../../utils/dom';
-import { createPrice } from '../price/price';
-import { createRating } from '../rating/rating';
-import { createQuantityStepper } from '../quantity-stepper/quantity-stepper';
+import type { Product } from '@/types/product';
+import { el } from '@/utils/dom';
+import { createPrice } from '@/components/price/price';
+import { createRating } from '@/components/rating/rating';
+import { createQuantityStepper } from '@/components/quantity-stepper/quantity-stepper';
 
 export type CartItemOptions = {
   product: Product;

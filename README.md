@@ -81,6 +81,10 @@ const email = createInput({ id: 'email', type: 'email', error: 'Enter a valid em
 - `createPagination` returns a `<nav>` with arrows and page numbers: the first and the last page, the current one with its neighbours and dots between (`getPageItems` in `logic/catalog.ts`). Options: `page` (from 1), `pageCount`, `onChange(page)`. For one page the nav is hidden.
 - `createFooter` returns a `<footer>` with a link to About us and a short note.
 
+## Imports
+
+The alias `@` points to `src` (set in `vite.config.ts`, `vitest.config.ts` and `tsconfig.json`). Write `import { addToCart } from '@/logic/cart'` and `url('@/assets/icons/chevron-down.svg')` in styles instead of `../../`. Files from the same folder are imported as `./file`.
+
 ## Commits
 
 Conventional Commits: `type(scope): description`, for example `feat(cart): add calculateTotal`.
