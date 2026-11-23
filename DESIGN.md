@@ -193,7 +193,7 @@ components:
     textColor: '{colors.body}'
     rounded: '{rounded.circle}'
     borderColor: '{colors.hairline}'
-    height: 32px
+    height: 36px
   favorite-button-active:
     textColor: '{colors.primary}'
   cart-item:
@@ -266,10 +266,10 @@ Names match the components in `src/components/`.
 - **Footer**: `header` background, small text, links to About.
 - **Button**: primary (orange), outline (white with hairline), cart (compact 32px orange pill with a darker orange border, only for "Add to cart"). States: hover, focus (2px outline in `primary`), disabled.
 - **Input**: white, hairline border, 8px radius. Focus border is `primary`. Error border is `error` with a short message below.
-- **ProductCard**: white card, 8px radius, 1px hairline, 16px padding. Image on top, title (2 lines max), Rating, Price (with old price), "Add to cart" button, FavoriteButton in the top right corner of the image. Takes a `Product` and reports clicks by callbacks, the favorite state comes from the page. Light shadow on hover only.
+- **ProductCard**: white card, 8px radius, 1px hairline, 16px padding. Square image (cropped to fill), title (2 lines max), Rating, Price (with old price), "Add to cart" button, FavoriteButton in the top right corner of the image. Takes a `Product` and reports clicks by callbacks, the favorite state comes from the page. Light shadow on hover only.
 - **Price**: current price in `heading-lg` `ink`. Old price in `muted`, struck through. Discount badge next to them if there is an old price.
 - **Rating**: 5 stars, filled stars in `star`, empty in `hairline`, number and count in `caption` `body`.
-- **FavoriteButton**: 32px round icon button with a heart. Outline heart in `body` when not a favorite, filled heart in `primary` when it is. Controlled: it shows the `active` state it is given and only reports clicks. Not red, red is only for sale and errors.
+- **FavoriteButton**: 36px round icon button with a 20px heart. Outline heart in `body` when not a favorite (turns `primary` on hover), filled heart in `primary` when it is. Controlled: it shows the `active` state it is given and only reports clicks. Not red, red is only for sale and errors.
 - **QuantityStepper**: pill with hairline border, minus, count, plus, 32px high. Controlled: it shows the quantity it is given and only reports clicks. Minus is disabled at the minimum.
 - **CartItem**: row with the product image, title, category, Rating and a "Remove" text button, then unit Price (with old price), QuantityStepper and row total. On desktop all in one line, on phone the numbers go to a second line.
 - **CartList**: vertical list of CartItem.

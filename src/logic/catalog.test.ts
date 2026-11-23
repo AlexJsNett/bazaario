@@ -1,12 +1,17 @@
 import { describe, expect, it } from 'vitest';
 import type { Product } from '../types/product';
 import {
+  clampPage,
+  countActiveFilters,
   filterByCategory,
   filterByPrice,
   filterByRating,
   filterProducts,
   filtersToParams,
   getCategories,
+  getPageCount,
+  getPageItems,
+  paginate,
   parseFilters,
   searchProducts,
   sortProducts,
@@ -253,5 +258,106 @@ describe('filtersToParams', () => {
       sort: 'price-desc' as const,
     };
     expect(parseFilters(filtersToParams(filters))).toEqual(filters);
+  });
+});
+
+describe('page in the URL', () => {
+  it('reads a page number and ignores wrong ones and page 1', () => {
+    expect(parseFilters(new URLSearchParams('page=3'))).toEqual({ page: 3 });
+    expect(parseFilters(new URLSearchParams('page=1'))).toEqual({});
+    expect(parseFilters(new URLSearchParams('page=0'))).toEqual({});
+    expect(parseFilters(new URLSearchParams('page=-2'))).toEqual({});
+    expect(parseFilters(new URLSearchParams('page=abc'))).toEqual({});
+    expect(parseFilters(new URLSearchParams('page=2.5'))).toEqual({});
+  });
+
+  it('writes the page only when it is greater than 1', () => {
+    expect(filtersToParams({ page: 2 }).toString()).toBe('page=2');
+    expect(filtersToParams({ page: 1 }).toString()).toBe('');
+  });
+
+  it('round trip with a page', () => {
+    const filters = { category: 'books', sort: 'price-asc' as const, page: 4 };
+    expect(parseFilters(filtersToParams(filters))).toEqual(filters);
+  });
+
+  it('filterProducts ignores the page', () => {
+    expect(filterProducts(products, { page: 5 })).toEqual(products);
+  });
+});
+
+describe('getPageCount', () => {
+  it('rounds up and never gives less than 1 page', () => {
+    expect(getPageCount(30, 6)).toBe(5);
+    expect(getPageCount(31, 6)).toBe(6);
+    expect(getPageCount(0, 6)).toBe(1);
+  });
+});
+
+describe('clampPage', () => {
+  it('keeps a page inside 1..pageCount', () => {
+    expect(clampPage(3, 5)).toBe(3);
+    expect(clampPage(9, 5)).toBe(5);
+    expect(clampPage(0, 5)).toBe(1);
+    expect(clampPage(-4, 5)).toBe(1);
+    expect(clampPage(Number.NaN, 5)).toBe(1);
+  });
+});
+
+describe('paginate', () => {
+  const list = [1, 2, 3, 4, 5, 6, 7];
+
+  it('returns the items of the page', () => {
+    expect(paginate(list, 1, 3)).toEqual([1, 2, 3]);
+    expect(paginate(list, 2, 3)).toEqual([4, 5, 6]);
+    expect(paginate(list, 3, 3)).toEqual([7]);
+  });
+
+  it('moves a wrong page to the nearest real one', () => {
+    expect(paginate(list, 99, 3)).toEqual([7]);
+    expect(paginate(list, 0, 3)).toEqual([1, 2, 3]);
+  });
+
+  it('returns an empty array for an empty input and does not mutate', () => {
+    expect(paginate([], 1, 3)).toEqual([]);
+    const copy = [...list];
+    paginate(list, 2, 3);
+    expect(list).toEqual(copy);
+  });
+});
+
+describe('getPageItems', () => {
+  it('shows every page when there are few', () => {
+    expect(getPageItems(1, 1)).toEqual([1]);
+    expect(getPageItems(3, 5)).toEqual([1, 2, 3, 4, 5]);
+    expect(getPageItems(7, 7)).toEqual([1, 2, 3, 4, 5, 6, 7]);
+  });
+
+  it('cuts the end with dots near the start', () => {
+    expect(getPageItems(1, 20)).toEqual([1, 2, 3, 4, 5, 'gap', 20]);
+    expect(getPageItems(4, 20)).toEqual([1, 2, 3, 4, 5, 'gap', 20]);
+  });
+
+  it('cuts both sides in the middle', () => {
+    expect(getPageItems(5, 20)).toEqual([1, 'gap', 4, 5, 6, 'gap', 20]);
+    expect(getPageItems(10, 20)).toEqual([1, 'gap', 9, 10, 11, 'gap', 20]);
+  });
+
+  it('cuts the start with dots near the end', () => {
+    expect(getPageItems(17, 20)).toEqual([1, 'gap', 16, 17, 18, 19, 20]);
+    expect(getPageItems(20, 20)).toEqual([1, 'gap', 16, 17, 18, 19, 20]);
+  });
+});
+
+describe('countActiveFilters', () => {
+  it('counts only the set filters', () => {
+    expect(countActiveFilters({})).toBe(0);
+    expect(countActiveFilters({ category: 'books', min: 0, sort: 'price-asc' })).toBe(3);
+  });
+
+  it('does not count defaults, the search text and the page', () => {
+    expect(
+      countActiveFilters({ category: 'all', minRating: 0, sort: 'default', query: 'a', page: 3 }),
+    ).toBe(0);
   });
 });

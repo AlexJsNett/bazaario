@@ -1,0 +1,73 @@
+.filters-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  align-items: end;
+  padding: var(--space-lg);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  font-family: var(--font-family);
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  &__label {
+    color: var(--color-ink);
+    font-size: var(--text-ui-size);
+    font-weight: var(--text-ui-weight);
+    line-height: var(--text-ui-line);
+  }
+
+  &__select {
+    // own arrow: the native one sticks to the edge and looks different in each browser
+    appearance: none;
+    padding: 9px 40px 9px var(--space-lg);
+    background-image: url('../../assets/icons/chevron-down.svg');
+    background-position: right var(--space-md) center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    cursor: pointer;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: inherit;
+    font-size: var(--text-body-size);
+    font-weight: var(--text-body-weight);
+    line-height: var(--text-body-line);
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+  }
+
+  // No spin arrows in the price fields: the user types the number.
+  input[type='number'] {
+    appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+  }
+
+  &__reset {
+    // same height as the inputs: 9px + 9px padding, 2px border, 24px line
+    height: 44px;
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+
+    &__reset {
+      grid-column: auto;
+    }
+  }
+}

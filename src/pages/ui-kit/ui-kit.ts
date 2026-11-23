@@ -13,6 +13,9 @@ import type { Cart } from '../../types/cart.ts';
 import { changeQuantity, removeFromCart } from '../../logic/cart.ts';
 import { createProductCard } from '../../components/product-card/product-card.ts';
 import type { Product } from '../../types/product.ts';
+import { createFiltersPanel } from '../../components/filters-panel/filters-panel.ts';
+import { createPagination } from '../../components/pagination/pagination.ts';
+import { createProductGrid } from '../../components/product-grid/product-grid.ts';
 import { createQuantityStepper } from '../../components/quantity-stepper/quantity-stepper.ts';
 
 const COLORS = [
@@ -34,6 +37,8 @@ const COLORS = [
   'warning-text',
   'star',
 ];
+
+const noop = (): void => {};
 
 const DEMO_REVIEWS: Record<number, number> = { 1: 1280, 2: 320 };
 
@@ -237,7 +242,11 @@ const DEMO_PRODUCTS: Product[] = [
   },
 ];
 
-function interactiveCard(product: Product, initialFavorite: boolean): HTMLElement {
+function interactiveCard(
+  product: Product,
+  initialFavorite: boolean,
+  initialAdded = 0,
+): HTMLElement {
   const host = el('div', 'ui-kit__card');
   const draw = (isFavorite: boolean, added: number): void => {
     host.replaceChildren(
@@ -245,13 +254,15 @@ function interactiveCard(product: Product, initialFavorite: boolean): HTMLElemen
         product,
         isFavorite,
         reviewsCount: 1280,
+        quantity: added,
         onToggleFavorite: () => draw(!isFavorite, added),
         onAddToCart: () => draw(isFavorite, added + 1),
+        onDecrease: () => draw(isFavorite, added - 1),
       }),
-      el('code', 'ui-kit__demo-note', `added to cart: ${added}`),
+      el('code', 'ui-kit__demo-note', `in cart: ${added}`),
     );
   };
-  draw(initialFavorite, 0);
+  draw(initialFavorite, initialAdded);
   return host;
 }
 
@@ -260,6 +271,11 @@ function productCardBlock(): HTMLElement {
   row.append(
     demoWithDescription(interactiveCard(DEMO_PRODUCTS[0], false), 'With old price'),
     demoWithDescription(interactiveCard(DEMO_PRODUCTS[1], true), 'Favorite, long title'),
+    demoWithDescription(
+      interactiveCard(DEMO_PRODUCTS[0], false, 2),
+      'In the cart',
+      'the button turns into a stepper, minus at 1 removes the product',
+    ),
   );
   return row;
 }
@@ -315,7 +331,6 @@ function cartBlock(): HTMLElement {
 }
 
 function cartSummaryBlock(): HTMLElement {
-  const noop = (): void => {};
   const row = el('div', 'ui-kit__row');
   row.append(
     demoWithDescription(
@@ -351,6 +366,64 @@ function cartSummaryBlock(): HTMLElement {
         onApplyPromo: noop,
       }),
       'Invalid code',
+    ),
+  );
+  return row;
+}
+
+function filtersPanelBlock(): HTMLElement {
+  const categories = ['Headphones', 'Microphones', 'Sneakers', 'Tablets'];
+  const row = el('div', 'ui-kit__row');
+  row.append(
+    demoWithDescription(
+      createFiltersPanel({ categories, filters: {}, onChange: noop, onReset: noop }),
+      'Empty filters',
+    ),
+    demoWithDescription(
+      createFiltersPanel({
+        categories,
+        filters: { category: 'Sneakers', min: 20, max: 100, minRating: 4, sort: 'price-asc' },
+        onChange: noop,
+        onReset: noop,
+      }),
+      'Filled filters',
+      'selects apply at once, prices after a pause in typing',
+    ),
+  );
+  return row;
+}
+
+function productGridBlock(): HTMLElement {
+  return demoWithDescription(
+    createProductGrid({
+      products: [],
+      favorites: [],
+      onAddToCart: noop,
+      onToggleFavorite: noop,
+      onReset: noop,
+    }),
+    'Nothing found',
+    'the grid with cards is shown in the Product card block and on the Catalog page',
+  );
+}
+
+function interactivePagination(initial: number, pageCount: number): HTMLElement {
+  const host = el('div');
+  const draw = (page: number): void => {
+    host.replaceChildren(createPagination({ page, pageCount, onChange: draw }));
+  };
+  draw(initial);
+  return host;
+}
+
+function paginationBlock(): HTMLElement {
+  const row = el('div', 'ui-kit__row');
+  row.append(
+    demoWithDescription(interactivePagination(1, 5), '5 pages', 'all pages are shown'),
+    demoWithDescription(
+      interactivePagination(10, 20),
+      '20 pages',
+      'the first and the last page, the dots in the middle',
     ),
   );
   return row;
@@ -396,6 +469,9 @@ export function render(): HTMLElement {
     section('Product card', productCardBlock()),
     section('Cart', cartBlock()),
     section('Cart summary', cartSummaryBlock()),
+    section('Filters panel', filtersPanelBlock()),
+    section('Product grid', productGridBlock()),
+    section('Pagination', paginationBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),
   );

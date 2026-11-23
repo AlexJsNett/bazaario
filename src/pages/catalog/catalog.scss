@@ -1,0 +1,62 @@
+.catalog-page {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  &__title {
+    font-size: var(--text-heading-lg-size);
+    font-weight: var(--text-heading-lg-weight);
+    line-height: var(--text-heading-lg-line);
+  }
+
+  &__filters-toggle {
+    display: none;
+    width: 100%;
+  }
+
+  &__result {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  &__count {
+    color: var(--color-body);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+  }
+
+  &__message {
+    padding: var(--space-xl) var(--space-lg);
+    color: var(--color-body);
+    text-align: center;
+  }
+
+  // On a phone the filters are hidden until the button is pressed.
+  @media (max-width: 639px) {
+    &__filters {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    &__filters-toggle {
+      display: inline-flex;
+    }
+
+    &__filters:not(&__filters--open) .filters-panel {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    &__content {
+      padding: var(--space-xl);
+    }
+  }
+}
