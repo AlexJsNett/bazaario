@@ -1,5 +1,6 @@
 import './filters-panel.scss';
 import { ALL_CATEGORIES, type Filters, type SortMode } from '../../logic/catalog';
+import { debounce } from '../../utils/debounce';
 import { el } from '../../utils/dom';
 import { createButton } from '../button/button';
 import { createInput } from '../input/input';
@@ -10,6 +11,9 @@ export type FiltersPanelOptions = {
   onChange: (filters: Filters) => void;
   onReset: () => void;
 };
+
+// How long to wait after the last key before the price filter is applied.
+const TYPING_DELAY_MS = 400;
 
 const SORT_OPTIONS: [SortMode, string][] = [
   ['default', 'Featured'],
@@ -105,17 +109,41 @@ export const createFiltersPanel = (options: FiltersPanelOptions): HTMLFormElemen
 
   form.append(category.field, min, max, rating.field, sort.field, reset);
 
-  // Numbers apply on "change" (blur or Enter), not on every key, so typing is not interrupted.
-  form.addEventListener('change', () => {
-    onChange({
-      query: filters.query,
-      category: category.select.value,
-      min: readNumber(minInput),
-      max: readNumber(maxInput),
-      minRating: Number(rating.select.value),
-      sort: sort.select.value as SortMode,
-    });
+  const read = (): Filters => ({
+    query: filters.query,
+    category: category.select.value,
+    min: readNumber(minInput),
+    max: readNumber(maxInput),
+    minRating: Number(rating.select.value),
+    sort: sort.select.value as SortMode,
   });
+
+  // Report only a real change, so a blur after typing does not repeat the same filters.
+  let lastReported = JSON.stringify(read());
+  const report = (): void => {
+    const next = read();
+    const key = JSON.stringify(next);
+    if (key !== lastReported) {
+      lastReported = key;
+      onChange(next);
+    }
+  };
+
+  // Selects apply at once, the price fields wait until the user stops typing.
+  const reportLater = debounce(report, TYPING_DELAY_MS);
+  for (const select of [category.select, rating.select, sort.select]) {
+    select.addEventListener('change', () => {
+      reportLater.cancel();
+      report();
+    });
+  }
+  for (const input of [minInput, maxInput]) {
+    input.addEventListener('input', reportLater);
+    input.addEventListener('change', () => {
+      reportLater.cancel();
+      report();
+    });
+  }
   form.addEventListener('submit', (event) => event.preventDefault());
 
   return form;

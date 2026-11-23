@@ -375,7 +375,7 @@ function filtersPanelBlock(): HTMLElement {
         onReset: noop,
       }),
       'Filled filters',
-      'changes are applied on blur or Enter',
+      'selects apply at once, prices after a pause in typing',
     ),
   );
   return row;
