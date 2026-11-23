@@ -20,6 +20,26 @@ import type { Product } from '../../types/product.ts';
 import type { Review } from '../../types/reviews.ts';
 import { el } from '../../utils/dom.ts';
 
+type CatalogData = { products: Product[]; reviews: Review[] };
+
+// The page is drawn again on every filter change. The data is loaded once and kept here,
+// so the next draw is instant and the page does not flash "Loading...".
+let cached: CatalogData | undefined;
+
+const loadData = async (): Promise<CatalogData> => {
+  if (cached) {
+    return cached;
+  }
+  // Reviews are optional: if they fail to load, the cards show 0 reviews.
+  const loadingReviews = loadReviews().catch((error): Review[] => {
+    console.error(error);
+    return [];
+  });
+  const [products, reviews] = await Promise.all([loadProducts(), loadingReviews]);
+  cached = { products, reviews };
+  return cached;
+};
+
 // The filters live in the URL, so the page is drawn again on every change (Back works).
 const openWithFilters = (filters: Filters): void => {
   goTo('catalog', Object.fromEntries(filtersToParams(filters)));
@@ -78,22 +98,22 @@ export const render = (query: URLSearchParams): HTMLElement => {
     page.replaceChildren(content);
   };
 
-  page.append(el('p', 'catalog-page__message', 'Loading...'));
-
-  // Reviews are optional: if they fail to load, the cards show 0 reviews.
-  const loadingReviews = loadReviews().catch((error): Review[] => {
+  const fail = (error: unknown): void => {
     console.error(error);
-    return [];
-  });
+    page.replaceChildren(
+      el('p', 'catalog-page__message', 'Could not load products, try again later'),
+    );
+  };
 
-  Promise.all([loadProducts(), loadingReviews])
-    .then(([products, reviews]) => draw(products, reviews))
-    .catch((error) => {
-      console.error(error);
-      page.replaceChildren(
-        el('p', 'catalog-page__message', 'Could not load products, try again later'),
-      );
-    });
+  if (cached) {
+    draw(cached.products, cached.reviews);
+    return page;
+  }
+
+  page.append(el('p', 'catalog-page__message', 'Loading...'));
+  loadData()
+    .then(({ products, reviews }) => draw(products, reviews))
+    .catch(fail);
 
   return page;
 };
