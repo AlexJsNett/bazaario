@@ -14,6 +14,7 @@ import { changeQuantity, removeFromCart } from '../../logic/cart.ts';
 import { createProductCard } from '../../components/product-card/product-card.ts';
 import type { Product } from '../../types/product.ts';
 import { createFiltersPanel } from '../../components/filters-panel/filters-panel.ts';
+import { createPagination } from '../../components/pagination/pagination.ts';
 import { createProductGrid } from '../../components/product-grid/product-grid.ts';
 import { createQuantityStepper } from '../../components/quantity-stepper/quantity-stepper.ts';
 
@@ -406,6 +407,28 @@ function productGridBlock(): HTMLElement {
   );
 }
 
+function interactivePagination(initial: number, pageCount: number): HTMLElement {
+  const host = el('div');
+  const draw = (page: number): void => {
+    host.replaceChildren(createPagination({ page, pageCount, onChange: draw }));
+  };
+  draw(initial);
+  return host;
+}
+
+function paginationBlock(): HTMLElement {
+  const row = el('div', 'ui-kit__row');
+  row.append(
+    demoWithDescription(interactivePagination(1, 5), '5 pages', 'all pages are shown'),
+    demoWithDescription(
+      interactivePagination(10, 20),
+      '20 pages',
+      'the first and the last page, the dots in the middle',
+    ),
+  );
+  return row;
+}
+
 function headerBlock(): HTMLElement {
   const header = createHeader({
     categories: ['Headphones', 'Microphones', 'Sneakers', 'Tablets'],
@@ -448,6 +471,7 @@ export function render(): HTMLElement {
     section('Cart summary', cartSummaryBlock()),
     section('Filters panel', filtersPanelBlock()),
     section('Product grid', productGridBlock()),
+    section('Pagination', paginationBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),
   );

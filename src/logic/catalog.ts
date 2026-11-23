@@ -16,6 +16,8 @@ export type Filters = {
   minRating?: number;
   /** not a filter, but part of the catalog state in the URL. filterProducts ignores it */
   sort?: SortMode;
+  /** page number from 1. Not a filter either: filterProducts ignores it */
+  page?: number;
 };
 
 export const ALL_CATEGORIES = 'all';
@@ -113,6 +115,10 @@ export function parseFilters(params: URLSearchParams): Filters {
   if (sort && sort !== 'default' && SORT_MODES.includes(sort as SortMode)) {
     filters.sort = sort as SortMode;
   }
+  const page = Number(params.get('page'));
+  if (Number.isInteger(page) && page > 1) {
+    filters.page = page;
+  }
   return filters;
 }
 
@@ -135,5 +141,54 @@ export function filtersToParams(filters: Filters): URLSearchParams {
   if (filters.sort && filters.sort !== 'default') {
     params.set('sort', filters.sort);
   }
+  if (filters.page !== undefined && Number.isInteger(filters.page) && filters.page > 1) {
+    params.set('page', String(filters.page));
+  }
   return params;
+}
+
+// How many filters are set, for the "Show filters (2)" button. The page and the search text
+// are not counted: the search field has its own place in the header.
+export function countActiveFilters(filters: Filters): number {
+  const checks = [
+    filters.category !== undefined && filters.category !== ALL_CATEGORIES,
+    filters.min !== undefined,
+    filters.max !== undefined,
+    filters.minRating !== undefined && filters.minRating > 0,
+    filters.sort !== undefined && filters.sort !== 'default',
+  ];
+  return checks.filter(Boolean).length;
+}
+
+export type PageItem = number | 'gap';
+
+export function getPageCount(total: number, perPage: number): number {
+  return Math.max(1, Math.ceil(total / perPage));
+}
+
+// A page number outside the range is moved to the nearest real page.
+export function clampPage(page: number, pageCount: number): number {
+  return Math.min(Math.max(1, Math.trunc(page) || 1), pageCount);
+}
+
+// One page of the list. Returns a new array and never mutates the input.
+export function paginate<T>(items: T[], page: number, perPage: number): T[] {
+  const current = clampPage(page, getPageCount(items.length, perPage));
+  return items.slice((current - 1) * perPage, current * perPage);
+}
+
+// Buttons for the pager: the first and the last page are always there, the middle is cut
+// with a 'gap' (the dots). The list keeps the same length while the user moves:
+// 1 2 3 4 5 ... 20  /  1 ... 8 9 10 ... 20  /  1 ... 16 17 18 19 20
+export function getPageItems(current: number, pageCount: number): PageItem[] {
+  if (pageCount <= 7) {
+    return Array.from({ length: pageCount }, (_, index) => index + 1);
+  }
+  if (current <= 4) {
+    return [1, 2, 3, 4, 5, 'gap', pageCount];
+  }
+  if (current >= pageCount - 3) {
+    return [1, 'gap', pageCount - 4, pageCount - 3, pageCount - 2, pageCount - 1, pageCount];
+  }
+  return [1, 'gap', current - 1, current, current + 1, 'gap', pageCount];
 }

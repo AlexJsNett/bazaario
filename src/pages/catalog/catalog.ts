@@ -1,14 +1,20 @@
 import './catalog.scss';
+import { createButton } from '../../components/button/button.ts';
 import { createFiltersPanel } from '../../components/filters-panel/filters-panel.ts';
+import { createPagination } from '../../components/pagination/pagination.ts';
 import { createProductGrid } from '../../components/product-grid/product-grid.ts';
 import { loadProducts } from '../../data/products.ts';
 import { loadReviews } from '../../data/reviews.ts';
 import { goTo } from '../../goTo.ts';
 import { addToCart, decreaseInCart, getQuantity } from '../../logic/cart.ts';
 import {
+  clampPage,
+  countActiveFilters,
   filterProducts,
   filtersToParams,
   getCategories,
+  getPageCount,
+  paginate,
   parseFilters,
   sortProducts,
   type Filters,
@@ -41,8 +47,16 @@ const loadData = async (): Promise<CatalogData> => {
   return cached;
 };
 
-const toQuery = (filters: Filters): Record<string, string> =>
-  Object.fromEntries(filtersToParams(filters));
+const PHONE_QUERY = '(max-width: 639px)';
+const PER_PAGE_PHONE = 6;
+const PER_PAGE_DESKTOP = 12;
+const FILTERS_ID = 'catalog-filters';
+
+// pushState adds a history entry (Back works) but does not draw the page again.
+const writeUrl = (filters: Filters): void => {
+  const query = Object.fromEntries(filtersToParams(filters));
+  window.history.pushState(null, '', buildHash('catalog', query));
+};
 
 // Reset opens a clean address: the page and the header search field are drawn again.
 const resetFilters = (): void => goTo('catalog');
@@ -54,17 +68,22 @@ export const render = (query: URLSearchParams): HTMLElement => {
   const draw = (products: Product[], reviews: Review[]): void => {
     const content = el('div', 'catalog-page__content');
     const result = el('div', 'catalog-page__result');
+    const phone = window.matchMedia(PHONE_QUERY);
 
-    // Only the grid is drawn again after "add to cart" or a heart click,
-    // so the filters keep their place on the screen.
+    // Only the result (count, grid, pager) is drawn again after a click, so the filters keep
+    // their place on the screen.
     const drawResult = (animated = false): void => {
       const { favorites, cart } = getUser();
-      const visible = sortProducts(filterProducts(products, filters), filters.sort ?? 'default');
+      const found = sortProducts(filterProducts(products, filters), filters.sort ?? 'default');
+      const perPage = phone.matches ? PER_PAGE_PHONE : PER_PAGE_DESKTOP;
+      const pageCount = getPageCount(found.length, perPage);
+      const currentPage = clampPage(filters.page ?? 1, pageCount);
+      const visible = paginate(found, currentPage, perPage);
       result.replaceChildren(
         el(
           'p',
           'catalog-page__count',
-          `${visible.length} ${visible.length === 1 ? 'product' : 'products'}`,
+          `${found.length} ${found.length === 1 ? 'product' : 'products'}`,
         ),
         createProductGrid({
           products: visible,
@@ -94,26 +113,67 @@ export const render = (query: URLSearchParams): HTMLElement => {
           onReset: resetFilters,
           animated,
         }),
+        createPagination({
+          page: currentPage,
+          pageCount,
+          onChange: (nextPage) => {
+            filters = { ...filters, page: nextPage };
+            writeUrl(filters);
+            drawResult(true);
+            // a new page starts from its first product, not from where the pager was
+            result.scrollIntoView({ block: 'start', behavior: 'smooth' });
+          },
+        }),
       );
     };
     drawResult(true);
 
-    content.append(
-      el('h1', 'catalog-page__title', 'Catalog'),
-      createFiltersPanel({
-        categories: getCategories(products),
-        filters,
-        // The filters live in the URL. pushState adds a history entry (Back works) but does not
-        // draw the page again, so the focus stays on the control the user just changed.
-        onChange: (next) => {
-          filters = next;
-          window.history.pushState(null, '', buildHash('catalog', toQuery(next)));
-          drawResult(true);
-        },
-        onReset: resetFilters,
-      }),
-      result,
-    );
+    // The phone shows 6 products, the desktop 12: draw again when the screen size changes.
+    // The router drops this page without a signal, so the listener removes itself.
+    const onScreenChange = (): void => {
+      if (!page.isConnected) {
+        phone.removeEventListener('change', onScreenChange);
+        return;
+      }
+      drawResult();
+    };
+    phone.addEventListener('change', onScreenChange);
+
+    // On a phone the filters are hidden behind a button.
+    const filtersBox = el('div', 'catalog-page__filters');
+    const toggle = createButton({ label: '', variant: 'outline' });
+    toggle.classList.add('catalog-page__filters-toggle');
+    toggle.setAttribute('aria-controls', FILTERS_ID);
+    const updateToggle = (): void => {
+      const open = filtersBox.classList.contains('catalog-page__filters--open');
+      const count = countActiveFilters(filters);
+      toggle.textContent = `${open ? 'Hide' : 'Show'} filters${count > 0 ? ` (${count})` : ''}`;
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => {
+      filtersBox.classList.toggle('catalog-page__filters--open');
+      updateToggle();
+    });
+
+    const panel = createFiltersPanel({
+      categories: getCategories(products),
+      filters,
+      // The filters live in the URL. pushState adds a history entry (Back works) but does not
+      // draw the page again, so the focus stays on the control the user just changed.
+      // The new filters have no page, so the list starts from page 1.
+      onChange: (next) => {
+        filters = next;
+        writeUrl(filters);
+        updateToggle();
+        drawResult(true);
+      },
+      onReset: resetFilters,
+    });
+    panel.id = FILTERS_ID;
+    filtersBox.append(toggle, panel);
+    updateToggle();
+
+    content.append(el('h1', 'catalog-page__title', 'Catalog'), filtersBox, result);
     page.replaceChildren(content);
   };
 
