@@ -46,6 +46,17 @@
     }
   }
 
+  // No spin arrows in the price fields: the user types the number.
+  input[type='number'] {
+    appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+  }
+
   &__reset {
     grid-column: 1 / -1;
   }

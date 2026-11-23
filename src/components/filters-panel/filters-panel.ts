@@ -103,6 +103,9 @@ export const createFiltersPanel = (options: FiltersPanelOptions): HTMLFormElemen
   const maxInput = max.querySelector('input')!;
   minInput.min = '0';
   maxInput.min = '0';
+  // the phone keyboard shows digits only
+  minInput.inputMode = 'decimal';
+  maxInput.inputMode = 'decimal';
 
   const reset = createButton({ label: 'Reset', variant: 'outline', onClick: onReset });
   reset.classList.add('filters-panel__reset');
