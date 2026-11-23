@@ -58,6 +58,8 @@
   }
 
   &__reset {
+    // same height as the inputs: 9px + 9px padding, 2px border, 24px line
+    height: 44px;
     grid-column: 1 / -1;
   }
 
