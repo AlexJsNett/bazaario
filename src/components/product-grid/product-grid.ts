@@ -12,6 +12,8 @@ export type ProductGridOptions = {
   onToggleFavorite: (product: Product) => void;
   /** shown on the "nothing found" message */
   onReset?: () => void;
+  /** fade the cards in, for a list that has just changed */
+  animated?: boolean;
 };
 
 export const createProductGrid = (options: ProductGridOptions): HTMLElement => {
@@ -22,6 +24,7 @@ export const createProductGrid = (options: ProductGridOptions): HTMLElement => {
     onAddToCart,
     onToggleFavorite,
     onReset,
+    animated,
   } = options;
 
   if (products.length === 0) {
@@ -37,6 +40,7 @@ export const createProductGrid = (options: ProductGridOptions): HTMLElement => {
   }
 
   const grid = el('div', 'product-grid');
+  grid.classList.toggle('product-grid--animated', Boolean(animated));
   for (const product of products) {
     grid.append(
       createProductCard({

@@ -57,7 +57,7 @@ export const render = (query: URLSearchParams): HTMLElement => {
 
     // Only the grid is drawn again after "add to cart" or a heart click,
     // so the filters keep their place on the screen.
-    const drawResult = (): void => {
+    const drawResult = (animated = false): void => {
       const { favorites } = getUser();
       const visible = sortProducts(filterProducts(products, filters), filters.sort ?? 'default');
       result.replaceChildren(
@@ -82,10 +82,11 @@ export const render = (query: URLSearchParams): HTMLElement => {
             drawResult();
           },
           onReset: resetFilters,
+          animated,
         }),
       );
     };
-    drawResult();
+    drawResult(true);
 
     content.append(
       el('h1', 'catalog-page__title', 'Catalog'),
@@ -97,7 +98,7 @@ export const render = (query: URLSearchParams): HTMLElement => {
         onChange: (next) => {
           filters = next;
           window.history.pushState(null, '', buildHash('catalog', toQuery(next)));
-          drawResult();
+          drawResult(true);
         },
         onReset: resetFilters,
       }),
