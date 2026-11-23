@@ -13,7 +13,7 @@ const HEART_PATH =
 
 const createHeartIcon = (): SVGSVGElement => {
   const svg = document.createElementNS(SVG_NS, 'svg');
-  svg.setAttribute('viewBox', '-2 -2 28 28');
+  svg.setAttribute('viewBox', '0 0 24 24');
   svg.setAttribute('aria-hidden', 'true');
   svg.classList.add('favorite-button__icon');
   const path = document.createElementNS(SVG_NS, 'path');

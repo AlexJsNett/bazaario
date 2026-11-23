@@ -21,13 +21,14 @@
     aspect-ratio: 1;
     border-radius: var(--radius-md);
     background-color: var(--color-canvas);
-    object-fit: contain;
+    object-fit: cover;
   }
 
   &__favorite {
     position: absolute;
-    top: var(--space-lg);
-    right: var(--space-lg);
+    // inside the image corner, not on its edge
+    top: calc(var(--space-lg) + var(--space-sm));
+    right: calc(var(--space-lg) + var(--space-sm));
   }
 
   &__title {
