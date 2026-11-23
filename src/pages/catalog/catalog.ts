@@ -14,6 +14,7 @@ import {
   type Filters,
 } from '../../logic/catalog.ts';
 import { toggleFavorite } from '../../logic/favorites.ts';
+import { buildHash } from '../../logic/route.ts';
 import { getReviews } from '../../logic/reviews.ts';
 import { getUser, updateUser } from '../../store/user.ts';
 import type { Product } from '../../types/product.ts';
@@ -40,17 +41,17 @@ const loadData = async (): Promise<CatalogData> => {
   return cached;
 };
 
-// The filters live in the URL, so the page is drawn again on every change (Back works).
-const openWithFilters = (filters: Filters): void => {
-  goTo('catalog', Object.fromEntries(filtersToParams(filters)));
-};
+const toQuery = (filters: Filters): Record<string, string> =>
+  Object.fromEntries(filtersToParams(filters));
+
+// Reset opens a clean address: the page and the header search field are drawn again.
+const resetFilters = (): void => goTo('catalog');
 
 export const render = (query: URLSearchParams): HTMLElement => {
   const page = el('main', 'catalog-page');
-  const filters = parseFilters(query);
+  let filters = parseFilters(query);
 
   const draw = (products: Product[], reviews: Review[]): void => {
-    const visible = sortProducts(filterProducts(products, filters), filters.sort ?? 'default');
     const content = el('div', 'catalog-page__content');
     const result = el('div', 'catalog-page__result');
 
@@ -58,6 +59,7 @@ export const render = (query: URLSearchParams): HTMLElement => {
     // so the filters keep their place on the screen.
     const drawResult = (): void => {
       const { favorites } = getUser();
+      const visible = sortProducts(filterProducts(products, filters), filters.sort ?? 'default');
       result.replaceChildren(
         el(
           'p',
@@ -79,7 +81,7 @@ export const render = (query: URLSearchParams): HTMLElement => {
             }));
             drawResult();
           },
-          onReset: () => openWithFilters({}),
+          onReset: resetFilters,
         }),
       );
     };
@@ -90,8 +92,14 @@ export const render = (query: URLSearchParams): HTMLElement => {
       createFiltersPanel({
         categories: getCategories(products),
         filters,
-        onChange: openWithFilters,
-        onReset: () => openWithFilters({}),
+        // The filters live in the URL. pushState adds a history entry (Back works) but does not
+        // draw the page again, so the focus stays on the control the user just changed.
+        onChange: (next) => {
+          filters = next;
+          window.history.pushState(null, '', buildHash('catalog', toQuery(next)));
+          drawResult();
+        },
+        onReset: resetFilters,
       }),
       result,
     );
