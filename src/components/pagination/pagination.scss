@@ -1,15 +1,17 @@
 .pagination {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: var(--space-xs);
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0 var(--space-xl);
   font-family: var(--font-family);
 
   &__button {
-    min-width: 40px;
+    // 40px, but the buttons shrink on a narrow phone so the row stays in one line
+    flex: 0 1 40px;
+    min-width: 32px;
     height: 40px;
-    padding: 0 var(--space-sm);
+    padding: 0;
     border: 1px solid var(--color-hairline);
     border-radius: var(--radius-full);
     background-color: var(--color-surface);
