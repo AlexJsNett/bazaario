@@ -9,7 +9,7 @@ import { getCategories } from './logic/catalog.ts';
 import { getFavoritesCount } from './logic/favorites.ts';
 import { parseHash } from './logic/route.ts';
 import { USER_CHANGE_EVENT, getUser } from './store/user.ts';
-import { getCartCount } from './logic/cart.ts';
+import { getCartProductsCount } from './logic/cart.ts';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
@@ -27,7 +27,7 @@ const getCounts = () => {
   const user = getUser();
   return {
     favoritesCount: getFavoritesCount(user.favorites),
-    cartCount: getCartCount(user.cart),
+    cartCount: getCartProductsCount(user.cart),
   };
 };
 

@@ -50,6 +50,9 @@ export const getCartCount = (cart: Cart): number => {
   return cart.products.reduce((acc, ci) => acc + ci.quantity, 0);
 };
 
+// How many different products are in the cart (not the sum of quantities). Used by the header.
+export const getCartProductsCount = (cart: Cart): number => cart.products.length;
+
 export const findPromoCode = (promos: PromoCode[], code: string) => {
   return promos.find((p) => p.code.trim().toLowerCase() === code.trim().toLowerCase());
 };

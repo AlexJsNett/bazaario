@@ -6,6 +6,7 @@ import {
   decreaseInCart,
   findPromoCode,
   getCartCount,
+  getCartProductsCount,
   getQuantity,
   removeFromCart,
 } from './cart';
@@ -60,6 +61,16 @@ describe('cart', () => {
       getCartCount(cart);
 
       expect(cart).toEqual(makeCart());
+    });
+  });
+
+  describe('getCartProductsCount', () => {
+    it('should count different products, not the quantities', () => {
+      expect(getCartProductsCount(makeCart())).toBe(3);
+    });
+
+    it('should return 0 for an empty cart', () => {
+      expect(getCartProductsCount({ products: [] })).toBe(0);
     });
   });
 
