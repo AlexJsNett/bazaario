@@ -21,6 +21,21 @@ export const removeFromCart = (cart: Cart, productId: ProductId): Cart => {
   };
 };
 
+// One step down for a product card: quantity 1 becomes 0, so the product leaves the cart.
+export const decreaseInCart = (cart: Cart, productId: ProductId): Cart => {
+  const item = cart.products.find((product) => product.productId === productId);
+  if (!item) {
+    return cart;
+  }
+  if (item.quantity <= 1) {
+    return removeFromCart(cart, productId);
+  }
+  return changeQuantity(cart, productId, -1);
+};
+
+export const getQuantity = (cart: Cart, productId: ProductId): number =>
+  cart.products.find((product) => product.productId === productId)?.quantity ?? 0;
+
 export const changeQuantity = (cart: Cart, productId: ProductId, delta: number): Cart => {
   const cartCopy = structuredClone(cart);
   const cartItem = cartCopy.products.find((product) => product.productId === productId);

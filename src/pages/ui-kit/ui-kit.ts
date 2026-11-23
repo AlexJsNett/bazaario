@@ -241,7 +241,11 @@ const DEMO_PRODUCTS: Product[] = [
   },
 ];
 
-function interactiveCard(product: Product, initialFavorite: boolean): HTMLElement {
+function interactiveCard(
+  product: Product,
+  initialFavorite: boolean,
+  initialAdded = 0,
+): HTMLElement {
   const host = el('div', 'ui-kit__card');
   const draw = (isFavorite: boolean, added: number): void => {
     host.replaceChildren(
@@ -249,13 +253,15 @@ function interactiveCard(product: Product, initialFavorite: boolean): HTMLElemen
         product,
         isFavorite,
         reviewsCount: 1280,
+        quantity: added,
         onToggleFavorite: () => draw(!isFavorite, added),
         onAddToCart: () => draw(isFavorite, added + 1),
+        onDecrease: () => draw(isFavorite, added - 1),
       }),
-      el('code', 'ui-kit__demo-note', `added to cart: ${added}`),
+      el('code', 'ui-kit__demo-note', `in cart: ${added}`),
     );
   };
-  draw(initialFavorite, 0);
+  draw(initialFavorite, initialAdded);
   return host;
 }
 
@@ -264,6 +270,11 @@ function productCardBlock(): HTMLElement {
   row.append(
     demoWithDescription(interactiveCard(DEMO_PRODUCTS[0], false), 'With old price'),
     demoWithDescription(interactiveCard(DEMO_PRODUCTS[1], true), 'Favorite, long title'),
+    demoWithDescription(
+      interactiveCard(DEMO_PRODUCTS[0], false, 2),
+      'In the cart',
+      'the button turns into a stepper, minus at 1 removes the product',
+    ),
   );
   return row;
 }

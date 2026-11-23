@@ -3,8 +3,10 @@ import {
   addToCart,
   calculateTotal,
   changeQuantity,
+  decreaseInCart,
   findPromoCode,
   getCartCount,
+  getQuantity,
   removeFromCart,
 } from './cart';
 import type { Cart, PromoCode } from '../types/cart.ts';
@@ -58,6 +60,43 @@ describe('cart', () => {
       getCartCount(cart);
 
       expect(cart).toEqual(makeCart());
+    });
+  });
+
+  describe('decreaseInCart', () => {
+    it('should decrease the quantity by 1', () => {
+      const result = decreaseInCart(makeCart(), 1);
+
+      expect(getQuantity(result, 1)).toBe(9);
+    });
+
+    it('should remove the product when the quantity was 1', () => {
+      const cart: Cart = { products: [{ productId: 3, quantity: 1 }] };
+
+      expect(decreaseInCart(cart, 3).products).toEqual([]);
+    });
+
+    it('should return the same cart for a product that is not in it', () => {
+      const cart = makeCart();
+
+      expect(decreaseInCart(cart, 99)).toEqual(makeCart());
+    });
+
+    it('should not mutate the cart', () => {
+      const cart = makeCart();
+      decreaseInCart(cart, 2);
+
+      expect(cart).toEqual(makeCart());
+    });
+  });
+
+  describe('getQuantity', () => {
+    it('should return the quantity of a product in the cart', () => {
+      expect(getQuantity(makeCart(), 2)).toBe(2);
+    });
+
+    it('should return 0 for a product that is not in the cart', () => {
+      expect(getQuantity(makeCart(), 99)).toBe(0);
     });
   });
 

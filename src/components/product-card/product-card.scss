@@ -51,4 +51,17 @@
     width: 100%;
     margin-top: var(--space-xs);
   }
+
+  // Same size as the "Add to cart" button, so the card does not jump when it turns into a stepper.
+  &__stepper {
+    width: 100%;
+    height: 40px;
+    margin-top: var(--space-xs);
+    justify-content: space-between;
+
+    .quantity-stepper__button {
+      width: 40px;
+      font-size: var(--text-heading-size);
+    }
+  }
 }

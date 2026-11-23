@@ -4,7 +4,7 @@ import { createProductGrid } from '../../components/product-grid/product-grid.ts
 import { loadProducts } from '../../data/products.ts';
 import { loadReviews } from '../../data/reviews.ts';
 import { goTo } from '../../goTo.ts';
-import { addToCart } from '../../logic/cart.ts';
+import { addToCart, decreaseInCart, getQuantity } from '../../logic/cart.ts';
 import {
   filterProducts,
   filtersToParams,
@@ -58,7 +58,7 @@ export const render = (query: URLSearchParams): HTMLElement => {
     // Only the grid is drawn again after "add to cart" or a heart click,
     // so the filters keep their place on the screen.
     const drawResult = (animated = false): void => {
-      const { favorites } = getUser();
+      const { favorites, cart } = getUser();
       const visible = sortProducts(filterProducts(products, filters), filters.sort ?? 'default');
       result.replaceChildren(
         el(
@@ -69,11 +69,21 @@ export const render = (query: URLSearchParams): HTMLElement => {
         createProductGrid({
           products: visible,
           favorites,
+          quantities: Object.fromEntries(
+            visible.map((product) => [product.id, getQuantity(cart, product.id)]),
+          ),
           reviewsCount: Object.fromEntries(
             visible.map((product) => [product.id, getReviews(reviews, product.id)]),
           ),
-          onAddToCart: (product) =>
-            updateUser((user) => ({ ...user, cart: addToCart(user.cart, product.id) })),
+          // The cart changes, so the grid is drawn again to show the new quantity.
+          onAddToCart: (product) => {
+            updateUser((user) => ({ ...user, cart: addToCart(user.cart, product.id) }));
+            drawResult();
+          },
+          onDecrease: (product) => {
+            updateUser((user) => ({ ...user, cart: decreaseInCart(user.cart, product.id) }));
+            drawResult();
+          },
           onToggleFavorite: (product) => {
             updateUser((user) => ({
               ...user,

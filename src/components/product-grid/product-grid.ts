@@ -7,8 +7,11 @@ import { createProductCard } from '../product-card/product-card';
 export type ProductGridOptions = {
   products: Product[];
   favorites: ProductId[];
+  /** how many of each product are in the cart, by product id */
+  quantities?: Record<number, number>;
   reviewsCount?: Record<number, number>;
   onAddToCart: (product: Product) => void;
+  onDecrease?: (product: Product) => void;
   onToggleFavorite: (product: Product) => void;
   /** shown on the "nothing found" message */
   onReset?: () => void;
@@ -20,8 +23,10 @@ export const createProductGrid = (options: ProductGridOptions): HTMLElement => {
   const {
     products,
     favorites,
+    quantities = {},
     reviewsCount = {},
     onAddToCart,
+    onDecrease,
     onToggleFavorite,
     onReset,
     animated,
@@ -47,7 +52,9 @@ export const createProductGrid = (options: ProductGridOptions): HTMLElement => {
         product,
         isFavorite: favorites.includes(product.id),
         reviewsCount: reviewsCount[product.id],
+        quantity: quantities[product.id],
         onAddToCart,
+        onDecrease,
         onToggleFavorite,
       }),
     );
