@@ -13,6 +13,8 @@ import type { Cart } from '../../types/cart.ts';
 import { changeQuantity, removeFromCart } from '../../logic/cart.ts';
 import { createProductCard } from '../../components/product-card/product-card.ts';
 import type { Product } from '../../types/product.ts';
+import { createFiltersPanel } from '../../components/filters-panel/filters-panel.ts';
+import { createProductGrid } from '../../components/product-grid/product-grid.ts';
 import { createQuantityStepper } from '../../components/quantity-stepper/quantity-stepper.ts';
 
 const COLORS = [
@@ -34,6 +36,8 @@ const COLORS = [
   'warning-text',
   'star',
 ];
+
+const noop = (): void => {};
 
 const DEMO_REVIEWS: Record<number, number> = { 1: 1280, 2: 320 };
 
@@ -315,7 +319,6 @@ function cartBlock(): HTMLElement {
 }
 
 function cartSummaryBlock(): HTMLElement {
-  const noop = (): void => {};
   const row = el('div', 'ui-kit__row');
   row.append(
     demoWithDescription(
@@ -354,6 +357,42 @@ function cartSummaryBlock(): HTMLElement {
     ),
   );
   return row;
+}
+
+function filtersPanelBlock(): HTMLElement {
+  const categories = ['Headphones', 'Microphones', 'Sneakers', 'Tablets'];
+  const row = el('div', 'ui-kit__row');
+  row.append(
+    demoWithDescription(
+      createFiltersPanel({ categories, filters: {}, onChange: noop, onReset: noop }),
+      'Empty filters',
+    ),
+    demoWithDescription(
+      createFiltersPanel({
+        categories,
+        filters: { category: 'Sneakers', min: 20, max: 100, minRating: 4, sort: 'price-asc' },
+        onChange: noop,
+        onReset: noop,
+      }),
+      'Filled filters',
+      'changes are applied on blur or Enter',
+    ),
+  );
+  return row;
+}
+
+function productGridBlock(): HTMLElement {
+  return demoWithDescription(
+    createProductGrid({
+      products: [],
+      favorites: [],
+      onAddToCart: noop,
+      onToggleFavorite: noop,
+      onReset: noop,
+    }),
+    'Nothing found',
+    'the grid with cards is shown in the Product card block and on the Catalog page',
+  );
 }
 
 function headerBlock(): HTMLElement {
@@ -396,6 +435,8 @@ export function render(): HTMLElement {
     section('Product card', productCardBlock()),
     section('Cart', cartBlock()),
     section('Cart summary', cartSummaryBlock()),
+    section('Filters panel', filtersPanelBlock()),
+    section('Product grid', productGridBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),
   );
