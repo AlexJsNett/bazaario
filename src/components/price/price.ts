@@ -1,6 +1,6 @@
 import './price.scss';
-import { createBadge } from '../badge/badge';
-import { formatNumber } from '../../logic/utils/formatNumber.ts';
+import { createBadge } from '@/components/badge/badge';
+import { formatNumber } from '@/logic/utils/formatNumber.ts';
 
 export type PriceParts = {
   currency: string;

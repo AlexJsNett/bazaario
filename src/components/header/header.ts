@@ -1,5 +1,5 @@
 import './header.scss';
-import { buildHash } from '../../logic/route';
+import { buildHash } from '@/logic/route';
 
 export type HeaderState = {
   favoritesCount: number;

@@ -1,5 +1,5 @@
-import type { CartPrice, Cart, PromoCode } from '../types/cart.ts';
-import type { Product, ProductId } from '../types/product.ts';
+import type { CartPrice, Cart, PromoCode } from '@/types/cart.ts';
+import type { Product, ProductId } from '@/types/product.ts';
 import { getProductById } from './products.ts';
 
 export const addToCart = (cart: Cart, productId: ProductId): Cart => {

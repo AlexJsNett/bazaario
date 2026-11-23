@@ -9,8 +9,8 @@ import {
   getQuantity,
   removeFromCart,
 } from './cart';
-import type { Cart, PromoCode } from '../types/cart.ts';
-import type { Product } from '../types/product.ts';
+import type { Cart, PromoCode } from '@/types/cart.ts';
+import type { Product } from '@/types/product.ts';
 
 const makeProduct = (id: number, price: number): Product => ({
   id,

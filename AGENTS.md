@@ -41,6 +41,7 @@ public/
 6. Mock API: data lives in `public/api/*.json`. Fetch with `import.meta.env.BASE_URL + 'api/products.json'` (the site is served under `/bazaario/` on GitHub Pages), never with a hard-coded `/api/...`.
 7. Every logic function has tests in the same PR. Cover normal case, edge case, and that input is not mutated.
 8. Shared types live in `src/types/` (one file per topic). No logic and no imports from other layers there. Import them with `import type`. Do not declare `Product` or `CartItem` again in another file.
+9. Imports: use the alias `@` for `src` when the file is in another folder (`import { addToCart } from '@/logic/cart'`, `url('@/assets/icons/x.svg')` in styles). Use `./file` only for files in the same folder. No `../`.
 
 ## User data (localStorage)
 

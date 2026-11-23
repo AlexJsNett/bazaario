@@ -1,12 +1,12 @@
 import './catalog.scss';
-import { createButton } from '../../components/button/button.ts';
-import { createFiltersPanel } from '../../components/filters-panel/filters-panel.ts';
-import { createPagination } from '../../components/pagination/pagination.ts';
-import { createProductGrid } from '../../components/product-grid/product-grid.ts';
-import { loadProducts } from '../../data/products.ts';
-import { loadReviews } from '../../data/reviews.ts';
-import { goTo } from '../../goTo.ts';
-import { addToCart, decreaseInCart, getQuantity } from '../../logic/cart.ts';
+import { createButton } from '@/components/button/button.ts';
+import { createFiltersPanel } from '@/components/filters-panel/filters-panel.ts';
+import { createPagination } from '@/components/pagination/pagination.ts';
+import { createProductGrid } from '@/components/product-grid/product-grid.ts';
+import { loadProducts } from '@/data/products.ts';
+import { loadReviews } from '@/data/reviews.ts';
+import { goTo } from '@/goTo.ts';
+import { addToCart, decreaseInCart, getQuantity } from '@/logic/cart.ts';
 import {
   clampPage,
   countActiveFilters,
@@ -18,14 +18,14 @@ import {
   parseFilters,
   sortProducts,
   type Filters,
-} from '../../logic/catalog.ts';
-import { toggleFavorite } from '../../logic/favorites.ts';
-import { buildHash } from '../../logic/route.ts';
-import { getReviews } from '../../logic/reviews.ts';
-import { getUser, updateUser } from '../../store/user.ts';
-import type { Product } from '../../types/product.ts';
-import type { Review } from '../../types/reviews.ts';
-import { el } from '../../utils/dom.ts';
+} from '@/logic/catalog.ts';
+import { toggleFavorite } from '@/logic/favorites.ts';
+import { buildHash } from '@/logic/route.ts';
+import { getReviews } from '@/logic/reviews.ts';
+import { getUser, updateUser } from '@/store/user.ts';
+import type { Product } from '@/types/product.ts';
+import type { Review } from '@/types/reviews.ts';
+import { el } from '@/utils/dom.ts';
 
 type CatalogData = { products: Product[]; reviews: Review[] };
 

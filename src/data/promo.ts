@@ -1,4 +1,4 @@
-import type { PromoCode } from '../types/cart.ts';
+import type { PromoCode } from '@/types/cart.ts';
 
 const MOCK_PROMOS: PromoCode[] = [
   { code: 'SALE10', discount: 10 },

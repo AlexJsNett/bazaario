@@ -1,8 +1,8 @@
 import './cart-summary.scss';
-import { el } from '../../utils/dom';
-import { createButton } from '../button/button';
-import { createInput } from '../input/input';
-import { createPrice } from '../price/price';
+import { el } from '@/utils/dom';
+import { createButton } from '@/components/button/button';
+import { createInput } from '@/components/input/input';
+import { createPrice } from '@/components/price/price';
 
 export type CartSummaryOptions = {
   itemsCount: number;

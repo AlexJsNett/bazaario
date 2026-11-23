@@ -1,24 +1,24 @@
 import './cart.scss';
-import type { Cart } from '../../types/cart';
-import type { Product } from '../../types/product';
-import { el } from '../../utils/dom';
-import { createButton } from '../../components/button/button';
-import { createCart } from '../../components/cart/cart';
-import { createCartSummary } from '../../components/cart-summary/cart-summary';
+import type { Cart } from '@/types/cart';
+import type { Product } from '@/types/product';
+import { el } from '@/utils/dom';
+import { createButton } from '@/components/button/button';
+import { createCart } from '@/components/cart/cart';
+import { createCartSummary } from '@/components/cart-summary/cart-summary';
 import {
   calculateTotal,
   changeQuantity,
   findPromoCode,
   getCartCount,
   removeFromCart,
-} from '../../logic/cart';
-import { goTo } from '../../goTo';
-import { getPromos } from '../../data/promo.ts';
-import { loadProducts } from '../../data/products.ts';
-import { loadReviews } from '../../data/reviews.ts';
-import { getReviews } from '../../logic/reviews.ts';
-import type { Review } from '../../types/reviews.ts';
-import { getUser, updateUser } from '../../store/user.ts';
+} from '@/logic/cart';
+import { goTo } from '@/goTo';
+import { getPromos } from '@/data/promo.ts';
+import { loadProducts } from '@/data/products.ts';
+import { loadReviews } from '@/data/reviews.ts';
+import { getReviews } from '@/logic/reviews.ts';
+import type { Review } from '@/types/reviews.ts';
+import { getUser, updateUser } from '@/store/user.ts';
 
 type PageState = {
   products: Product[];

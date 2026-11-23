@@ -1,7 +1,7 @@
 import './about.scss';
-import { createButton } from '../../components/button/button.ts';
-import { goTo } from '../../goTo.ts';
-import { el } from '../../utils/dom.ts';
+import { createButton } from '@/components/button/button.ts';
+import { goTo } from '@/goTo.ts';
+import { el } from '@/utils/dom.ts';
 
 type Feature = { title: string; text: string };
 type Developer = { login: string; role: string };

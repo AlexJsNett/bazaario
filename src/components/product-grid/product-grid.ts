@@ -1,8 +1,8 @@
 import './product-grid.scss';
-import type { Product, ProductId } from '../../types/product';
-import { el } from '../../utils/dom';
-import { createButton } from '../button/button';
-import { createProductCard } from '../product-card/product-card';
+import type { Product, ProductId } from '@/types/product';
+import { el } from '@/utils/dom';
+import { createButton } from '@/components/button/button';
+import { createProductCard } from '@/components/product-card/product-card';
 
 export type ProductGridOptions = {
   products: Product[];

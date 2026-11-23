@@ -26,7 +26,7 @@
     // own arrow: the native one sticks to the edge and looks different in each browser
     appearance: none;
     padding: 9px 40px 9px var(--space-lg);
-    background-image: url('../../assets/icons/chevron-down.svg');
+    background-image: url('@/assets/icons/chevron-down.svg');
     background-position: right var(--space-md) center;
     background-repeat: no-repeat;
     background-size: 16px;

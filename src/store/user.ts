@@ -1,8 +1,8 @@
 // All user data lives in ONE localStorage key. See AGENTS.md, section "User data".
 // Only this file touches localStorage.
 
-import type { Cart } from '../types/cart';
-import type { ProductId } from '../types/product';
+import type { Cart } from '@/types/cart';
+import type { ProductId } from '@/types/product';
 
 export type User = {
   favorites: ProductId[];

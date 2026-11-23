@@ -1,9 +1,9 @@
 import './filters-panel.scss';
-import { ALL_CATEGORIES, type Filters, type SortMode } from '../../logic/catalog';
-import { debounce } from '../../utils/debounce';
-import { el } from '../../utils/dom';
-import { createButton } from '../button/button';
-import { createInput } from '../input/input';
+import { ALL_CATEGORIES, type Filters, type SortMode } from '@/logic/catalog';
+import { debounce } from '@/utils/debounce';
+import { el } from '@/utils/dom';
+import { createButton } from '@/components/button/button';
+import { createInput } from '@/components/input/input';
 
 export type FiltersPanelOptions = {
   categories: string[];

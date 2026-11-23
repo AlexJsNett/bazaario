@@ -1,6 +1,6 @@
 // Pure functions: take an array of product ids, return a new value. Never mutate the input.
 
-import type { ProductId } from '../types/product';
+import type { ProductId } from '@/types/product';
 
 export function toggleFavorite(favorites: ProductId[], productId: ProductId): ProductId[] {
   return favorites.includes(productId)

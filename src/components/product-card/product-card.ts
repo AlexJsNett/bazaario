@@ -1,11 +1,11 @@
 import './product-card.scss';
-import type { Product } from '../../types/product';
-import { el } from '../../utils/dom';
-import { createButton } from '../button/button';
-import { createFavoriteButton } from '../favorite-button/favorite-button';
-import { createPrice } from '../price/price';
-import { createQuantityStepper } from '../quantity-stepper/quantity-stepper';
-import { createRating } from '../rating/rating';
+import type { Product } from '@/types/product';
+import { el } from '@/utils/dom';
+import { createButton } from '@/components/button/button';
+import { createFavoriteButton } from '@/components/favorite-button/favorite-button';
+import { createPrice } from '@/components/price/price';
+import { createQuantityStepper } from '@/components/quantity-stepper/quantity-stepper';
+import { createRating } from '@/components/rating/rating';
 
 export type ProductCardOptions = {
   product: Product;

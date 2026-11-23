@@ -1,10 +1,10 @@
 import './cart.scss';
-import type { Cart } from '../../types/cart';
-import type { Product } from '../../types/product';
-import { el } from '../../utils/dom';
-import { getProductById } from '../../logic/products';
-import { createCartList } from '../cart-list/cart-list';
-import type { CartItemOptions } from '../cart-item/cart-item';
+import type { Cart } from '@/types/cart';
+import type { Product } from '@/types/product';
+import { el } from '@/utils/dom';
+import { getProductById } from '@/logic/products';
+import { createCartList } from '@/components/cart-list/cart-list';
+import type { CartItemOptions } from '@/components/cart-item/cart-item';
 
 export type CartOptions = {
   products: Product[];
