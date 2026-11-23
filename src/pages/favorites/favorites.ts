@@ -11,6 +11,7 @@ import { goTo } from '../../goTo';
 import { addToCart } from '../../logic/cart.ts';
 import { getReviews } from '../../logic/reviews.ts';
 import { loadReviews } from '../../data/reviews.ts';
+import type { Review } from '../../types/reviews.ts';
 
 const createEmpty = (): HTMLElement => {
   const empty = el('section', 'favorites-page__empty');
@@ -25,8 +26,9 @@ const createEmpty = (): HTMLElement => {
 export const render = (): HTMLElement => {
   const page = el('main', 'favorites-page');
   let products: Product[] = [];
+  let reviews: Review[] = [];
 
-  const draw = async () => {
+  const draw = () => {
     const { favorites } = getUser();
     const content = el('div', 'favorites-page__content');
     content.append(el('h1', 'favorites-page__title', 'Favorites'));
@@ -42,7 +44,6 @@ export const render = (): HTMLElement => {
     }
 
     const grid = el('div', 'favorites-page__grid');
-    const reviews = await loadReviews();
 
     for (const product of favoriteProducts) {
       grid.append(
@@ -70,9 +71,10 @@ export const render = (): HTMLElement => {
     page.replaceChildren(content);
   };
 
-  loadProducts()
-    .then((loaded) => {
-      products = loaded;
+  Promise.all([loadProducts(), loadReviews().catch(() => [] as Review[])])
+    .then(([loadedProducts, loadedReviews]) => {
+      products = loadedProducts;
+      reviews = loadedReviews;
       draw();
     })
     .catch((error) => {
