@@ -16,7 +16,10 @@
     display: flex;
     gap: var(--space-lg);
     overflow-x: auto;
-    padding-bottom: var(--space-sm);
+    // the row runs to the screen edges, the first and the last card keep the page padding
+    margin-inline: calc(-1 * var(--space-lg));
+    padding: var(--space-xs) var(--space-lg) var(--space-sm);
+    scroll-padding-inline: var(--space-lg);
     scroll-snap-type: x proximity;
   }
 
@@ -32,6 +35,8 @@
 
   @media (min-width: 640px) {
     &__list {
+      margin-inline: 0;
+      padding: 0;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       overflow: visible;
