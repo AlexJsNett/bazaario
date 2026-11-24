@@ -21,6 +21,7 @@ import { createReviewItem } from '@/components/review-item/review-item.ts';
 import { createReviewList } from '@/components/review-list/review-list.ts';
 import type { ReviewItem } from '@/types/reviews.ts';
 import { createQuantityStepper } from '@/components/quantity-stepper/quantity-stepper.ts';
+import { createCarousel } from '@/components/carousel/carousel.ts';
 
 const COLORS = [
   'header',
@@ -504,6 +505,18 @@ function footerBlock(): HTMLElement {
   return demoWithDescription(createFooter(), 'Footer');
 }
 
+function carouselBlock() {
+  const makeCarouselItem = () => {
+    const item = el('div');
+    item.style = 'height: 480px; width: 100px; background: red;';
+    return item;
+  };
+  const childs = new Array(6).fill(makeCarouselItem).map((m) => m());
+  const carousel = createCarousel({ childs });
+  carousel.style.width = '100%';
+  return demoWithDescription(carousel, 'Regular carousel');
+}
+
 export function render(): HTMLElement {
   const page = el('main', 'ui-kit');
 
@@ -534,6 +547,7 @@ export function render(): HTMLElement {
     section('Pagination', paginationBlock()),
     section('Reviews', reviewsBlock()),
     section('Product row', productRowBlock()),
+    section('Carousel', carouselBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),
   );
