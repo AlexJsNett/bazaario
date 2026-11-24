@@ -25,8 +25,16 @@
 
   &__average {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--space-md);
+
+    // the stars keep their size when the box is narrow
+    .rating,
+    .rating__stars,
+    .rating__star {
+      flex-shrink: 0;
+    }
   }
 
   &__average-value {
