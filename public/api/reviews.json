@@ -1,122 +1,1022 @@
 [
   {
     "productId": 1,
-    "count": 52
+    "count": 52,
+    "items": [
+      {
+        "author": "Daniel R.",
+        "rating": 5,
+        "date": "2026-06-20",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Irina B.",
+        "rating": 5,
+        "date": "2026-04-24",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Olga S.",
+        "rating": 4,
+        "date": "2026-02-24",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Oscar D.",
+        "rating": 5,
+        "date": "2026-02-12",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. The sound is clear and the battery lasts long."
+      }
+    ]
   },
   {
     "productId": 2,
-    "count": 151
+    "count": 151,
+    "items": [
+      {
+        "author": "Peter G.",
+        "rating": 4,
+        "date": "2026-10-27",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Victor L.",
+        "rating": 4,
+        "date": "2026-06-24",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Elena P.",
+        "rating": 4,
+        "date": "2026-03-14",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Anna K.",
+        "rating": 3,
+        "date": "2026-02-09",
+        "title": "Okay",
+        "text": "Average quality. Works, but I expected a little more from the description. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Julia N.",
+        "rating": 4,
+        "date": "2026-01-15",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. The sound is clear and the battery lasts long."
+      }
+    ]
   },
   {
     "productId": 3,
-    "count": 65
+    "count": 65,
+    "items": [
+      {
+        "author": "Daniel R.",
+        "rating": 4,
+        "date": "2026-08-09",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Laura F.",
+        "rating": 4,
+        "date": "2026-05-12",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Max W.",
+        "rating": 3,
+        "date": "2026-02-08",
+        "title": "Decent",
+        "text": "Good first week. Let us see how it lasts. The packaging was a bit damaged. The sound is clear and the battery lasts long."
+      }
+    ]
   },
   {
     "productId": 4,
-    "count": 736
+    "count": 736,
+    "items": [
+      {
+        "author": "Elena P.",
+        "rating": 4,
+        "date": "2026-05-11",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Peter G.",
+        "rating": 3,
+        "date": "2026-03-27",
+        "title": "Decent",
+        "text": "Good first week. Let us see how it lasts. The packaging was a bit damaged. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Nina V.",
+        "rating": 4,
+        "date": "2026-01-19",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Mark T.",
+        "rating": 5,
+        "date": "2026-01-05",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. The sound is clear and the battery lasts long."
+      }
+    ]
   },
   {
     "productId": 5,
-    "count": 44
+    "count": 44,
+    "items": [
+      {
+        "author": "Ivan Z.",
+        "rating": 5,
+        "date": "2026-09-21",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Sofia M.",
+        "rating": 4,
+        "date": "2026-09-12",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Laura F.",
+        "rating": 4,
+        "date": "2026-04-13",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Daniel R.",
+        "rating": 5,
+        "date": "2026-04-07",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. The sound is clear and the battery lasts long."
+      },
+      {
+        "author": "Max W.",
+        "rating": 4,
+        "date": "2026-02-21",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. The sound is clear and the battery lasts long."
+      }
+    ]
   },
   {
     "productId": 6,
-    "count": 422
+    "count": 422,
+    "items": [
+      {
+        "author": "Olga S.",
+        "rating": 4,
+        "date": "2026-09-18",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Tom H.",
+        "rating": 4,
+        "date": "2026-08-03",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Nina V.",
+        "rating": 5,
+        "date": "2026-06-26",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. My voice sounds clean on calls and on streams."
+      }
+    ]
   },
   {
     "productId": 7,
-    "count": 185
+    "count": 185,
+    "items": [
+      {
+        "author": "Julia N.",
+        "rating": 4,
+        "date": "2026-10-22",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Victor L.",
+        "rating": 5,
+        "date": "2026-08-19",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Sofia M.",
+        "rating": 5,
+        "date": "2026-07-09",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Ivan Z.",
+        "rating": 5,
+        "date": "2026-02-27",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. My voice sounds clean on calls and on streams."
+      }
+    ]
   },
   {
     "productId": 8,
-    "count": 41
+    "count": 41,
+    "items": [
+      {
+        "author": "Olga S.",
+        "rating": 2,
+        "date": "2026-10-09",
+        "title": "Not what I hoped",
+        "text": "It works, but the quality is lower than on the photos. Support was polite. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Nina V.",
+        "rating": 2,
+        "date": "2026-05-23",
+        "title": "Could be better",
+        "text": "Had a small problem after two weeks. I hope it was only my unit. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Irina B.",
+        "rating": 3,
+        "date": "2026-04-07",
+        "title": "Decent",
+        "text": "Good first week. Let us see how it lasts. The packaging was a bit damaged. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Oscar D.",
+        "rating": 3,
+        "date": "2026-04-06",
+        "title": "Okay",
+        "text": "Average quality. Works, but I expected a little more from the description. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Tom H.",
+        "rating": 3,
+        "date": "2026-02-24",
+        "title": "Fine for the price",
+        "text": "Not perfect, but it does the job. A few small things could be better. My voice sounds clean on calls and on streams."
+      }
+    ]
   },
   {
     "productId": 9,
-    "count": 367
+    "count": 367,
+    "items": [
+      {
+        "author": "Peter G.",
+        "rating": 3,
+        "date": "2026-07-27",
+        "title": "Okay",
+        "text": "Average quality. Works, but I expected a little more from the description. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Anna K.",
+        "rating": 4,
+        "date": "2026-05-17",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. My voice sounds clean on calls and on streams."
+      },
+      {
+        "author": "Victor L.",
+        "rating": 3,
+        "date": "2026-03-11",
+        "title": "Okay",
+        "text": "Average quality. Works, but I expected a little more from the description. My voice sounds clean on calls and on streams."
+      }
+    ]
   },
   {
     "productId": 10,
-    "count": 37
+    "count": 37,
+    "items": [
+      {
+        "author": "Oscar D.",
+        "rating": 5,
+        "date": "2026-10-16",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Irina B.",
+        "rating": 4,
+        "date": "2026-09-12",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Laura F.",
+        "rating": 4,
+        "date": "2026-03-23",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Daniel R.",
+        "rating": 4,
+        "date": "2026-02-23",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. The screen is bright and it is fast enough for daily use."
+      }
+    ]
   },
   {
     "productId": 11,
-    "count": 257
+    "count": 257,
+    "items": [
+      {
+        "author": "Peter G.",
+        "rating": 4,
+        "date": "2026-09-10",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Elena P.",
+        "rating": 4,
+        "date": "2026-08-21",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Victor L.",
+        "rating": 4,
+        "date": "2026-06-07",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Anna K.",
+        "rating": 5,
+        "date": "2026-03-03",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Mark T.",
+        "rating": 4,
+        "date": "2026-02-16",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. The screen is bright and it is fast enough for daily use."
+      }
+    ]
   },
   {
     "productId": 12,
-    "count": 44
+    "count": 44,
+    "items": [
+      {
+        "author": "Sofia M.",
+        "rating": 5,
+        "date": "2026-08-17",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Max W.",
+        "rating": 4,
+        "date": "2026-08-07",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Laura F.",
+        "rating": 4,
+        "date": "2026-07-10",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. The screen is bright and it is fast enough for daily use."
+      }
+    ]
   },
   {
     "productId": 13,
-    "count": 49
+    "count": 49,
+    "items": [
+      {
+        "author": "Elena P.",
+        "rating": 3,
+        "date": "2026-09-04",
+        "title": "Okay",
+        "text": "Average quality. Works, but I expected a little more from the description. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Mark T.",
+        "rating": 3,
+        "date": "2026-08-27",
+        "title": "Decent",
+        "text": "Good first week. Let us see how it lasts. The packaging was a bit damaged. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Nina V.",
+        "rating": 3,
+        "date": "2026-04-11",
+        "title": "Okay",
+        "text": "Average quality. Works, but I expected a little more from the description. The screen is bright and it is fast enough for daily use."
+      },
+      {
+        "author": "Tom H.",
+        "rating": 3,
+        "date": "2026-02-07",
+        "title": "Decent",
+        "text": "Good first week. Let us see how it lasts. The packaging was a bit damaged. The screen is bright and it is fast enough for daily use."
+      }
+    ]
   },
   {
     "productId": 14,
-    "count": 246
+    "count": 246,
+    "items": [
+      {
+        "author": "Julia N.",
+        "rating": 4,
+        "date": "2026-10-20",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Max W.",
+        "rating": 4,
+        "date": "2026-09-02",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Laura F.",
+        "rating": 5,
+        "date": "2026-06-10",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Sofia M.",
+        "rating": 4,
+        "date": "2026-06-08",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Ivan Z.",
+        "rating": 4,
+        "date": "2026-03-04",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. Loud and clear, even at high volume."
+      }
+    ]
   },
   {
     "productId": 15,
-    "count": 1723
+    "count": 1723,
+    "items": [
+      {
+        "author": "Oscar D.",
+        "rating": 4,
+        "date": "2026-06-22",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Olga S.",
+        "rating": 5,
+        "date": "2026-05-07",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Tom H.",
+        "rating": 5,
+        "date": "2026-04-11",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. Loud and clear, even at high volume."
+      }
+    ]
   },
   {
     "productId": 16,
-    "count": 57
+    "count": 57,
+    "items": [
+      {
+        "author": "Anna K.",
+        "rating": 4,
+        "date": "2026-07-24",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Victor L.",
+        "rating": 5,
+        "date": "2026-06-21",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Julia N.",
+        "rating": 4,
+        "date": "2026-06-09",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Ivan Z.",
+        "rating": 5,
+        "date": "2026-02-28",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. Loud and clear, even at high volume."
+      }
+    ]
   },
   {
     "productId": 17,
-    "count": 93
+    "count": 93,
+    "items": [
+      {
+        "author": "Daniel R.",
+        "rating": 4,
+        "date": "2026-10-11",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Tom H.",
+        "rating": 5,
+        "date": "2026-09-02",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Olga S.",
+        "rating": 4,
+        "date": "2026-04-18",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Oscar D.",
+        "rating": 4,
+        "date": "2026-03-28",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. Loud and clear, even at high volume."
+      },
+      {
+        "author": "Irina B.",
+        "rating": 3,
+        "date": "2026-03-21",
+        "title": "Okay",
+        "text": "Average quality. Works, but I expected a little more from the description. Loud and clear, even at high volume."
+      }
+    ]
   },
   {
     "productId": 18,
-    "count": 657
+    "count": 657,
+    "items": [
+      {
+        "author": "Anna K.",
+        "rating": 4,
+        "date": "2026-06-04",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. My cat plays with it every evening."
+      },
+      {
+        "author": "Peter G.",
+        "rating": 4,
+        "date": "2026-04-22",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. My cat plays with it every evening."
+      },
+      {
+        "author": "Elena P.",
+        "rating": 4,
+        "date": "2026-04-09",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. My cat plays with it every evening."
+      }
+    ]
   },
   {
     "productId": 19,
-    "count": 3091
+    "count": 3091,
+    "items": [
+      {
+        "author": "Max W.",
+        "rating": 5,
+        "date": "2026-10-13",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. My cat plays with it every evening."
+      },
+      {
+        "author": "Daniel R.",
+        "rating": 4,
+        "date": "2026-08-04",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. My cat plays with it every evening."
+      },
+      {
+        "author": "Laura F.",
+        "rating": 5,
+        "date": "2026-06-22",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. My cat plays with it every evening."
+      },
+      {
+        "author": "Irina B.",
+        "rating": 4,
+        "date": "2026-06-06",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. My cat plays with it every evening."
+      }
+    ]
   },
   {
     "productId": 20,
-    "count": 515
+    "count": 515,
+    "items": [
+      {
+        "author": "Elena P.",
+        "rating": 3,
+        "date": "2026-09-14",
+        "title": "Decent",
+        "text": "Good first week. Let us see how it lasts. The packaging was a bit damaged. My cat plays with it every evening."
+      },
+      {
+        "author": "Mark T.",
+        "rating": 3,
+        "date": "2026-09-04",
+        "title": "Fine for the price",
+        "text": "Not perfect, but it does the job. A few small things could be better. My cat plays with it every evening."
+      },
+      {
+        "author": "Peter G.",
+        "rating": 2,
+        "date": "2026-08-11",
+        "title": "Could be better",
+        "text": "Had a small problem after two weeks. I hope it was only my unit. My cat plays with it every evening."
+      },
+      {
+        "author": "Anna K.",
+        "rating": 2,
+        "date": "2026-05-28",
+        "title": "Could be better",
+        "text": "Had a small problem after two weeks. I hope it was only my unit. My cat plays with it every evening."
+      },
+      {
+        "author": "Nina V.",
+        "rating": 2,
+        "date": "2026-01-20",
+        "title": "Not what I hoped",
+        "text": "It works, but the quality is lower than on the photos. Support was polite. My cat plays with it every evening."
+      }
+    ]
   },
   {
     "productId": 21,
-    "count": 215
+    "count": 215,
+    "items": [
+      {
+        "author": "Max W.",
+        "rating": 5,
+        "date": "2026-09-10",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. My cat plays with it every evening."
+      },
+      {
+        "author": "Sofia M.",
+        "rating": 5,
+        "date": "2026-09-03",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. My cat plays with it every evening."
+      },
+      {
+        "author": "Ivan Z.",
+        "rating": 5,
+        "date": "2026-02-28",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. My cat plays with it every evening."
+      }
+    ]
   },
   {
     "productId": 22,
-    "count": 3549
+    "count": 3549,
+    "items": [
+      {
+        "author": "Mark T.",
+        "rating": 4,
+        "date": "2026-06-21",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Olga S.",
+        "rating": 4,
+        "date": "2026-03-23",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Tom H.",
+        "rating": 4,
+        "date": "2026-03-14",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Nina V.",
+        "rating": 4,
+        "date": "2026-03-09",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. I train with it three times a week and it holds up well."
+      }
+    ]
   },
   {
     "productId": 23,
-    "count": 39
+    "count": 39,
+    "items": [
+      {
+        "author": "Max W.",
+        "rating": 5,
+        "date": "2026-10-12",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Victor L.",
+        "rating": 5,
+        "date": "2026-06-21",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Sofia M.",
+        "rating": 5,
+        "date": "2026-05-17",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Ivan Z.",
+        "rating": 5,
+        "date": "2026-05-09",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Julia N.",
+        "rating": 5,
+        "date": "2026-02-04",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. I train with it three times a week and it holds up well."
+      }
+    ]
   },
   {
     "productId": 24,
-    "count": 2008
+    "count": 2008,
+    "items": [
+      {
+        "author": "Oscar D.",
+        "rating": 4,
+        "date": "2026-10-05",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Olga S.",
+        "rating": 4,
+        "date": "2026-08-03",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Irina B.",
+        "rating": 5,
+        "date": "2026-02-22",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. I train with it three times a week and it holds up well."
+      }
+    ]
   },
   {
     "productId": 25,
-    "count": 128
+    "count": 128,
+    "items": [
+      {
+        "author": "Victor L.",
+        "rating": 5,
+        "date": "2026-09-08",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Julia N.",
+        "rating": 4,
+        "date": "2026-09-01",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Peter G.",
+        "rating": 4,
+        "date": "2026-07-21",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Anna K.",
+        "rating": 3,
+        "date": "2026-05-24",
+        "title": "Okay",
+        "text": "Average quality. Works, but I expected a little more from the description. I train with it three times a week and it holds up well."
+      }
+    ]
   },
   {
     "productId": 26,
-    "count": 63
+    "count": 63,
+    "items": [
+      {
+        "author": "Olga S.",
+        "rating": 3,
+        "date": "2026-09-03",
+        "title": "Okay",
+        "text": "Average quality. Works, but I expected a little more from the description. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Oscar D.",
+        "rating": 4,
+        "date": "2026-07-05",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Irina B.",
+        "rating": 2,
+        "date": "2026-06-07",
+        "title": "Could be better",
+        "text": "Had a small problem after two weeks. I hope it was only my unit. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Daniel R.",
+        "rating": 3,
+        "date": "2026-04-15",
+        "title": "Okay",
+        "text": "Average quality. Works, but I expected a little more from the description. I train with it three times a week and it holds up well."
+      },
+      {
+        "author": "Laura F.",
+        "rating": 2,
+        "date": "2026-01-05",
+        "title": "Not what I hoped",
+        "text": "It works, but the quality is lower than on the photos. Support was polite. I train with it three times a week and it holds up well."
+      }
+    ]
   },
   {
     "productId": 27,
-    "count": 55
+    "count": 55,
+    "items": [
+      {
+        "author": "Mark T.",
+        "rating": 5,
+        "date": "2026-09-08",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Elena P.",
+        "rating": 4,
+        "date": "2026-06-09",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Peter G.",
+        "rating": 5,
+        "date": "2026-02-06",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. Light and comfortable, I walked all day without pain."
+      }
+    ]
   },
   {
     "productId": 28,
-    "count": 140
+    "count": 140,
+    "items": [
+      {
+        "author": "Max W.",
+        "rating": 4,
+        "date": "2026-07-01",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Laura F.",
+        "rating": 4,
+        "date": "2026-06-08",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Daniel R.",
+        "rating": 4,
+        "date": "2026-05-26",
+        "title": "Works well",
+        "text": "Easy to start with, no problems so far. I would buy it again. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Sofia M.",
+        "rating": 4,
+        "date": "2026-05-20",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. Light and comfortable, I walked all day without pain."
+      }
+    ]
   },
   {
     "productId": 29,
-    "count": 1636
+    "count": 1636,
+    "items": [
+      {
+        "author": "Tom H.",
+        "rating": 4,
+        "date": "2026-10-19",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Mark T.",
+        "rating": 4,
+        "date": "2026-10-06",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Elena P.",
+        "rating": 4,
+        "date": "2026-03-09",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Nina V.",
+        "rating": 4,
+        "date": "2026-02-28",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Peter G.",
+        "rating": 4,
+        "date": "2026-02-08",
+        "title": "Recommend",
+        "text": "Good quality, good price. Exactly like on the photos. Light and comfortable, I walked all day without pain."
+      }
+    ]
   },
   {
     "productId": 30,
-    "count": 75
+    "count": 75,
+    "items": [
+      {
+        "author": "Julia N.",
+        "rating": 4,
+        "date": "2026-09-11",
+        "title": "Great value",
+        "text": "Does exactly what it says. I use it every day and it still feels like new. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Sofia M.",
+        "rating": 4,
+        "date": "2026-04-26",
+        "title": "Very happy",
+        "text": "Solid build and looks great. My family asked where I bought it. Light and comfortable, I walked all day without pain."
+      },
+      {
+        "author": "Ivan Z.",
+        "rating": 4,
+        "date": "2026-02-21",
+        "title": "Love it",
+        "text": "Better than I expected for this price. Quick delivery and nice packaging. Light and comfortable, I walked all day without pain."
+      }
+    ]
   }
 ]

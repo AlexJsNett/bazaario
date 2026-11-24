@@ -1,0 +1,55 @@
+.product-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  font-family: var(--font-family);
+  color: var(--color-ink);
+
+  &__title {
+    font-size: var(--text-heading-size);
+    font-weight: var(--text-heading-weight);
+    line-height: var(--text-heading-line);
+  }
+
+  // phone: one line, scrolls sideways
+  &__list {
+    display: flex;
+    gap: var(--space-lg);
+    overflow-x: auto;
+    // the row runs to the screen edges, the first and the last card keep the page padding
+    margin-inline: calc(-1 * var(--space-lg));
+    padding: var(--space-xs) var(--space-lg) var(--space-sm);
+    scroll-padding-inline: var(--space-lg);
+    scroll-snap-type: x proximity;
+  }
+
+  &__item {
+    display: flex;
+    flex: 0 0 min(220px, 70%);
+    scroll-snap-align: start;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  @media (min-width: 640px) {
+    &__list {
+      margin-inline: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      overflow: visible;
+    }
+
+    &__item {
+      flex: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    &__list {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}

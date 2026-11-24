@@ -1,0 +1,118 @@
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  font-family: var(--font-family);
+  color: var(--color-ink);
+
+  &__title {
+    font-size: var(--text-heading-size);
+    font-weight: var(--text-heading-weight);
+    line-height: var(--text-heading-line);
+  }
+
+  &__empty {
+    color: var(--color-body);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  &__average {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md);
+
+    // the stars keep their size when the box is narrow
+    .rating,
+    .rating__stars,
+    .rating__star {
+      flex-shrink: 0;
+    }
+  }
+
+  &__average-value {
+    font-size: var(--text-display-size);
+    font-weight: var(--text-display-weight);
+    line-height: var(--text-display-line);
+  }
+
+  &__bars {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    width: 100%;
+    max-width: 360px;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__bar-row {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) 24px;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-body);
+    font-size: var(--text-caption-size);
+    line-height: var(--text-caption-line);
+  }
+
+  &__bar-track {
+    display: block;
+    height: var(--space-sm);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-hairline);
+    overflow: hidden;
+  }
+
+  &__bar-fill {
+    display: block;
+    height: 100%;
+    background-color: var(--color-star);
+  }
+
+  &__bar-count {
+    text-align: right;
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    &__summary {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-xxl);
+    }
+  }
+}
+
+// desktop: the summary stays on the left, the reviews are on the right
+@media (min-width: 1024px) {
+  .review-list {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    column-gap: var(--space-xxl);
+    align-items: start;
+
+    &__title {
+      grid-column: 1 / -1;
+    }
+
+    &__empty {
+      grid-column: 1 / -1;
+    }
+
+    &__summary {
+      position: sticky;
+      top: var(--space-lg);
+    }
+
+    &__items > :first-child {
+      padding-top: 0;
+    }
+  }
+}

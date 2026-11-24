@@ -266,7 +266,7 @@ Names match the components in `src/components/`.
 - **Footer**: `header` background, small text, links to About.
 - **Button**: primary (orange), outline (white with hairline), cart (compact 32px orange pill with a darker orange border, only for "Add to cart"). States: hover, focus (2px outline in `primary`), disabled.
 - **Input**: white, hairline border, 8px radius. Focus border is `primary`. Error border is `error` with a short message below.
-- **ProductCard**: white card, 8px radius, 1px hairline, 16px padding. Square image (cropped to fill), title (2 lines max), Rating, Price (with old price), "Add to cart" button, FavoriteButton in the top right corner of the image. Takes a `Product` and reports clicks by callbacks, the favorite state comes from the page. Light shadow on hover only.
+- **ProductCard**: white card, 8px radius, 1px hairline, 16px padding. Square image (cropped to fill), title (2 lines max), Rating, Price (with old price), "Add to cart" button, FavoriteButton in the top right corner of the image. The image and the title are links when an `href` is given. Takes a `Product` and reports clicks by callbacks, the favorite state comes from the page. Light shadow on hover only.
 - **Price**: current price in `heading-lg` `ink`. Old price in `muted`, struck through. Discount badge next to them if there is an old price.
 - **Rating**: 5 stars, filled stars in `star`, empty in `hairline`, number and count in `caption` `body`.
 - **FavoriteButton**: 36px round icon button with a 20px heart. Outline heart in `body` when not a favorite (turns `primary` on hover), filled heart in `primary` when it is. Controlled: it shows the `active` state it is given and only reports clicks. Not red, red is only for sale and errors.
@@ -276,6 +276,10 @@ Names match the components in `src/components/`.
 - **Cart**: white card, 8px radius, 1px hairline, 24px padding. Title "Shopping cart", CartList. Empty state: "Your cart is empty".
 - **CartSummary**: white card like Cart. Subtotal, promo code field with an "Apply" button, discount (green, with the code), total in `Price`. Invalid code shows the input error "Promo code not found", an applied code shows a success message.
 - **Cart page**: Cart on the left, CartSummary on the right (below on phone). Empty cart: only the empty message and a "Browse catalog" button, no summary.
+- **ReviewItem**: one review: author and date in a line, Rating (stars only), title, text. Separated by a hairline.
+- **ReviewList**: title "Customer reviews", the average in `display` size with Rating, bars by stars (`star` fill on `hairline`), then ReviewItems. Empty state: "No reviews yet.".
+- **ProductRow**: title and ProductCards. One line that scrolls sideways on phone, a grid on desktop.
+- **Product page**: image and info (category, title, Rating, Price, description, "Add to cart" or stepper with FavoriteButton) side by side from 640px, then ReviewList and ProductRow "You may also like".
 - **Badge**: discount (light red), success (green), neutral (gray), highlight (dark, e.g. "Bazaario's Choice"), deal (solid red, e.g. "Early Black Friday Deal"), save (green with 1px outline, e.g. "Save 5%"), plain (text only, e.g. "5K+ bought in past month").
 
 ## Do and Don't
