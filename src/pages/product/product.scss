@@ -14,7 +14,18 @@
     gap: var(--space-xl);
   }
 
+  // white cards, like the cart: the page does not look empty next to a big photo
+  &__gallery,
+  &__info,
+  &__reviews {
+    padding: var(--space-lg);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+  }
+
   &__image {
+    display: block;
     width: 100%;
     aspect-ratio: 1;
     border-radius: var(--radius-md);
@@ -27,6 +38,33 @@
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-md);
+  }
+
+  &__perks {
+    width: 100%;
+    margin-top: var(--space-sm);
+    padding: var(--space-lg) 0 0;
+    border-top: 1px solid var(--color-hairline);
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  &__perk {
+    position: relative;
+    padding-left: var(--space-lg);
+    color: var(--color-body);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--color-success);
+      font-weight: var(--text-ui-weight);
+    }
   }
 
   &__category {
@@ -115,6 +153,20 @@
   @media (min-width: 1024px) {
     &__content {
       padding: var(--space-xl);
+    }
+
+    &__top {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    }
+
+    &__gallery,
+    &__info,
+    &__reviews {
+      padding: var(--space-xl);
+    }
+
+    &__info {
+      gap: var(--space-lg);
     }
   }
 }

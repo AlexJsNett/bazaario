@@ -49,6 +49,7 @@
     gap: var(--space-xs);
     width: 100%;
     max-width: 360px;
+    padding: 0;
     list-style: none;
   }
 
@@ -80,11 +81,38 @@
     text-align: right;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 640px) and (max-width: 1023px) {
     &__summary {
       flex-direction: row;
       align-items: center;
       gap: var(--space-xxl);
+    }
+  }
+}
+
+// desktop: the summary stays on the left, the reviews are on the right
+@media (min-width: 1024px) {
+  .review-list {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    column-gap: var(--space-xxl);
+    align-items: start;
+
+    &__title {
+      grid-column: 1 / -1;
+    }
+
+    &__empty {
+      grid-column: 1 / -1;
+    }
+
+    &__summary {
+      position: sticky;
+      top: var(--space-lg);
+    }
+
+    &__items > :first-child {
+      padding-top: 0;
     }
   }
 }

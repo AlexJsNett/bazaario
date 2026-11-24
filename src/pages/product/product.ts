@@ -1,4 +1,5 @@
 import './product.scss';
+import { createBadge } from '@/components/badge/badge.ts';
 import { createButton } from '@/components/button/button.ts';
 import { createFavoriteButton } from '@/components/favorite-button/favorite-button.ts';
 import { createPrice } from '@/components/price/price.ts';
@@ -90,27 +91,41 @@ export const render = (query: URLSearchParams): HTMLElement => {
       }),
     );
 
+    const perks = el('ul', 'product-page__perks');
+    for (const text of [
+      'Free delivery on orders over EUR 50',
+      '30 days to return',
+      'Secure payment',
+    ]) {
+      perks.append(el('li', 'product-page__perk', text));
+    }
+
     const info = el('div', 'product-page__info');
     info.append(
       el('p', 'product-page__category', product.category),
       el('h1', 'product-page__title', product.title),
       createRating({ score: product.rating, reviewsCount: getReviews(reviews, product.id) }),
       createPrice({ price: product.price, oldPrice: product.oldPrice }),
+      createBadge({ label: 'In stock', variant: 'success' }),
       el('p', 'product-page__description', product.description),
       actions,
+      perks,
     );
 
     const recommended = getRecommendations(products, product, RECOMMENDATIONS_COUNT);
     const content = el('div', 'product-page__content');
     const top = el('div', 'product-page__top');
-    top.append(image, info);
-    content.append(
-      top,
+    const gallery = el('div', 'product-page__gallery');
+    gallery.append(image);
+    top.append(gallery, info);
+    const reviewsBox = el('div', 'product-page__reviews');
+    reviewsBox.append(
       createReviewList({
         reviews: getReviewItems(reviews, product.id),
         totalCount: getReviews(reviews, product.id),
       }),
     );
+    content.append(top, reviewsBox);
     if (recommended.length > 0) {
       content.append(
         createProductRow({

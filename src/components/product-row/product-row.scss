@@ -33,12 +33,18 @@
   @media (min-width: 640px) {
     &__list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       overflow: visible;
     }
 
     &__item {
       flex: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    &__list {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 }
