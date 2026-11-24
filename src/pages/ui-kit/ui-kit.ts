@@ -16,6 +16,10 @@ import type { Product } from '@/types/product.ts';
 import { createFiltersPanel } from '@/components/filters-panel/filters-panel.ts';
 import { createPagination } from '@/components/pagination/pagination.ts';
 import { createProductGrid } from '@/components/product-grid/product-grid.ts';
+import { createProductRow } from '@/components/product-row/product-row.ts';
+import { createReviewItem } from '@/components/review-item/review-item.ts';
+import { createReviewList } from '@/components/review-list/review-list.ts';
+import type { ReviewItem } from '@/types/reviews.ts';
 import { createQuantityStepper } from '@/components/quantity-stepper/quantity-stepper.ts';
 
 const COLORS = [
@@ -429,6 +433,62 @@ function paginationBlock(): HTMLElement {
   return row;
 }
 
+const DEMO_REVIEW_ITEMS: ReviewItem[] = [
+  {
+    author: 'Anna K.',
+    rating: 5,
+    date: '2026-06-20',
+    title: 'Great value',
+    text: 'Does exactly what it says. I use it every day and it still feels like new.',
+  },
+  {
+    author: 'Mark T.',
+    rating: 4,
+    date: '2026-04-02',
+    title: 'Works well',
+    text: 'Easy to start with, no problems so far. I would buy it again.',
+  },
+  {
+    author: 'Olga S.',
+    rating: 2,
+    date: '2026-02-11',
+    title: 'Could be better',
+    text: 'Had a small problem after two weeks. I hope it was only my unit.',
+  },
+];
+
+function reviewsBlock(): HTMLElement {
+  const wrap = el('div', 'ui-kit__row');
+  wrap.append(
+    demoWithDescription(
+      createReviewItem({ review: DEMO_REVIEW_ITEMS[0] }),
+      'Review item',
+      'author, date, stars, title and text',
+    ),
+    demoWithDescription(
+      createReviewList({ reviews: DEMO_REVIEW_ITEMS, totalCount: 128 }),
+      'Review list',
+      'average, bars by stars and the reviews',
+    ),
+    demoWithDescription(createReviewList({ reviews: [] }), 'No reviews', 'empty state'),
+  );
+  return wrap;
+}
+
+function productRowBlock(): HTMLElement {
+  return demoWithDescription(
+    createProductRow({
+      title: 'You may also like',
+      products: DEMO_PRODUCTS.slice(0, 4),
+      favorites: [],
+      onAddToCart: noop,
+      onToggleFavorite: noop,
+    }),
+    'Product row',
+    'scrolls sideways on a phone, a grid on a desktop. The cards link to the product page',
+  );
+}
+
 function headerBlock(): HTMLElement {
   const header = createHeader({
     categories: ['Headphones', 'Microphones', 'Sneakers', 'Tablets'],
@@ -472,6 +532,8 @@ export function render(): HTMLElement {
     section('Filters panel', filtersPanelBlock()),
     section('Product grid', productGridBlock()),
     section('Pagination', paginationBlock()),
+    section('Reviews', reviewsBlock()),
+    section('Product row', productRowBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),
   );

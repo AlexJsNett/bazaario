@@ -24,6 +24,19 @@
     object-fit: cover;
   }
 
+  &__image-link {
+    display: block;
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &__favorite {
     position: absolute;
     // inside the image corner, not on its edge

@@ -1,6 +1,7 @@
 import './cart-item.scss';
 import type { Product } from '@/types/product';
 import { el } from '@/utils/dom';
+import { buildHash } from '@/logic/route';
 import { createPrice } from '@/components/price/price';
 import { createRating } from '@/components/rating/rating';
 import { createQuantityStepper } from '@/components/quantity-stepper/quantity-stepper';
@@ -37,8 +38,13 @@ export const createCartItem = (options: CartItemOptions): HTMLLIElement => {
   remove.addEventListener('click', () => onRemove(product));
 
   const info = el('div', 'cart-item__info');
+  const title = el('h3', 'cart-item__title');
+  const titleLink = el('a', 'cart-item__link', product.title);
+  titleLink.href = buildHash('product', { id: String(product.id) });
+  title.append(titleLink);
+
   info.append(
-    el('h3', 'cart-item__title', product.title),
+    title,
     el('span', 'cart-item__category', product.category),
     createRating({ score: product.rating, reviewsCount }),
     remove,

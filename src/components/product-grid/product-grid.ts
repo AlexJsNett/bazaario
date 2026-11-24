@@ -2,6 +2,7 @@ import './product-grid.scss';
 import type { Product, ProductId } from '@/types/product';
 import { el } from '@/utils/dom';
 import { createButton } from '@/components/button/button';
+import { buildHash } from '@/logic/route';
 import { createProductCard } from '@/components/product-card/product-card';
 
 export type ProductGridOptions = {
@@ -56,6 +57,7 @@ export const createProductGrid = (options: ProductGridOptions): HTMLElement => {
         onAddToCart,
         onDecrease,
         onToggleFavorite,
+        href: buildHash('product', { id: String(product.id) }),
       }),
     );
   }

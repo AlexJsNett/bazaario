@@ -79,7 +79,15 @@ const email = createInput({ id: 'email', type: 'email', error: 'Enter a valid em
 - `createFiltersPanel` returns a `<form>` with category, price from and to, minimum rating, sort and a Reset button. Options: `categories`, `filters` (current values), `onChange(filters)`, `onReset`. It keeps the `query` of the given filters. Selects report a change at once, the price fields after 400 ms without typing (`debounce` from `utils/debounce.ts`), and the same filters are never reported twice. The panel does not know the URL or the store.
 - `createProductGrid` returns a grid of `ProductCard` or, for an empty list, the "Nothing found" message with a "Reset filters" button. Options: `products`, `favorites` (ids), `quantities` (cart count by product id), `reviewsCount` (by product id), `onAddToCart`, `onDecrease`, `onToggleFavorite`, `onReset` (optional). A product that is in the cart shows a stepper instead of the "Add to cart" button; minus at 1 removes it from the cart (`decreaseInCart` in `logic/cart.ts`).
 - `createPagination` returns a `<nav>` with arrows and page numbers: the first and the last page, the current one with its neighbours and dots between (`getPageItems` in `logic/catalog.ts`). Options: `page` (from 1), `pageCount`, `onChange(page)`. For one page the nav is hidden.
+- `createReviewItem` returns an `<article>` with the author, date, stars, title and text of one review (`ReviewItem`). Option: `review`.
+- `createReviewList` returns a `<section>` "Customer reviews": the average, bars by stars (`getRatingBreakdown`, `getAverageRating` in `logic/reviews.ts`) and the list of reviews, or "No reviews yet". Options: `reviews`, `totalCount` (optional, all reviews of the product).
+- `createProductRow` returns a `<section>` with a title and product cards that link to the product page: scrolls sideways on a phone, a grid on a desktop. Options like `createProductGrid` plus `title`.
+- `createProductCard` takes an optional `href`: the image and the title become links (the grid and the row pass the product page address).
 - `createFooter` returns a `<footer>` with a link to About us and a short note.
+
+## Product page
+
+`#/product?id=5` shows one product: photo, rating, price, description, "Add to cart" (a stepper when it is in the cart), the favorite heart, reviews and "You may also like" (`getRecommendations` in `logic/products.ts`: the same category first, best rating first). An unknown id shows "Product not found". The example reviews are in `public/api/reviews.json` (`items`); `count` is the number shown on the cards.
 
 ## Imports
 

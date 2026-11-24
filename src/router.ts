@@ -3,6 +3,7 @@ import { render as aboutPageRender } from './pages/about/about.ts';
 import { render as cartPageRender } from './pages/cart/cart.ts';
 import { render as catalogPageRender } from './pages/catalog/catalog.ts';
 import { render as favoritesPageRender } from './pages/favorites/favorites.ts';
+import { render as productPageRender } from './pages/product/product.ts';
 import { render as homePageRender } from './pages/home/home.ts';
 import { buildHash, parseHash } from './logic/route.ts';
 
@@ -10,7 +11,7 @@ export type Route = {
   render: (query: URLSearchParams) => HTMLElement;
 };
 
-export type RouteName = 'ui-kit' | 'home' | 'about' | 'cart' | 'catalog' | 'favorites';
+export type RouteName = 'ui-kit' | 'home' | 'about' | 'cart' | 'catalog' | 'favorites' | 'product';
 
 const DEFAULT_ROUTE: RouteName = 'about';
 
@@ -19,6 +20,7 @@ export const routes = new Map<RouteName, Route>([
   ['cart', { render: cartPageRender }],
   ['catalog', { render: catalogPageRender }],
   ['favorites', { render: favoritesPageRender }],
+  ['product', { render: productPageRender }],
   ['ui-kit', { render: uiKitPageRender }],
   ['home', { render: homePageRender }],
 ]);

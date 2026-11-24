@@ -9,6 +9,7 @@ import { el } from '@/utils/dom.ts';
 import { toggleFavorite } from '@/logic/favorites.ts';
 import { goTo } from '@/goTo';
 import { addToCart } from '@/logic/cart.ts';
+import { buildHash } from '@/logic/route.ts';
 import { getReviews } from '@/logic/reviews.ts';
 import { loadReviews } from '@/data/reviews.ts';
 import type { Review } from '@/types/reviews.ts';
@@ -51,6 +52,7 @@ export const render = (): HTMLElement => {
           product,
           isFavorite: true,
           reviewsCount: getReviews(reviews, product.id),
+          href: buildHash('product', { id: String(product.id) }),
           onAddToCart: () => {
             updateUser((user) => ({
               ...user,

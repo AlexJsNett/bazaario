@@ -18,6 +18,8 @@ export type ProductCardOptions = {
   /** takes one away, the product leaves the cart at 0 */
   onDecrease?: (product: Product) => void;
   onToggleFavorite: (product: Product) => void;
+  /** address of the product page: the image and the title become links */
+  href?: string;
 };
 
 export const createProductCard = (options: ProductCardOptions): HTMLElement => {
@@ -29,6 +31,7 @@ export const createProductCard = (options: ProductCardOptions): HTMLElement => {
     onAddToCart,
     onDecrease,
     onToggleFavorite,
+    href,
   } = options;
 
   const card = el('article', 'product-card');
@@ -63,10 +66,25 @@ export const createProductCard = (options: ProductCardOptions): HTMLElement => {
     cartControl.classList.add('product-card__button');
   }
 
+  const title = el('h3', 'product-card__title');
+  if (href) {
+    const link = el('a', 'product-card__link', product.title);
+    link.href = href;
+    title.append(link);
+    const imageLink = el('a', 'product-card__image-link');
+    imageLink.href = href;
+    imageLink.tabIndex = -1;
+    imageLink.setAttribute('aria-hidden', 'true');
+    imageLink.append(image);
+    card.append(imageLink);
+  } else {
+    title.textContent = product.title;
+    card.append(image);
+  }
+
   card.append(
-    image,
     favorite,
-    el('h3', 'product-card__title', product.title),
+    title,
     createRating({ score: product.rating, reviewsCount }),
     createPrice({ price: product.price, oldPrice: product.oldPrice }),
     cartControl,
