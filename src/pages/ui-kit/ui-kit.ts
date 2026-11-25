@@ -22,6 +22,9 @@ import { createReviewList } from '@/components/review-list/review-list.ts';
 import type { ReviewItem } from '@/types/reviews.ts';
 import { createQuantityStepper } from '@/components/quantity-stepper/quantity-stepper.ts';
 import { createCarousel } from '@/components/carousel/carousel.ts';
+import { createPoster } from '@/components/poster/poster.ts';
+import { createProductPoster } from '@/components/product-poster/product-poster.ts';
+import posterImage from '@/assets/posters/black-friday.webp';
 
 const COLORS = [
   'header',
@@ -490,6 +493,44 @@ function productRowBlock(): HTMLElement {
   );
 }
 
+function postersBlock(): HTMLElement {
+  const wrap = el('div', 'ui-kit__posters');
+  wrap.append(
+    createPoster({
+      eyebrow: 'Black Friday deals on now',
+      title: 'Black Friday is here',
+      subtitle: 'Drops on tech, sound and sneakers.',
+      image: posterImage,
+      background: '#1b2433',
+      tone: 'light',
+      badge: { variant: 'deal', label: 'Up to 40% off' },
+      href: '#/ui-kit',
+    }),
+    createProductPoster({
+      title: "Don't miss these deals",
+      subtitle: 'New prices every morning.',
+      products: DEMO_PRODUCTS,
+      productIds: DEMO_PRODUCTS.map((product) => product.id),
+      background: 'primary',
+      href: '#/ui-kit',
+    }),
+    createProductPoster({
+      title: 'Top rated, no debate',
+      subtitle: 'The best reviewed picks.',
+      products: DEMO_PRODUCTS,
+      productIds: DEMO_PRODUCTS.map((product) => product.id),
+      background: 'header',
+      info: 'rating',
+      href: '#/ui-kit',
+    }),
+  );
+  return demoWithDescription(
+    wrap,
+    'Poster and ProductPoster',
+    'a picture poster, a 2x2 product poster with discounts, dark poster with ratings',
+  );
+}
+
 function headerBlock(): HTMLElement {
   const header = createHeader({
     categories: ['Headphones', 'Microphones', 'Sneakers', 'Tablets'],
@@ -506,12 +547,20 @@ function footerBlock(): HTMLElement {
 }
 
 function carouselBlock() {
-  const makeCarouselItem = () => {
-    const item = el('div');
-    item.style = 'height: 480px; width: 100px; background: red;';
-    return item;
-  };
-  const childs = new Array(6).fill(makeCarouselItem).map((m) => m());
+  const childs = new Array(6)
+    .fill(() =>
+      createPoster({
+        eyebrow: 'Eyebrow',
+        title: 'Title',
+        subtitle: 'Subtitle',
+        image: 'none',
+        background: '#1b2433',
+        tone: 'light',
+        badge: { variant: 'deal', label: 'label' },
+        href: '#/ui-kit',
+      }),
+    )
+    .map((m) => m());
   const carousel = createCarousel({ childs });
   carousel.style.width = '100%';
   return demoWithDescription(carousel, 'Regular carousel');
@@ -547,6 +596,7 @@ export function render(): HTMLElement {
     section('Pagination', paginationBlock()),
     section('Reviews', reviewsBlock()),
     section('Product row', productRowBlock()),
+    section('Posters', postersBlock()),
     section('Carousel', carouselBlock()),
     section('Header', headerBlock()),
     section('Footer', footerBlock()),

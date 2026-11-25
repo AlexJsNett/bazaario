@@ -42,8 +42,7 @@ export const createCarousel = ({ childs }: CarouselOptions) => {
   const scrollItems = (direction: 'left' | 'right') => {
     if (!items.length) return;
     const maximumScroll = itemsContainer.scrollWidth - itemsContainer.clientWidth;
-    let target =
-      itemsContainer.scrollLeft + items[0].clientWidth * 0.8 * (direction === 'left' ? -1 : 1);
+    let target = itemsContainer.scrollLeft + items[0].clientWidth * (direction === 'left' ? -1 : 1);
     target = Math.max(0, Math.min(target, maximumScroll));
 
     itemsContainer.scrollTo({

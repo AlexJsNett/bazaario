@@ -16,7 +16,6 @@
 
   &__item {
     min-width: 280px;
-    background: var(--color-primary);
     border-radius: var(--radius-md);
     overflow: hidden;
     display: flex;
@@ -33,6 +32,7 @@
     transform: translateY(-50%);
     border: 1px solid var(--color-muted);
     background: var(--color-surface);
+    z-index: 1;
 
     &:hover {
       cursor: pointer;
@@ -62,6 +62,7 @@
 
   &--left {
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    border-left: none;
 
     &::after {
       transform: rotateZ(90deg);
@@ -70,6 +71,7 @@
 
   &--right {
     border-radius: var(--radius-md) 0 0 var(--radius-md);
+    border-right: none;
 
     &::after {
       transform: rotateZ(-90deg);
