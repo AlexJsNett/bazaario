@@ -1,12 +1,20 @@
 .home {
   max-width: 1280px;
   margin: 0 auto var(--space-xxl);
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) 0;
 
   &__message {
     color: var(--color-body);
   }
 
+  &__carousel {
+  }
+
+  &__section {
+    padding: 0 var(--space-lg);
+  }
+
+  &__carousel,
   &__section:not(:last-child) {
     margin-bottom: var(--space-xxl);
   }

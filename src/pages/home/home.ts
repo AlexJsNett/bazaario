@@ -46,7 +46,7 @@ const createPosters = (products: Product[]): HTMLElement[] => [
     title: 'Top rated, no debate',
     subtitle: 'The best reviewed picks.',
     products,
-    productIds: [5, 7, 12, 22],
+    productIds: [5, 7, 12, 27],
     background: 'header',
     info: 'rating',
     href: buildHash('catalog'),
@@ -73,7 +73,7 @@ const createPosters = (products: Product[]): HTMLElement[] => [
     title: 'Start your channel today',
     subtitle: 'Mics for streams and podcasts.',
     products,
-    productIds: [6, 7, 8, 9],
+    productIds: [6, 7, 10, 9],
     background: 'surface',
     href: buildHash('catalog', { query: 'microphone' }),
   }),
@@ -138,8 +138,8 @@ const createPartnersSection = (): HTMLElement => {
 };
 
 const createAboutUsSection = (): HTMLElement => {
-  const section = el('section', 'home__section home-about');
-
+  const section = el('section', 'home__section');
+  const container = el('div', 'home-about');
   const image = el('img', 'home-about__image');
   image.src = `${import.meta.env.BASE_URL}images/about/warehouse.webp`;
   image.alt = 'A cat sitting in an aisle of a large warehouse';
@@ -168,7 +168,8 @@ const createAboutUsSection = (): HTMLElement => {
     ),
   );
 
-  section.append(image, content);
+  container.append(image, content);
+  section.append(container);
   return section;
 };
 
@@ -221,7 +222,7 @@ const createDeliverySection = (): HTMLElement => {
 export const render = (): HTMLElement => {
   const page = el('main', 'home');
   const carouselSection = el('section');
-  carouselSection.classList.add('home__section');
+  carouselSection.classList.add('home__carousel');
   carouselSection.append(el('p', 'home__message', 'Loading...'));
 
   const partnersSection = createPartnersSection();
