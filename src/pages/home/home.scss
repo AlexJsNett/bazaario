@@ -1,0 +1,9 @@
+.home {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+
+  &__message {
+    color: var(--color-body);
+  }
+}
