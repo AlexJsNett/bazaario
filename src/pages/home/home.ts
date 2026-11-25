@@ -37,7 +37,7 @@ const createPosters = (products: Product[]): HTMLElement[] => [
     image: getFitImage,
     background: '#f3f5f7',
     badge: { variant: 'neutral', label: 'Ends Sunday' },
-    href: buildHash('catalog', { query: 'fit' }),
+    href: buildHash('catalog', { category: 'Sport equipment' }),
   }),
   createProductPoster({
     title: 'Top rated, no debate',
@@ -56,14 +56,6 @@ const createPosters = (products: Product[]): HTMLElement[] => [
     background: '#ff9900',
     badge: { variant: 'save', label: 'Save 25%' },
     href: buildHash('catalog', { query: 'cat' }),
-  }),
-  createProductPoster({
-    title: 'Kids busy? Parents win.',
-    subtitle: 'Tough tablets and fun picks.',
-    products,
-    productIds: [3, 11, 9, 24],
-    background: 'success',
-    href: buildHash('catalog'),
   }),
   createPoster({
     eyebrow: 'Sound check',
