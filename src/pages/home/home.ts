@@ -10,6 +10,9 @@ import { loadProducts } from '@/data/products.ts';
 import { buildHash } from '@/logic/route.ts';
 import type { Product } from '@/types/product.ts';
 import { el } from '@/utils/dom.ts';
+import { createButton } from '@/components/button/button.ts';
+import { goTo } from '@/goTo.ts';
+import { type BadgeOptions, createBadge } from '@/components/badge/badge.ts';
 
 const createPosters = (products: Product[]): HTMLElement[] => [
   createPoster({
@@ -76,20 +79,169 @@ const createPosters = (products: Product[]): HTMLElement[] => [
   }),
 ];
 
+type PartnerItem = {
+  title: string;
+  description: string;
+  image: string;
+};
+
+const partnersData: PartnerItem[] = [
+  {
+    title: 'Cat Express',
+    description: 'Express delivery, nationwide',
+    image: 'images/partners/logo-cat-express.webp',
+  },
+  {
+    title: 'Whisker Post',
+    description: 'Letters and small parcels',
+    image: 'images/partners/logo-whisker-post.webp',
+  },
+  {
+    title: 'Purrcel',
+    description: 'Parcel lockers',
+    image: 'images/partners/logo-purrcel.webp',
+  },
+  {
+    title: 'Paw Dispatch',
+    description: 'Same-day city courier',
+    image: 'images/partners/logo-paw-dispatch.webp',
+  },
+  {
+    title: 'Nine Lives Cargo',
+    description: 'Heavy items delivery',
+    image: 'images/partners/logo-nine-lives.webp',
+  },
+];
+
+const createPartnersSection = (): HTMLElement => {
+  const partners = el('section', 'home__section partners');
+  const items = el('ul', 'partners__list');
+
+  partnersData.forEach(({ title, description, image }) => {
+    const item = el('li', 'partners__item');
+
+    const logo = el('img', 'partners__logo');
+    logo.src = `${import.meta.env.BASE_URL}${image}`;
+    logo.alt = '';
+    logo.loading = 'lazy';
+
+    item.append(
+      logo,
+      el('h3', 'partners__name', title),
+      el('p', 'partners__description', description),
+    );
+    items.append(item);
+  });
+
+  partners.append(el('h2', 'partners__title', 'Our partners'), items);
+  return partners;
+};
+
+const createAboutUsSection = (): HTMLElement => {
+  const section = el('section', 'home__section home-about');
+
+  const image = el('img', 'home-about__image');
+  image.src = `${import.meta.env.BASE_URL}images/about/warehouse.webp`;
+  image.alt = 'A cat sitting in an aisle of a large warehouse';
+  image.loading = 'lazy';
+
+  const content = el('div', 'home-about__content');
+  const button = createButton({
+    label: 'Learn more about us',
+    variant: 'outline',
+    onClick: () => goTo('about'),
+  });
+  button.classList.add('home-about__button');
+
+  content.append(
+    el('h2', 'home-about__title', 'What is Bazaario?'),
+    el(
+      'p',
+      'home-about__text',
+      'Think of a big marketplace like Amazon, but simple and friendly. You look through the products, find what you like, save it and put it in the cart. No sign up, no waiting.',
+    ),
+    button,
+    el(
+      'p',
+      'home-about__note',
+      'Bazaario is a demo store. Nothing is really for sale: there are no payments and nothing is shipped. Your favorites and your cart stay in your own browser, so nobody else can see them.',
+    ),
+  );
+
+  section.append(image, content);
+  return section;
+};
+
+type DeliveryOption = {
+  title: string;
+  deliveryPeriod: string;
+  badge: BadgeOptions;
+};
+
+const deliveryOptions: DeliveryOption[] = [
+  {
+    title: 'Standard',
+    deliveryPeriod: '2 - 4 days',
+    badge: { variant: 'save', label: 'Free over 50 EUR' },
+  },
+  {
+    title: 'Express',
+    deliveryPeriod: 'Next day',
+    badge: { variant: 'neutral', label: 'Order before 6 pm' },
+  },
+  {
+    title: 'Pickup point',
+    deliveryPeriod: 'In 2 days',
+    badge: { variant: 'neutral', label: 'Lockers near you' },
+  },
+];
+
+const createDeliverySection = (): HTMLElement => {
+  const section = el('section', 'home__section delivery');
+
+  const options = el('ul', 'delivery__list');
+  deliveryOptions.forEach(({ title, deliveryPeriod, badge }) => {
+    const item = el('li', 'delivery__item');
+    item.append(
+      el('h3', 'delivery__name', title),
+      el('p', 'delivery__period', deliveryPeriod),
+      createBadge(badge),
+    );
+    options.append(item);
+  });
+
+  section.append(
+    el('h2', 'delivery__title', 'Delivery that lands on its feet'),
+    el('p', 'delivery__text', 'Pick the speed that suits you. We handle the rest.'),
+    options,
+  );
+  return section;
+};
+
 export const render = (): HTMLElement => {
   const page = el('main', 'home');
-  page.append(el('p', 'home__message', 'Loading...'));
+  const carouselSection = el('section');
+  carouselSection.classList.add('home__section');
+  carouselSection.append(el('p', 'home__message', 'Loading...'));
+
+  const partnersSection = createPartnersSection();
+  const aboutUsSection = createAboutUsSection();
+  const deliverySection = createDeliverySection();
+
+  page.append(carouselSection, aboutUsSection, deliverySection, partnersSection);
 
   loadProducts()
     .then((products) => {
       const carousel = createCarousel({ childs: createPosters(products) });
       carousel.classList.add('home__posters');
-      page.replaceChildren(carousel);
+      carouselSection.replaceChildren(carousel);
     })
     .catch((error) => {
       // error handler like in product page
       console.error(error);
-      page.replaceChildren(el('p', 'home__message', 'Could not load the page, try again later'));
+      carouselSection.replaceChildren(
+        el('p', 'home__message', 'Could not load the page, try again later'),
+      );
     });
 
   return page;

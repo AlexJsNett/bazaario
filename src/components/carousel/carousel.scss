@@ -34,6 +34,10 @@
     background: var(--color-surface);
     z-index: 1;
 
+    @media (max-width: 639px) {
+      display: none;
+    }
+
     &:hover {
       cursor: pointer;
     }
