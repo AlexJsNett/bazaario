@@ -1,0 +1,102 @@
+.product-poster {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  aspect-ratio: 7 / 12;
+  padding-bottom: var(--space-lg);
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  color: var(--color-ink);
+
+  &--primary {
+    background-color: var(--color-primary);
+  }
+
+  &--header {
+    background-color: var(--color-header);
+    color: var(--color-on-header);
+  }
+
+  &--success {
+    background-color: var(--color-success-surface);
+    border-color: var(--color-success);
+    color: var(--color-success);
+  }
+
+  &--surface {
+    background-color: var(--color-surface);
+    border-color: var(--color-hairline);
+  }
+
+  &__link {
+    display: block;
+    padding-bottom: var(--space-md);
+    color: inherit;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+    }
+  }
+
+  &__grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--space-sm);
+    margin: 0 var(--space-lg);
+  }
+
+  &__tile {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    text-decoration: none;
+
+    &:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  &__image {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__foot {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: var(--space-xs);
+    height: 36px;
+    padding: 0 var(--space-sm);
+  }
+
+  &__star {
+    width: var(--space-lg);
+    height: var(--space-lg);
+  }
+
+  &__rating {
+    color: var(--color-body);
+    font-size: var(--text-caption-size);
+    font-weight: var(--text-caption-weight);
+    line-height: var(--text-caption-line);
+  }
+}

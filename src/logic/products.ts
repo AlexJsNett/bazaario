@@ -15,3 +15,9 @@ export const getRecommendations = (products: Product[], product: Product, limit 
   const rest = others.filter((item) => item.category !== product.category).sort(byRating);
   return [...same, ...rest].slice(0, Math.max(0, limit));
 };
+
+export const getProductsByIds = (products: Product[], ids: ProductId[]): Product[] =>
+  ids.flatMap((id) => {
+    const product = getProductById(products, id);
+    return product ? [product] : [];
+  });

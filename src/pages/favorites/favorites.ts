@@ -8,7 +8,7 @@ import { createButton } from '@/components/button/button';
 import { el } from '@/utils/dom.ts';
 import { toggleFavorite } from '@/logic/favorites.ts';
 import { goTo } from '@/goTo';
-import { addToCart } from '@/logic/cart.ts';
+import { addToCart, changeQuantity, getQuantity, removeFromCart } from '@/logic/cart.ts';
 import { buildHash } from '@/logic/route.ts';
 import { getReviews } from '@/logic/reviews.ts';
 import { loadReviews } from '@/data/reviews.ts';
@@ -30,7 +30,7 @@ export const render = (): HTMLElement => {
   let reviews: Review[] = [];
 
   const draw = () => {
-    const { favorites } = getUser();
+    const { favorites, cart } = getUser();
     const content = el('div', 'favorites-page__content');
     content.append(el('h1', 'favorites-page__title', 'Favorites'));
 
@@ -47,17 +47,30 @@ export const render = (): HTMLElement => {
     const grid = el('div', 'favorites-page__grid');
 
     for (const product of favoriteProducts) {
+      const cartQuantity = getQuantity(cart, product.id);
       grid.append(
         createProductCard({
           product,
           isFavorite: true,
           reviewsCount: getReviews(reviews, product.id),
           href: buildHash('product', { id: String(product.id) }),
+          quantity: cartQuantity,
+          onDecrease: () => {
+            updateUser((user) => ({
+              ...user,
+              cart:
+                cartQuantity === 1
+                  ? removeFromCart(user.cart, product.id)
+                  : changeQuantity(user.cart, product.id, -1),
+            }));
+            draw();
+          },
           onAddToCart: () => {
             updateUser((user) => ({
               ...user,
               cart: addToCart(user.cart, product.id),
             }));
+            draw();
           },
           onToggleFavorite: () => {
             updateUser((user) => ({

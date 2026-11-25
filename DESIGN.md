@@ -30,6 +30,11 @@ typography:
     fontSize: 48px
     fontWeight: 700
     lineHeight: 1.1
+  heading-card:
+    fontFamily: Mulish
+    fontSize: 32px
+    fontWeight: 700
+    lineHeight: 1.1
   heading-lg:
     fontFamily: Mulish
     fontSize: 24px
@@ -237,15 +242,16 @@ Source: the mydealz template from getdesign.md (independent analysis, not offici
 
 Font: **Mulish** (Google Fonts), weights 500 and 700 only. Fallback: `system-ui, sans-serif`.
 
-| Token      | Size | Weight | Line height | Use                     |
-| ---------- | ---- | ------ | ----------- | ----------------------- |
-| display    | 48px | 700    | 1.1         | hero on Home            |
-| heading-lg | 24px | 700    | 1.2         | page titles, price      |
-| heading    | 20px | 700    | 1.25        | section titles          |
-| lead       | 18px | 500    | 1.4         | intro text              |
-| body       | 16px | 500    | 1.5         | normal text             |
-| ui         | 14px | 700    | 1.3         | buttons, labels, badges |
-| caption    | 12px | 500    | 1.3         | hints, rating count     |
+| Token        | Size | Weight | Line height | Use                     |
+| ------------ | ---- | ------ | ----------- | ----------------------- |
+| display      | 48px | 700    | 1.1         | hero on Home            |
+| heading-card | 32px | 700    | 1.1         | headline of a Poster    |
+| heading-lg   | 24px | 700    | 1.2         | page titles, price      |
+| heading      | 20px | 700    | 1.25        | section titles          |
+| lead         | 18px | 500    | 1.4         | intro text              |
+| body         | 16px | 500    | 1.5         | normal text             |
+| ui           | 14px | 700    | 1.3         | buttons, labels, badges |
+| caption      | 12px | 500    | 1.3         | hints, rating count     |
 
 ## Layout
 
@@ -279,6 +285,12 @@ Names match the components in `src/components/`.
 - **ReviewItem**: one review: author and date in a line, Rating (stars only), title, text. Separated by a hairline.
 - **ReviewList**: title "Customer reviews", the average in `display` size with Rating, bars by stars (`star` fill on `hairline`), then ReviewItems. Empty state: "No reviews yet.".
 - **ProductRow**: title and ProductCards. One line that scrolls sideways on phone, a grid on desktop.
+- **Carousel**: one line of items that scrolls sideways (min width 280px, 16px gap, no scrollbar). Round-cornered scroll buttons (48x100px, `surface` with a `muted` border, chevron icon) sit at the left and right edges, vertically centered. A button is hidden when there is nothing to scroll in its direction.
+- **Poster**: card with the proportions 7:12 for the Carousel on Home, no prices. A picture fills the card and the copy sits on its empty top part: eyebrow (`ui`), headline (`heading-card`), subtitle (`body`, 2 lines max). One Badge in the bottom left corner. Text is `on-header` on a dark picture and `ink` on a light one. The whole card is a link, light shadow on hover.
+- **ProductPoster**: same proportions and copy as Poster, but a plain background (`primary`, `header`, `success-surface` or `surface`) and a 2x2 grid of product tiles instead of a picture. A tile is a white card with the product image (cropped to fill) and a 36px footer: a discount Badge (`deal`, only for products with an old price) or the rating number with a star. A tile links to the product page.
+- **About block** (Home): white card, 8px radius, 1px hairline. Photo and text side by side from 640px (photo 45%), photo on top on phone. Title "What is Bazaario?" in `heading-lg`, intro in `lead`, then a demo-store note in `ui` `body` below a hairline, then an outline Button "Learn more about us" to the About page.
+- **Delivery** (Home): title "Delivery that lands on its feet" in `heading`, a short line in `body` color, then cards like Partners: name in `heading-lg`, period in `lead` (`body` color), a Badge at the bottom (`save` or `neutral`). One column on phone, 3 from 640px.
+- **Partners** (Home): title "Our partners" and a list of cards: white, 8px radius, 1px hairline, 16px padding, centered 96px logo, name (`body` bold) and description (`ui`, `body` color). 2 columns on phone, 3 from 640px, 5 from 1024px. Light shadow on hover only.
 - **Product page**: image and info (category, title, Rating, Price, description, "Add to cart" or stepper with FavoriteButton) side by side from 640px, then ReviewList and ProductRow "You may also like".
 - **Badge**: discount (light red), success (green), neutral (gray), highlight (dark, e.g. "Bazaario's Choice"), deal (solid red, e.g. "Early Black Friday Deal"), save (green with 1px outline, e.g. "Save 5%"), plain (text only, e.g. "5K+ bought in past month").
 

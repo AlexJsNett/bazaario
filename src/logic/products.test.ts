@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Product } from '@/types/product';
-import { getProductById, getRecommendations } from './products';
+import { getProductById, getProductsByIds, getRecommendations } from './products';
 
 const make = (id: number, category = 'Tablets', rating = 4): Product => ({
   id,
@@ -57,5 +57,26 @@ describe('getRecommendations', () => {
     const snapshot = structuredClone(products);
     expect(getRecommendations(products, products[0], 0)).toEqual([]);
     expect(products).toEqual(snapshot);
+  });
+});
+
+describe('getProductsByIds', () => {
+  it('returns the products in the order of the ids', () => {
+    const products = [make(1), make(2), make(3)];
+    expect(getProductsByIds(products, [3, 1])).toEqual([products[2], products[0]]);
+  });
+
+  it('skips unknown ids and returns an empty list for no ids', () => {
+    const products = [make(1)];
+    expect(getProductsByIds(products, [9, 1])).toEqual([products[0]]);
+    expect(getProductsByIds(products, [])).toEqual([]);
+  });
+
+  it('does not change the input', () => {
+    const products = [make(1), make(2)];
+    const ids = [2, 1];
+    getProductsByIds(products, ids);
+    expect(products.map((p) => p.id)).toEqual([1, 2]);
+    expect(ids).toEqual([2, 1]);
   });
 });
